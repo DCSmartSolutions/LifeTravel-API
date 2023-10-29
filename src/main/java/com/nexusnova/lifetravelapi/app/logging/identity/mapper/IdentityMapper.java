@@ -14,4 +14,5 @@ public interface IdentityMapper {
     })
     UserSummaryDto userToSummaryDto(User entity);
 
+
 }

@@ -31,13 +31,9 @@ public class FirebaseAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
 
-        System.out.println(request.getServletPath());
-
         // Check if the request is whitelisted
         boolean isWhitelisted = Arrays.stream(AUTH_WHITELIST_PUBLIC)
                 .anyMatch(path -> request.getServletPath().startsWith(path));
-
-        System.out.println(isWhitelisted);
 
         // If the request is whitelisted, skip the filter
         if (isWhitelisted) {

@@ -4,7 +4,7 @@ import com.nexusnova.lifetravelapi.app.logging.identity.domain.commands.Register
 import com.nexusnova.lifetravelapi.app.logging.identity.resources.requests.UserRequestDto;
 
 public class RegisterUserCommandFromRequestDtoAssembler {
-    public static RegisterUserCommand ToCommandFromDto(UserRequestDto requestDto){
+    public static RegisterUserCommand toCommandFromDto(UserRequestDto requestDto){
         return new RegisterUserCommand(requestDto);
     }
 }

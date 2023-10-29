@@ -32,7 +32,7 @@ public abstract class AuditModel {
 
     @Column(name="_deleted")
     @NotNull
-    private boolean _deleted;
+    private Boolean _deleted;
 
     @PrePersist
     private void prePersist(){

@@ -24,9 +24,6 @@ import java.util.List;
 @SQLDelete(sql = "UPDATE destinations SET _deleted = true WHERE id = ?")
 public class Destination extends AuditModel {
 
-    @Column(name = "name")
-    private String name;
-
     @Column(name = "latitude")
     private BigDecimal latitude;
 

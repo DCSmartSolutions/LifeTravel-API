@@ -1,4 +1,4 @@
-package com.nexusnova.lifetravelapi.app.logging.identity.application.internal;
+package com.nexusnova.lifetravelapi.app.logging.identity.application;
 
 import com.nexusnova.lifetravelapi.app.logging.identity.domain.commands.RegisterUserCommand;
 import com.nexusnova.lifetravelapi.app.logging.identity.domain.model.User;

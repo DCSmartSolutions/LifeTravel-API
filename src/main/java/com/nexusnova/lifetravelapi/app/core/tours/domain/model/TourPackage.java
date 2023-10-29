@@ -40,16 +40,27 @@ public class TourPackage extends AuditModel {
     private BigDecimal price;
 
     @Column(name = "visible")
-    private boolean visible;
+    private Boolean visible;
 
     @Column(name = "rating")
     @Max(5)
-    private Integer rating;
+    private Float rating;
+
+    @Column(name = "latitude")
+    private BigDecimal latitude;
+
+    @Column(name = "longitude")
+    private BigDecimal longitude;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "region_id", nullable = false)
     @JsonIgnore
     private Region region;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "department_id", nullable = false)
+    @JsonIgnore
+    private Department department;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "agency_id", nullable = false)
@@ -60,8 +71,8 @@ public class TourPackage extends AuditModel {
     @JoinTable(name = "tour_package_activities",
             joinColumns = @JoinColumn(name = "tour_package_id"),
             inverseJoinColumns = @JoinColumn(name = "activity_id"))
-    private Set<Activity> activities;
+    private List<Activity> activities;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "tourPackage")
-    private Set<Destination> destinations;
+    private List<Destination> destinations;
 }

@@ -39,14 +39,9 @@ public class UserController {
     @ApiOperation(value = "Registrar usuario", notes = "Permite registrar un usuario.")
     public UserSummaryDto save(@RequestBody @Valid UserRequestDto userRequestDto,
                                HttpServletResponse response) {
-        User user = userCommandService.handle(RegisterUserCommandFromRequestDtoAssembler.ToCommandFromDto(userRequestDto));
+        User user = userCommandService.handle(RegisterUserCommandFromRequestDtoAssembler.toCommandFromDto(userRequestDto));
         response.setHeader(HeaderConstants.MESSAGES, messageUtil.getMessageByCode(USER_CREATED));
         return identityMapper.userToSummaryDto(user);
-    }
-
-    @GetMapping()
-    public String helloWorld() {
-        return "Hello World!";
     }
 
 }
