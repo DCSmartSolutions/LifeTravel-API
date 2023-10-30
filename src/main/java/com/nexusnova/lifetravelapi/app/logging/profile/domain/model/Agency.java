@@ -51,6 +51,6 @@ public class Agency extends AuditModel {
     @Column(name = "web_page_url")
     private String webPageUrl;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "agency")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "agency")
     private Set<TourPackage> tourPackages;
 }

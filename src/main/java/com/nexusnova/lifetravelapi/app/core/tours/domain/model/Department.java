@@ -24,7 +24,7 @@ public class Department extends AuditModel {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "region_id", nullable = false)
     @JsonIgnore
     private Region region;

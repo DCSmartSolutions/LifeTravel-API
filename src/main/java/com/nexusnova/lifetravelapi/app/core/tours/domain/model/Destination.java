@@ -30,7 +30,7 @@ public class Destination extends AuditModel {
     @Column(name = "longitude")
     private BigDecimal longitude;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "tour_package_id", nullable = false)
     @JsonIgnore
     private TourPackage tourPackage;

@@ -52,17 +52,17 @@ public class TourPackage extends AuditModel {
     @Column(name = "longitude")
     private BigDecimal longitude;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "region_id", nullable = false)
     @JsonIgnore
     private Region region;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "department_id", nullable = false)
     @JsonIgnore
     private Department department;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "agency_id", nullable = false)
     @JsonIgnore
     private Agency agency;
@@ -73,6 +73,6 @@ public class TourPackage extends AuditModel {
             inverseJoinColumns = @JoinColumn(name = "activity_id"))
     private List<Activity> activities;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "tourPackage")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tourPackage")
     private List<Destination> destinations;
 }
