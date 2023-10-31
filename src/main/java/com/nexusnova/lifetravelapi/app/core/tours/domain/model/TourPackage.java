@@ -46,10 +46,10 @@ public class TourPackage extends AuditModel {
     @Max(5)
     private Float rating;
 
-    @Column(name = "latitude")
+    @Column(name = "latitude", columnDefinition = "decimal(5,10)")
     private BigDecimal latitude;
 
-    @Column(name = "longitude")
+    @Column(name = "longitude", columnDefinition = "decimal(5,10)")
     private BigDecimal longitude;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

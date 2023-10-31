@@ -9,6 +9,9 @@ import com.nexusnova.lifetravelapi.app.logging.profile.domain.repositories.*;
 import com.nexusnova.lifetravelapi.configuration.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Component;
 
+import static com.nexusnova.lifetravelapi.app.shared.util.CoreConstants.AGENCY_ROLE_ID;
+import static com.nexusnova.lifetravelapi.app.shared.util.CoreConstants.TOURIST_ROLE_ID;
+
 @Component
 public class ValidationUtil {
 
@@ -21,6 +24,7 @@ public class ValidationUtil {
     private final RegionRepository regionRepository;
     private final TourExperienceRepository tourExperienceRepository;
     private final TourPackageRepository tourPackageRepository;
+    private final RoleRepository roleRepository;
 
     public ValidationUtil(UserRepository userRepository,
                           AgencyRepository agencyRepository,
@@ -30,7 +34,8 @@ public class ValidationUtil {
                           DestinationRepository destinationRepository,
                           RegionRepository regionRepository,
                           TourExperienceRepository tourExperienceRepository,
-                          TourPackageRepository tourPackageRepository) {
+                          TourPackageRepository tourPackageRepository,
+                          RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.agencyRepository = agencyRepository;
         this.touristRepository = touristRepository;
@@ -40,16 +45,29 @@ public class ValidationUtil {
         this.regionRepository = regionRepository;
         this.tourExperienceRepository = tourExperienceRepository;
         this.tourPackageRepository = tourPackageRepository;
+        this.roleRepository = roleRepository;
     }
 
     public User findUserById(String id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
     }
+
+    public Role getTouristRole() {
+        return roleRepository.findById(TOURIST_ROLE_ID)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found for tourist"));
+    }
+
+    public Role getAgencyRole() {
+        return roleRepository.findById(AGENCY_ROLE_ID)
+                .orElseThrow(() -> new ResourceNotFoundException("Role not found for agency"));
+    }
+
     public Agency findAgencyById(Long id) {
         return agencyRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Agency not found with id: " + id));
     }
+
     public Tourist findTouristById(Long id) {
         return touristRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Tourist not found with id: " + id));
@@ -59,6 +77,7 @@ public class ValidationUtil {
         return agencyRepository.findByUserId(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Agency not found with user id: " + id));
     }
+
     public Tourist findTouristByUserId(String id) {
         return touristRepository.findByUserId(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Tourist not found with user id: " + id));

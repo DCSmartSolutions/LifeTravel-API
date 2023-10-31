@@ -79,3 +79,12 @@ VALUES
      'Somos lideres en turismo internacional y trilingue de las mejores ruinas de LATAM', 'Inka Travel S.A.C.', '987112633', 'www.incatravel.com', 0);
 
 select * from agencies;
+
+
+-- ROLES INFO
+INSERT INTO roles (name)
+VALUES
+    ('ROLE_TOURIST'),
+    ('ROLE_AGENCY');
+
+select * from roles;

@@ -52,7 +52,7 @@ public class TourPackageController {
         return toursMapper.tourPackageToSummaryDtos(tourPackages);
     }
 
-    @GetMapping("/{regionId}")
+    @GetMapping("/region/{regionId}")
     @ApiOperation(value = "Listado Por Region", notes = "Listado de Paquetes Por Region Id.")
     public List<TourPackageSummaryDto> getToursByRegion(@PathVariable("regionId") Long regionId) {
         List<TourPackage> tourPackages = tourPackageQueryService.handle(new GetTourPackagesByRegionQuery(regionId));

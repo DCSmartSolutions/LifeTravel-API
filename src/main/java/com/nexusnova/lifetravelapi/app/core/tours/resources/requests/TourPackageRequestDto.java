@@ -22,7 +22,7 @@ public class TourPackageRequestDto {
     @ApiModelProperty("Precio")
     private BigDecimal price;
     @ApiModelProperty("Punto de encuentro")
-    private MeetingPointRequestDto meetintPoint;
+    private MeetingPointRequestDto meetingPoint;
     @ApiModelProperty("Lista de actividades")
     private List<ActivityRequestDto> activities;
     @ApiModelProperty("Punto de encuentro")
@@ -76,12 +76,12 @@ public class TourPackageRequestDto {
         this.price = price;
     }
 
-    public MeetingPointRequestDto getMeetintPoint() {
-        return meetintPoint;
+    public MeetingPointRequestDto getMeetingPoint() {
+        return meetingPoint;
     }
 
-    public void setMeetintPoint(MeetingPointRequestDto meetintPoint) {
-        this.meetintPoint = meetintPoint;
+    public void setMeetingPoint(MeetingPointRequestDto meetingPoint) {
+        this.meetingPoint = meetingPoint;
     }
 
     public List<ActivityRequestDto> getActivities() {

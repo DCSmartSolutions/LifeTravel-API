@@ -40,8 +40,8 @@ public class TourPackageCommandServiceImpl implements TourPackageCommandService 
         tourPackage.setDescription(requestDto.getDescription());
         tourPackage.setImgUrl(requestDto.getImgUrl());
         tourPackage.setPrice(requestDto.getPrice());
-        tourPackage.setLatitude(requestDto.getMeetintPoint().getLatitude());
-        tourPackage.setLongitude(requestDto.getMeetintPoint().getLongitude());
+        tourPackage.setLatitude(requestDto.getMeetingPoint().getLatitude());
+        tourPackage.setLongitude(requestDto.getMeetingPoint().getLongitude());
         tourPackage.setDepartment(department);
         tourPackage.setRegion(department.getRegion());
         tourPackage.setAgency(agency);
