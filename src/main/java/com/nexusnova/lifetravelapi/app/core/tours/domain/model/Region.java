@@ -19,7 +19,7 @@ import java.util.Set;
 @Table(name = "regions")
 @Where(clause = "_deleted = false")
 @SQLDelete(sql = "UPDATE regions SET _deleted = true WHERE id = ?")
-public class Region extends AuditModel {
+public class Region extends AuditModel{
 
     @Column(name = "title")
     private String title;
@@ -30,7 +30,7 @@ public class Region extends AuditModel {
     @Column(name = "img_url")
     private String imgUrl;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "region")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "region")
     private Set<TourPackage> tourPackages;
 
 }

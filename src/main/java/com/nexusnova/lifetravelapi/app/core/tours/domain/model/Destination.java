@@ -24,16 +24,13 @@ import java.util.List;
 @SQLDelete(sql = "UPDATE destinations SET _deleted = true WHERE id = ?")
 public class Destination extends AuditModel {
 
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "latitude")
+    @Column(name = "latitude", columnDefinition = "decimal(5,10)")
     private BigDecimal latitude;
 
-    @Column(name = "longitude")
+    @Column(name = "longitude", columnDefinition = "decimal(5,10)")
     private BigDecimal longitude;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "tour_package_id", nullable = false)
     @JsonIgnore
     private TourPackage tourPackage;

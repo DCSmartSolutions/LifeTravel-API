@@ -9,6 +9,8 @@ public class UserSummaryDto {
     private String id;
     @ApiModelProperty("Nombre del Usuario")
     private String name;
+    @ApiModelProperty("Role")
+    private String role;
 
     public String getId() {
         return id;
@@ -24,5 +26,13 @@ public class UserSummaryDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

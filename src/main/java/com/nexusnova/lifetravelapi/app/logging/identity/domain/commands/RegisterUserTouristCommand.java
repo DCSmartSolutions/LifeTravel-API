@@ -2,5 +2,5 @@ package com.nexusnova.lifetravelapi.app.logging.identity.domain.commands;
 
 import com.nexusnova.lifetravelapi.app.logging.identity.resources.requests.UserRequestDto;
 
-public record RegisterUserCommand(UserRequestDto userRequestDto) {
+public record RegisterUserTouristCommand(UserRequestDto userRequestDto) {
 }

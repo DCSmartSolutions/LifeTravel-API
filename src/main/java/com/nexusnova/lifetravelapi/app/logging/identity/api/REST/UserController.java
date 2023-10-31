@@ -1,11 +1,14 @@
 package com.nexusnova.lifetravelapi.app.logging.identity.api.REST;
 
-import com.nexusnova.lifetravelapi.app.logging.identity.api.transformation.RegisterUserCommandFromRequestDtoAssembler;
+import com.nexusnova.lifetravelapi.app.logging.identity.api.transformation.RegisterUserAgencyCommandFromRequestDtoAssembler;
+import com.nexusnova.lifetravelapi.app.logging.identity.api.transformation.RegisterUserTouristCommandFromRequestDtoAssembler;
 import com.nexusnova.lifetravelapi.app.logging.identity.domain.model.User;
+import com.nexusnova.lifetravelapi.app.logging.identity.domain.queries.GetUserByIdQuery;
 import com.nexusnova.lifetravelapi.app.logging.identity.mapper.IdentityMapper;
 import com.nexusnova.lifetravelapi.app.logging.identity.resources.requests.UserRequestDto;
 import com.nexusnova.lifetravelapi.app.logging.identity.service.UserCommandService;
 import com.nexusnova.lifetravelapi.app.logging.identity.resources.summaries.UserSummaryDto;
+import com.nexusnova.lifetravelapi.app.logging.identity.service.UserQueryService;
 import com.nexusnova.lifetravelapi.configuration.constants.HeaderConstants;
 import com.nexusnova.lifetravelapi.app.shared.util.MessageUtil;
 import io.swagger.annotations.Api;
@@ -23,30 +26,46 @@ import static com.nexusnova.lifetravelapi.configuration.messages.ConfigurationMe
 @CrossOrigin
 public class UserController {
     private final UserCommandService userCommandService;
+    private final UserQueryService userQueryService;
     private final MessageUtil messageUtil;
     private final IdentityMapper identityMapper;
 
     public UserController(UserCommandService userCommandService,
+                          UserQueryService userQueryService,
                           MessageUtil messageUtil,
                           IdentityMapper identityMapper) {
         this.userCommandService = userCommandService;
+        this.userQueryService = userQueryService;
         this.messageUtil = messageUtil;
         this.identityMapper = identityMapper;
     }
 
-    @PostMapping
+    @GetMapping("/login/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Obtener usuario", notes = "Permite obtener un usuario.")
+    public UserSummaryDto getUser(@RequestParam String id) {
+        User user = userQueryService.handle(new GetUserByIdQuery(id));
+        return identityMapper.userToSummaryDto(user);
+    }
+
+    @PostMapping("/register/tourist")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Registrar usuario", notes = "Permite registrar un usuario.")
-    public UserSummaryDto save(@RequestBody @Valid UserRequestDto userRequestDto,
+    public UserSummaryDto registerTourist(@RequestBody @Valid UserRequestDto userRequestDto,
                                HttpServletResponse response) {
-        User user = userCommandService.handle(RegisterUserCommandFromRequestDtoAssembler.ToCommandFromDto(userRequestDto));
+        User user = userCommandService.handle(RegisterUserTouristCommandFromRequestDtoAssembler.toCommandFromDto(userRequestDto));
         response.setHeader(HeaderConstants.MESSAGES, messageUtil.getMessageByCode(USER_CREATED));
         return identityMapper.userToSummaryDto(user);
     }
 
-    @GetMapping()
-    public String helloWorld() {
-        return "Hello World!";
+    @PostMapping("/register/agency")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ApiOperation(value = "Registrar usuario", notes = "Permite registrar un usuario.")
+    public UserSummaryDto registerAgency(@RequestBody @Valid UserRequestDto userRequestDto,
+                               HttpServletResponse response) {
+        User user = userCommandService.handle(RegisterUserAgencyCommandFromRequestDtoAssembler.toCommandFromDto(userRequestDto));
+        response.setHeader(HeaderConstants.MESSAGES, messageUtil.getMessageByCode(USER_CREATED));
+        return identityMapper.userToSummaryDto(user);
     }
 
 }

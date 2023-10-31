@@ -1,5 +1,7 @@
 package com.nexusnova.lifetravelapi.app.logging.identity.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.nexusnova.lifetravelapi.app.core.tours.domain.model.Department;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -40,6 +42,11 @@ public class User implements Serializable {
 
     @Column(name = "google_photo_url")
     private String googlePhotoUrl;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "role_id", nullable = false)
+    @JsonIgnore
+    private Role role;
 
     @Column(name = "created_date", nullable = false, updatable = false)
     @CreatedDate

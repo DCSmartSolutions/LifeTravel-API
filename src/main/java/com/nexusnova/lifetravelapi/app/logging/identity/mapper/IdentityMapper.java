@@ -11,7 +11,9 @@ public interface IdentityMapper {
     @Mappings({
             @Mapping(target = "id", source = "entity.id"),
             @Mapping(target = "name", source = "entity.googleName"),
+            @Mapping(target = "role", source = "entity.role.name"),
     })
     UserSummaryDto userToSummaryDto(User entity);
+
 
 }
