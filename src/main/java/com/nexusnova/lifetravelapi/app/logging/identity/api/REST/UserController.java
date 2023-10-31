@@ -40,7 +40,7 @@ public class UserController {
         this.identityMapper = identityMapper;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/login/{id}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Obtener usuario", notes = "Permite obtener un usuario.")
     public UserSummaryDto getUser(@RequestParam String id) {
