@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel("Usuario (Request)")
 public class UserRequestDto {
-    @ApiModelProperty("Id del Usuario")
+    @Schema(description="Id del Usuario")
     private String id;
     @ApiModelProperty("Nombre del Usuario")
     private String name;
