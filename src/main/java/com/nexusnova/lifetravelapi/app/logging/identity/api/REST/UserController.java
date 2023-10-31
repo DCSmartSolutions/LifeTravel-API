@@ -23,6 +23,7 @@ import static com.nexusnova.lifetravelapi.configuration.messages.ConfigurationMe
 @RestController
 @RequestMapping("/api/v1/users")
 @Api(tags = "Api de Usuarios", consumes = "application/json")
+@Tag(name="User Controller")
 @CrossOrigin
 public class UserController {
     private final UserCommandService userCommandService;
