@@ -1,16 +1,15 @@
 package com.nexusnova.lifetravelapi.app.core.tours.resources.requests;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.math.BigDecimal;
 
-@ApiModel("Meeting Point (Request)")
+@Schema(description="Meeting Point (Request)")
 public class MeetingPointRequestDto {
 
-    @ApiModelProperty("Latitud")
+    @Schema(description="Latitud")
     private BigDecimal latitude;
-    @ApiModelProperty("Longitud")
+    @Schema(description="Longitud")
     private BigDecimal longitude;
 
     public BigDecimal getLatitude() {

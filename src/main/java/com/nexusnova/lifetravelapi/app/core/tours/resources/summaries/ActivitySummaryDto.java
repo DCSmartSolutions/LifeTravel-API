@@ -1,16 +1,15 @@
 package com.nexusnova.lifetravelapi.app.core.tours.resources.summaries;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-@ApiModel("Actividad (Summary)")
+@Schema(description="Actividad (Summary)")
 public class ActivitySummaryDto {
 
-    @ApiModelProperty("Id del Usuario")
+    @Schema(description="Id del Usuario")
     private String id;
-    @ApiModelProperty("Titulo de la actividad")
+    @Schema(description="Titulo de la actividad")
     private String title;
-    @ApiModelProperty("Url de la imagens")
+    @Schema(description="Url de la imagens")
     private String imgUrl;
 
     public String getId() {

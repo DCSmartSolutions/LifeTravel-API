@@ -14,6 +14,9 @@ import com.nexusnova.lifetravelapi.app.shared.util.MessageUtil;
 import com.nexusnova.lifetravelapi.configuration.constants.HeaderConstants;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -25,7 +28,7 @@ import static com.nexusnova.lifetravelapi.configuration.messages.ConfigurationMe
 
 @RestController
 @RequestMapping("/api/v1/tour-packages")
-@Api(tags = "Api de Paquetes de Tour", consumes = "application/json")
+@Tag(name="Tour Packages Controller")
 @CrossOrigin
 public class TourPackageController {
 
@@ -46,29 +49,29 @@ public class TourPackageController {
 
 
     @GetMapping
-    @ApiOperation(value = "Listado", notes = "Listado de Actividades.")
+    @Operation(summary = "Listado", description = "Listado de Actividades.")
     public List<TourPackageSummaryDto> getTours() {
         List<TourPackage> tourPackages = tourPackageQueryService.handle();
         return toursMapper.tourPackageToSummaryDtos(tourPackages);
     }
 
     @GetMapping("/region/{regionId}")
-    @ApiOperation(value = "Listado Por Region", notes = "Listado de Paquetes Por Region Id.")
-    public List<TourPackageSummaryDto> getToursByRegion(@PathVariable("regionId") Long regionId) {
+    @Operation(summary = "Listado Por Region", description = "Listado de Paquetes Por Region Id.")
+    public List<TourPackageSummaryDto> getToursByRegion(@Parameter @PathVariable("regionId") Long regionId) {
         List<TourPackage> tourPackages = tourPackageQueryService.handle(new GetTourPackagesByRegionQuery(regionId));
         return toursMapper.tourPackageToSummaryDtos(tourPackages);
     }
 
     @GetMapping("/{packageId}")
-    @ApiOperation(value = "Listado Por Id", notes = "Listado de Paquetes Por Id.")
-    public TourPackageDetailDto getToursById(@PathVariable("packageId") Long packageId) {
+    @Operation(summary = "Listado Por Id", description = "Listado de Paquetes Por Id.")
+    public TourPackageDetailDto getToursById(@Parameter @PathVariable("packageId") Long packageId) {
         TourPackage tourPackage = tourPackageQueryService.handle(new GetTourPackageByIdQuery(packageId));
         return toursMapper.tourPackageToDetailDto(tourPackage);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    @ApiOperation(value = "Registrar Paquete", notes = "Permite registrar un paquete.")
+    @Operation(summary = "Registrar Paquete", description = "Permite registrar un paquete.")
     public TourPackageSummaryDto save(@RequestBody @Valid TourPackageRequestDto tourPackageRequestDto,
                                HttpServletResponse response) {
         TourPackage tourPackage =

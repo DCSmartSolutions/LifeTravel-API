@@ -1,31 +1,30 @@
 package com.nexusnova.lifetravelapi.app.core.tours.resources.requests;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@ApiModel("Tour Package (Request)")
+@Schema(description="Tour Package (Request)")
 public class TourPackageRequestDto {
 
-    @ApiModelProperty("Id de Agencia")
+    @Schema(description="Id de Agencia")
     private String agencyId;
-    @ApiModelProperty("Nombre del Usuario")
+    @Schema(description="Nombre del Usuario")
     private String title;
-    @ApiModelProperty("Nombre del Usuario")
+    @Schema(description="Nombre del Usuario")
     private String description;
-    @ApiModelProperty("Nombre del Usuario")
+    @Schema(description="Nombre del Usuario")
     private String imgUrl;
-    @ApiModelProperty("Nombre del departamento")
+    @Schema(description="Nombre del departamento")
     private String departmentName;
-    @ApiModelProperty("Precio")
+    @Schema(description="Precio")
     private BigDecimal price;
-    @ApiModelProperty("Punto de encuentro")
+    @Schema(description="Punto de encuentro")
     private MeetingPointRequestDto meetingPoint;
-    @ApiModelProperty("Lista de actividades")
+    @Schema(description="Lista de actividades")
     private List<ActivityRequestDto> activities;
-    @ApiModelProperty("Punto de encuentro")
+    @Schema(description="Punto de encuentro")
     private List<MeetingPointRequestDto> activitiesMeetingPoints;
 
     public String getAgencyId() {
