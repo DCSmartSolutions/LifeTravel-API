@@ -36,7 +36,7 @@ public class SpringFoxConfig {
                                 -Ryan Sweden (Ryen)
                                 -Edgar Malca (EdGar)
                                 -Dominik Mendoza (Zen)""")
-                        .termsOfService("https://www.upc.edu.pe/")
+                        .termsOfService("https://iot-lifetravel-firebase-token-gen.netlify.app")
                         .license(new License().name("GitHub Organization").url("https://github.com/NexusNova-IOT"))
                         .contact(new Contact()
                                 .url("https://nexusnova-iot.github.io/landing-page/")
