@@ -1,7 +1,7 @@
 package com.nexusnova.lifetravelapi.app.core.tours.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.nexusnova.lifetravelapi.app.shared.domain.AuditModel;
+import com.nexusnova.lifetravelapi.app.shared.domain.model.AuditModel;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
@@ -9,8 +9,6 @@ import org.hibernate.annotations.Where;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter

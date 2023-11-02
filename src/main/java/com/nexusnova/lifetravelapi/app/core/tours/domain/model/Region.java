@@ -1,6 +1,6 @@
 package com.nexusnova.lifetravelapi.app.core.tours.domain.model;
 
-import com.nexusnova.lifetravelapi.app.shared.domain.AuditModel;
+import com.nexusnova.lifetravelapi.app.shared.domain.model.AuditModel;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;

@@ -2,7 +2,7 @@ package com.nexusnova.lifetravelapi.app.core.tours.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nexusnova.lifetravelapi.app.logging.profile.domain.model.Agency;
-import com.nexusnova.lifetravelapi.app.shared.domain.AuditModel;
+import com.nexusnova.lifetravelapi.app.shared.domain.model.AuditModel;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
@@ -12,7 +12,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.validation.constraints.Max;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Set;
 
 @Getter
 @Setter
