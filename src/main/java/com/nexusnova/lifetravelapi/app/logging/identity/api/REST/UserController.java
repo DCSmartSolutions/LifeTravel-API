@@ -11,8 +11,9 @@ import com.nexusnova.lifetravelapi.app.logging.identity.resources.summaries.User
 import com.nexusnova.lifetravelapi.app.logging.identity.service.UserQueryService;
 import com.nexusnova.lifetravelapi.configuration.constants.HeaderConstants;
 import com.nexusnova.lifetravelapi.app.shared.util.MessageUtil;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,6 @@ import static com.nexusnova.lifetravelapi.configuration.messages.ConfigurationMe
 
 @RestController
 @RequestMapping("/api/v1/users")
-@Api(tags = "Api de Usuarios", consumes = "application/json")
 @Tag(name="User Controller")
 @CrossOrigin
 public class UserController {
@@ -43,15 +43,15 @@ public class UserController {
 
     @GetMapping("/login/{id}")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "Obtener usuario", notes = "Permite obtener un usuario.")
-    public UserSummaryDto getUser(@RequestParam String id) {
+    @Operation(summary = "Obtener usuario", description = "Permite obtener un usuario.")
+    public UserSummaryDto getUser(@Parameter @PathVariable("id") String id) {
         User user = userQueryService.handle(new GetUserByIdQuery(id));
         return identityMapper.userToSummaryDto(user);
     }
 
     @PostMapping("/register/tourist")
     @ResponseStatus(HttpStatus.CREATED)
-    @ApiOperation(value = "Registrar usuario", notes = "Permite registrar un usuario.")
+    @Operation(summary = "Registrar usuario", description = "Permite registrar un usuario.")
     public UserSummaryDto registerTourist(@RequestBody @Valid UserRequestDto userRequestDto,
                                HttpServletResponse response) {
         User user = userCommandService.handle(RegisterUserTouristCommandFromRequestDtoAssembler.toCommandFromDto(userRequestDto));
@@ -61,7 +61,7 @@ public class UserController {
 
     @PostMapping("/register/agency")
     @ResponseStatus(HttpStatus.CREATED)
-    @ApiOperation(value = "Registrar usuario", notes = "Permite registrar un usuario.")
+    @Operation(summary = "Registrar usuario", description = "Permite registrar un usuario.")
     public UserSummaryDto registerAgency(@RequestBody @Valid UserRequestDto userRequestDto,
                                HttpServletResponse response) {
         User user = userCommandService.handle(RegisterUserAgencyCommandFromRequestDtoAssembler.toCommandFromDto(userRequestDto));

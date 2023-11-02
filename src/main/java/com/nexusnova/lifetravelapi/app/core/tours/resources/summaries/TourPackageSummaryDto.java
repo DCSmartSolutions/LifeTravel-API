@@ -1,28 +1,27 @@
 package com.nexusnova.lifetravelapi.app.core.tours.resources.summaries;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.math.BigDecimal;
 
-@ApiModel("Tour Packages (Summary)")
+@Schema(description="Tour Packages (Summary)")
 public class TourPackageSummaryDto {
 
-    @ApiModelProperty("Id del Paquete")
+    @Schema(description="Id del Paquete")
     private String id;
-    @ApiModelProperty("Titulo del Paquete")
+    @Schema(description="Titulo del Paquete")
     private String title;
-    @ApiModelProperty("Departamento del Paquete")
+    @Schema(description="Departamento del Paquete")
     private String departmentName;
-    @ApiModelProperty("Descripcion del Paquete")
+    @Schema(description="Descripcion del Paquete")
     private String description;
-    @ApiModelProperty("Precio del Paquete")
+    @Schema(description="Precio del Paquete")
     private BigDecimal price;
-    @ApiModelProperty("Rating del Paquete")
+    @Schema(description="Rating del Paquete")
     private Float rating;
-    @ApiModelProperty("Url de la imagen")
+    @Schema(description="Url de la imagen")
     private String imgUrl;
-    @ApiModelProperty("Visible")
+    @Schema(description="Visible")
     private Boolean visible;
 
     public String getId() {

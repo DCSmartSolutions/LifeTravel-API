@@ -1,20 +1,19 @@
 package com.nexusnova.lifetravelapi.app.logging.profile.resources.summaries;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Date;
 
-@ApiModel("Tourist (Summary)")
+@Schema(description="Tourist (Summary)")
 public class TouristSummaryDto {
 
-    @ApiModelProperty("Id del Usuario")
+    @Schema(description="Id del Usuario")
     private String id;
-    @ApiModelProperty("Nombre del turista")
+    @Schema(description="Nombre del turista")
     private String name;
-    @ApiModelProperty("Fecha de Nacimiento del turista")
+    @Schema(description="Fecha de Nacimiento del turista")
     private Date birthDate;
-    @ApiModelProperty("Numero de telefono del turista")
+    @Schema(description="Numero de telefono del turista")
     private String phoneNumber;
 
     public String getId() {

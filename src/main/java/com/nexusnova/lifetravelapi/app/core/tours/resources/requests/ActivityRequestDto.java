@@ -1,12 +1,11 @@
 package com.nexusnova.lifetravelapi.app.core.tours.resources.requests;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-@ApiModel("Activity (Request)")
+@Schema(description="Activity (Request)")
 public class ActivityRequestDto {
 
-    @ApiModelProperty("Id de la actividad")
+    @Schema(description="Id de la actividad")
     private Long id;
 
     public Long getId() {

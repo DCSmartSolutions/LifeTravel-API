@@ -6,6 +6,8 @@ import com.nexusnova.lifetravelapi.app.core.tours.mapper.ToursMapper;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.summaries.ActivitySummaryDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/activities")
-@Api(tags = "Api de Actividades", consumes = "application/json")
+@Tag(name="Activities Controller")
 @CrossOrigin
 public class ActivityController {
 
@@ -29,7 +31,7 @@ public class ActivityController {
     }
 
     @GetMapping
-    @ApiOperation(value = "Listado", notes = "Listado de Actividades.")
+    @Operation(summary = "Listado", description = "Listado de Actividades.")
     @ResponseStatus(HttpStatus.OK)
     public List<ActivitySummaryDto> getActivities() {
         List<Activity> activities = activityQueryService.handle();

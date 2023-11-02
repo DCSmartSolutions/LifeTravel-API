@@ -1,17 +1,17 @@
 package com.nexusnova.lifetravelapi.app.logging.profile.resources.summaries;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-@ApiModel("Agency (Summary)")
+
+@Schema(description="Agency (Summary)")
 public class AgencySummaryDto {
-    @ApiModelProperty("Id del Usuario")
+    @Schema(description="Id del Usuario")
     private String id;
-    @ApiModelProperty("Nombre del Usuario")
+    @Schema(description="Nombre del Usuario")
     private String legalName;
-    @ApiModelProperty("Foto de la agencia")
+    @Schema(description="Foto de la agencia")
     private String agencyPhotoUrl;
-    @ApiModelProperty("Id del Usuario")
+    @Schema(description="Id del Usuario")
     private String phoneNumber;
 
     public String getId() {

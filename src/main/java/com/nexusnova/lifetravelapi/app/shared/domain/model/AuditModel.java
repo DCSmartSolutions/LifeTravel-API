@@ -1,4 +1,4 @@
-package com.nexusnova.lifetravelapi.app.shared.domain;
+package com.nexusnova.lifetravelapi.app.shared.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;

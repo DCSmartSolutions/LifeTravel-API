@@ -2,7 +2,7 @@ package com.nexusnova.lifetravelapi.app.logging.profile.domain.model;
 
 
 import com.nexusnova.lifetravelapi.app.logging.identity.domain.model.User;
-import com.nexusnova.lifetravelapi.app.shared.domain.AuditModel;
+import com.nexusnova.lifetravelapi.app.shared.domain.model.AuditModel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
