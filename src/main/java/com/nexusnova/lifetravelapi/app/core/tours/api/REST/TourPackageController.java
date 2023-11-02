@@ -63,7 +63,7 @@ public class TourPackageController {
     }
 
     @GetMapping("/{packageId}")
-    @Operation(summary = "Listado Por Id", description = "Listado de Paquetes Por Id.")
+    @Operation(summary = "Obtener Por Id", description = "Obtener Por Id.")
     public TourPackageDetailDto getToursById(@Parameter @PathVariable("packageId") Long packageId) {
         TourPackage tourPackage = tourPackageQueryService.handle(new GetTourPackageByIdQuery(packageId));
         return toursMapper.tourPackageToDetailDto(tourPackage);

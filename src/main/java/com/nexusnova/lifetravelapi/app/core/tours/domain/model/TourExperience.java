@@ -25,7 +25,7 @@ public class TourExperience extends AuditModel {
     @Column(name = "start_date")
     private Date startDate;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "tour_package_id", nullable = false)
     @JsonIgnore
     private TourPackage tourPackage;

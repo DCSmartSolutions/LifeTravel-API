@@ -54,7 +54,7 @@ public class User implements Serializable {
 
     @Column(name="_deleted")
     @NotNull
-    private boolean _deleted;
+    private Boolean _deleted;
 
     @PrePersist
     private void prePersist(){

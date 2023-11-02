@@ -2,6 +2,7 @@ package com.nexusnova.lifetravelapi.app.core.booking.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.TourExperience;
+import com.nexusnova.lifetravelapi.app.logging.identity.domain.model.User;
 import com.nexusnova.lifetravelapi.app.logging.profile.domain.model.Tourist;
 import com.nexusnova.lifetravelapi.app.shared.domain.model.AuditModel;
 import jakarta.persistence.*;
@@ -38,6 +39,11 @@ public class Booking extends AuditModel {
     @JoinColumn(name = "tourist_id", nullable = false)
     @JsonIgnore
     private Tourist tourist;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "tourist_user_id", nullable = false)
+    @JsonIgnore
+    private User touristUser;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "tour_experience_id", nullable = false)

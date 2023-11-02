@@ -8,7 +8,7 @@ public class BookingRequestDto {
     @Schema(description="Id del Tour Experience")
     private Long tourExperienceId;
     @Schema(description="Id del Turista")
-    private Long touristId;
+    private String touristId;
 
     public Long getTourExperienceId() {
         return tourExperienceId;
@@ -18,11 +18,11 @@ public class BookingRequestDto {
         this.tourExperienceId = tourExperienceId;
     }
 
-    public Long getTouristId() {
+    public String getTouristId() {
         return touristId;
     }
 
-    public void setTouristId(Long touristId) {
+    public void setTouristId(String touristId) {
         this.touristId = touristId;
     }
 }
