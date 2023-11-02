@@ -40,11 +40,12 @@ public class BookingCommandServiceImpl implements BookingCommandService {
         BookingRequestDto requestDto = command.requestDto();
 
         Booking booking = new Booking();
-        Tourist tourist = validationUtil.findTouristById(requestDto.getTouristId());
+        Tourist tourist = validationUtil.findTouristByUserId(requestDto.getTouristId());
         TourExperience tourExperience = validationUtil.findTourExperienceById(requestDto.getTourExperienceId());
         SerieNumber serieNumber = serieNumberUtil.generateCorrelative(BOOKING_TYPE_SERIE_NUMBER);
 
         booking.setTourist(tourist);
+        booking.setTouristUser(tourist.getUser());
         booking.setTourExperience(tourExperience);
         booking.setDate(new Date());
         booking.setSerie(serieNumber.getSerie());

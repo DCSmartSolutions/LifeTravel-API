@@ -14,6 +14,6 @@ import java.util.Optional;
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Long> {
 
-    @Query("select b from Booking b where b._deleted=false and b.tourist.user.id=:userId")
+    @Query("select b from Booking b where b._deleted=false and b.touristUser.id=:userId")
     List<Booking> findByUserId(@Param("userId") String userId);
 }

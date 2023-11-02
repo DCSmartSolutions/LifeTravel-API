@@ -1,5 +1,6 @@
 package com.nexusnova.lifetravelapi.app.logging.identity.domain.model;
 
+import com.nexusnova.lifetravelapi.app.shared.domain.model.AuditModel;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
@@ -15,8 +16,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Data
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "roles")
-@Where(clause = "_deleted = false")
-@SQLDelete(sql = "UPDATE roles SET _deleted = true WHERE id = ?")
 public class Role {
 
     @Id

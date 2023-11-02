@@ -22,10 +22,10 @@ import java.math.BigDecimal;
 @SQLDelete(sql = "UPDATE destinations SET _deleted = true WHERE id = ?")
 public class Destination extends AuditModel {
 
-    @Column(name = "latitude", columnDefinition = "decimal(5,10)")
+    @Column(name = "latitude", columnDefinition = "decimal(13,10)")
     private BigDecimal latitude;
 
-    @Column(name = "longitude", columnDefinition = "decimal(5,10)")
+    @Column(name = "longitude", columnDefinition = "decimal(13,10)")
     private BigDecimal longitude;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
