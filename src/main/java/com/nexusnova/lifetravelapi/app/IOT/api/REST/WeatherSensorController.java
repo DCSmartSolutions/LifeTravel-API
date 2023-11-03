@@ -33,8 +33,8 @@ public class WeatherSensorController {
     }
 
     @PutMapping("/update-weather/{sensorId}")
-    @Operation(summary = "Actualizar Ubicacion", description = "Permite actualizar la ubicacion del GPS Tracker.")
-    public void updateLocation(@Parameter @PathVariable("sensorId") Long sensorId,
+    @Operation(summary = "Actualizar Clima", description = "Permite actualizar el Clima del Sensor.")
+    public void updateWeather(@Parameter @PathVariable("sensorId") Long sensorId,
                                @RequestBody @Valid WeatherSensorRequestDto requestDto,
                                HttpServletResponse response) {
         weatherSensorCommandService.handle(UpdateWeatherCommandFromRequestDtoAssembler.toCommandFromDto(sensorId, requestDto));
