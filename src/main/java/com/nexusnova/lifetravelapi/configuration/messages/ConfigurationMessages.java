@@ -4,4 +4,5 @@ public class ConfigurationMessages {
     public static final String USER_CREATED = "Usuario creado correctamente";
     public static final String TOUR_PACKAGE_CREATED = "Paquete Turistico creado correctamente";
     public static final String BOOKING_CREATED = "Booking regsitrado correctamente";
+    public static final String GPS_UPDATED = "Tracking Wereable actualizado correctamente";
 }

@@ -1,6 +1,8 @@
 package com.nexusnova.lifetravelapi.app.core.tours.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.nexusnova.lifetravelapi.app.IOT.domain.model.TrackingWereable;
+import com.nexusnova.lifetravelapi.app.IOT.domain.model.WeatherSensor;
 import com.nexusnova.lifetravelapi.app.shared.domain.model.AuditModel;
 import jakarta.persistence.*;
 import lombok.*;
@@ -33,4 +35,6 @@ public class Destination extends AuditModel {
     @JsonIgnore
     private TourPackage tourPackage;
 
+    @OneToOne(mappedBy = "destination", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private WeatherSensor weatherSensor;
 }

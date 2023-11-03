@@ -10,7 +10,7 @@ import com.nexusnova.lifetravelapi.app.core.tours.domain.services.TourPackageCom
 import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.ActivityRequestDto;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.MeetingPointRequestDto;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.TourPackageRequestDto;
-import com.nexusnova.lifetravelapi.app.logging.profile.domain.model.Agency;
+import com.nexusnova.lifetravelapi.app.IAM.profile.domain.model.Agency;
 import com.nexusnova.lifetravelapi.app.shared.ValidationUtil;
 import org.springframework.stereotype.Service;
 
