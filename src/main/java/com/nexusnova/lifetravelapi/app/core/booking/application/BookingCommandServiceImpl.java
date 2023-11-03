@@ -6,7 +6,7 @@ import com.nexusnova.lifetravelapi.app.core.booking.domain.repositories.BookingR
 import com.nexusnova.lifetravelapi.app.core.booking.domain.services.BookingCommandService;
 import com.nexusnova.lifetravelapi.app.core.booking.resources.requests.BookingRequestDto;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.TourExperience;
-import com.nexusnova.lifetravelapi.app.logging.profile.domain.model.Tourist;
+import com.nexusnova.lifetravelapi.app.IAM.profile.domain.model.Tourist;
 import com.nexusnova.lifetravelapi.app.shared.ValidationUtil;
 import com.nexusnova.lifetravelapi.app.shared.domain.model.SerieNumber;
 import com.nexusnova.lifetravelapi.app.shared.domain.repositories.SerieNumberRepository;

@@ -2,8 +2,8 @@ package com.nexusnova.lifetravelapi.app.core.booking.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.TourExperience;
-import com.nexusnova.lifetravelapi.app.logging.identity.domain.model.User;
-import com.nexusnova.lifetravelapi.app.logging.profile.domain.model.Tourist;
+import com.nexusnova.lifetravelapi.app.IAM.identity.domain.model.User;
+import com.nexusnova.lifetravelapi.app.IAM.profile.domain.model.Tourist;
 import com.nexusnova.lifetravelapi.app.shared.domain.model.AuditModel;
 import jakarta.persistence.*;
 import lombok.*;

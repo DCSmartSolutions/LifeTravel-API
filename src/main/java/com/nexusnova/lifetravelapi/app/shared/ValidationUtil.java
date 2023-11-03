@@ -2,10 +2,10 @@ package com.nexusnova.lifetravelapi.app.shared;
 
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.*;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.repositories.*;
-import com.nexusnova.lifetravelapi.app.logging.identity.domain.model.*;
-import com.nexusnova.lifetravelapi.app.logging.identity.domain.repositories.*;
-import com.nexusnova.lifetravelapi.app.logging.profile.domain.model.*;
-import com.nexusnova.lifetravelapi.app.logging.profile.domain.repositories.*;
+import com.nexusnova.lifetravelapi.app.IAM.identity.domain.model.*;
+import com.nexusnova.lifetravelapi.app.IAM.identity.domain.repositories.*;
+import com.nexusnova.lifetravelapi.app.IAM.profile.domain.model.*;
+import com.nexusnova.lifetravelapi.app.IAM.profile.domain.repositories.*;
 import com.nexusnova.lifetravelapi.configuration.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Component;
 
