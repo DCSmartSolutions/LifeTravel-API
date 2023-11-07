@@ -23,6 +23,8 @@ public class TrackingWereableCommandServiceImpl implements TrackingWereableComma
 
         trackingWereable.setLatitude(command.requestDto().getLatitude());
         trackingWereable.setLongitude(command.requestDto().getLongitude());
+
+        trackingWereableRepository.save(trackingWereable);
     }
 }
 
