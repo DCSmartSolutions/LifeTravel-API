@@ -23,5 +23,7 @@ public class WeatherSensorCommandServiceImpl implements WeatherSensorCommandServ
 
         weatherSensor.setTemperature(command.requestDto().getTemperature());
         weatherSensor.setHumidity(command.requestDto().getHumidity());
+
+        weatherSensorRepository.save(weatherSensor);
     }
 }
