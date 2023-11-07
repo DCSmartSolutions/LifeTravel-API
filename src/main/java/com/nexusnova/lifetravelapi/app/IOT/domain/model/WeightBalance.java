@@ -23,6 +23,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @SQLDelete(sql = "UPDATE weight_balances SET _deleted = true WHERE id = ?")
 public class WeightBalance extends AuditModel {
 
+    @Column(name = "weight")
+    private Double weight;
+
     @Formula("concat(serie,'-', number)")
     private String serieNumber;
 

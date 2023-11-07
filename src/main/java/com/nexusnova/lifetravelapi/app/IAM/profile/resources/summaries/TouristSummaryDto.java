@@ -15,6 +15,12 @@ public class TouristSummaryDto {
     private Date birthDate;
     @Schema(description="Numero de telefono del turista")
     private String phoneNumber;
+    @Schema(description="Foto del Turista")
+    private String touristPhotoUrl;
+    @Schema(description="Email del turista")
+    private String email;
+    @Schema(description="Telefono de Emergencia del turista")
+    private String emergencyPhoneNumber;
 
     public String getId() {
         return id;
@@ -46,5 +52,29 @@ public class TouristSummaryDto {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getTouristPhotoUrl() {
+        return touristPhotoUrl;
+    }
+
+    public void setTouristPhotoUrl(String touristPhotoUrl) {
+        this.touristPhotoUrl = touristPhotoUrl;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmergencyPhoneNumber() {
+        return emergencyPhoneNumber;
+    }
+
+    public void setEmergencyPhoneNumber(String emergencyPhoneNumber) {
+        this.emergencyPhoneNumber = emergencyPhoneNumber;
     }
 }

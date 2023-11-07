@@ -25,7 +25,7 @@ import java.math.BigDecimal;
 @Table(name = "tracking_wereables")
 @Where(clause = "_deleted = false")
 @SQLDelete(sql = "UPDATE tracking_wereables SET _deleted = true WHERE id = ?")
-public class TrackingWereable extends AuditModel {
+public class TrackingWearable extends AuditModel {
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "tourist_id")

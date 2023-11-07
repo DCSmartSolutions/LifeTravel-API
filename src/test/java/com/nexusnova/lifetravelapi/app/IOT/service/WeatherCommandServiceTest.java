@@ -2,7 +2,7 @@ package com.nexusnova.lifetravelapi.app.IOT.service;
 
 import com.nexusnova.lifetravelapi.app.IOT.application.WeatherSensorCommandServiceImpl;
 import com.nexusnova.lifetravelapi.app.IOT.domain.commands.UpdateWeatherCommand;
-import com.nexusnova.lifetravelapi.app.IOT.domain.model.TrackingWereable;
+import com.nexusnova.lifetravelapi.app.IOT.domain.model.TrackingWearable;
 import com.nexusnova.lifetravelapi.app.IOT.domain.model.WeatherSensor;
 import com.nexusnova.lifetravelapi.app.IOT.domain.repositories.WeatherSensorRepository;
 import com.nexusnova.lifetravelapi.app.IOT.resources.requests.WeatherSensorRequestDto;
@@ -58,7 +58,7 @@ public class WeatherCommandServiceTest {
         command.requestDto().setTemperature(50.0);
         command.requestDto().setHumidity(88.0);
 
-        TrackingWereable trackingWereable = new TrackingWereable();
+        TrackingWearable trackingWereable = new TrackingWearable();
         trackingWereable.setLatitude(BigDecimal.ONE);
         trackingWereable.setLongitude(BigDecimal.ONE);
 

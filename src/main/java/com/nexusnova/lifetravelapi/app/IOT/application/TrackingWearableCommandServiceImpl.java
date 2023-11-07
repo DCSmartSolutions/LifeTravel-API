@@ -1,24 +1,24 @@
 package com.nexusnova.lifetravelapi.app.IOT.application;
 
 import com.nexusnova.lifetravelapi.app.IOT.domain.commands.UpdateLocationCommand;
-import com.nexusnova.lifetravelapi.app.IOT.domain.model.TrackingWereable;
+import com.nexusnova.lifetravelapi.app.IOT.domain.model.TrackingWearable;
 import com.nexusnova.lifetravelapi.app.IOT.domain.repositories.TrackingWereableRepository;
-import com.nexusnova.lifetravelapi.app.IOT.domain.services.TrackingWereableCommandService;
+import com.nexusnova.lifetravelapi.app.IOT.domain.services.TrackingWearableCommandService;
 import com.nexusnova.lifetravelapi.configuration.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TrackingWereableCommandServiceImpl implements TrackingWereableCommandService {
+public class TrackingWearableCommandServiceImpl implements TrackingWearableCommandService {
 
     private final TrackingWereableRepository trackingWereableRepository;
 
-    public TrackingWereableCommandServiceImpl(TrackingWereableRepository trackingWereableRepository) {
+    public TrackingWearableCommandServiceImpl(TrackingWereableRepository trackingWereableRepository) {
         this.trackingWereableRepository = trackingWereableRepository;
     }
 
     @Override
     public void handle(UpdateLocationCommand command) {
-        TrackingWereable trackingWereable = trackingWereableRepository.findById(command.id())
+        TrackingWearable trackingWereable = trackingWereableRepository.findById(command.id())
                 .orElseThrow(() -> new ResourceNotFoundException("TrackingWereable not found with id: " + command.id()));
 
         trackingWereable.setLatitude(command.requestDto().getLatitude());
