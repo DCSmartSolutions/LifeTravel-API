@@ -2,7 +2,7 @@ package com.nexusnova.lifetravelapi.app.IAM.profile.domain.model;
 
 
 import com.nexusnova.lifetravelapi.app.IAM.identity.domain.model.User;
-import com.nexusnova.lifetravelapi.app.IOT.domain.model.TrackingWereable;
+import com.nexusnova.lifetravelapi.app.IOT.domain.model.TrackingWearable;
 import com.nexusnova.lifetravelapi.app.shared.domain.model.AuditModel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -37,9 +37,12 @@ public class Tourist extends AuditModel {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    @Column(name = "photo_url")
+    private String photoUrl;
+
     @Column(name = "emergency_phone_number")
     private String emergencyPhoneNumber;
 
     @OneToOne(mappedBy = "tourist", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private TrackingWereable trackingWereables;
+    private TrackingWearable trackingWereables;
 }

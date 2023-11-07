@@ -4,7 +4,6 @@ import com.nexusnova.lifetravelapi.app.IAM.identity.domain.commands.RegisterUser
 import com.nexusnova.lifetravelapi.app.IAM.identity.resources.requests.UserRequestDto;
 
 public class RegisterUserAgencyCommandFromRequestDtoAssembler {
-
     public static RegisterUserAgencyCommand toCommandFromDto(UserRequestDto requestDto){
         return new RegisterUserAgencyCommand(requestDto);
     }

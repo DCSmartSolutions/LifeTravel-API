@@ -1,18 +1,16 @@
 package com.nexusnova.lifetravelapi.app.IOT.service;
 
-import com.nexusnova.lifetravelapi.app.IOT.application.TrackingWereableCommandServiceImpl;
+import com.nexusnova.lifetravelapi.app.IOT.application.TrackingWearableCommandServiceImpl;
 import com.nexusnova.lifetravelapi.app.IOT.domain.commands.UpdateLocationCommand;
-import com.nexusnova.lifetravelapi.app.IOT.domain.model.TrackingWereable;
+import com.nexusnova.lifetravelapi.app.IOT.domain.model.TrackingWearable;
 import com.nexusnova.lifetravelapi.app.IOT.domain.repositories.TrackingWereableRepository;
 import com.nexusnova.lifetravelapi.app.IOT.resources.requests.TrackingWereableRequestDto;
 import com.nexusnova.lifetravelapi.configuration.exceptions.ResourceNotFoundException;
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
@@ -25,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TrackingSensorServiceTest {
 
     @InjectMocks
-    private TrackingWereableCommandServiceImpl trackingWereableCommandService;
+    private TrackingWearableCommandServiceImpl trackingWereableCommandService;
 
     @Mock
     private TrackingWereableRepository trackingWereableRepository;
@@ -37,7 +35,7 @@ public class TrackingSensorServiceTest {
         command.requestDto().setLatitude(BigDecimal.ONE);
         command.requestDto().setLongitude(BigDecimal.ONE);
 
-        TrackingWereable trackingWereable = new TrackingWereable();
+        TrackingWearable trackingWereable = new TrackingWearable();
         trackingWereable.setLatitude(BigDecimal.ONE);
         trackingWereable.setLongitude(BigDecimal.ONE);
 
@@ -60,7 +58,7 @@ public class TrackingSensorServiceTest {
         command.requestDto().setLatitude(BigDecimal.ONE);
         command.requestDto().setLongitude(BigDecimal.ONE);
 
-        TrackingWereable trackingWereable = new TrackingWereable();
+        TrackingWearable trackingWereable = new TrackingWearable();
         trackingWereable.setLatitude(BigDecimal.ONE);
         trackingWereable.setLongitude(BigDecimal.ONE);
 

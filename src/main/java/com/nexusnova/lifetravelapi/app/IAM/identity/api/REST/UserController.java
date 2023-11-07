@@ -16,6 +16,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +32,7 @@ public class UserController {
     private final MessageUtil messageUtil;
     private final IdentityMapper identityMapper;
 
+    @Autowired
     public UserController(UserCommandService userCommandService,
                           UserQueryService userQueryService,
                           MessageUtil messageUtil,
