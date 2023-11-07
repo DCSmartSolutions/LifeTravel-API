@@ -1,7 +1,7 @@
 package com.nexusnova.lifetravelapi.app.core.tours.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.nexusnova.lifetravelapi.app.IOT.domain.model.TrackingWereable;
+import com.nexusnova.lifetravelapi.app.IOT.domain.model.TrackingWearable;
 import com.nexusnova.lifetravelapi.app.shared.domain.model.AuditModel;
 import jakarta.persistence.*;
 import lombok.*;
@@ -34,6 +34,6 @@ public class TourExperience extends AuditModel {
     private TourPackage tourPackage;
 
     @OneToMany(mappedBy = "tourExperience", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<TrackingWereable> bookings = new ArrayList<>();
+    private List<TrackingWearable> bookings = new ArrayList<>();
 
 }

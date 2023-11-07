@@ -24,7 +24,7 @@ import java.util.Date;
 @Table(name = "users")
 @Where(clause = "_deleted = false")
 @SQLDelete(sql = "UPDATE users SET _deleted = true WHERE id = ?")
-public class User implements Serializable {
+public class    User implements Serializable {
 
     @Id
     private String id;

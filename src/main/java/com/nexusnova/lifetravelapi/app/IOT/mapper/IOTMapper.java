@@ -1,6 +1,6 @@
 package com.nexusnova.lifetravelapi.app.IOT.mapper;
 
-import com.nexusnova.lifetravelapi.app.IOT.domain.model.TrackingWereable;
+import com.nexusnova.lifetravelapi.app.IOT.domain.model.TrackingWearable;
 import com.nexusnova.lifetravelapi.app.IOT.resources.summaries.TrackingWereableSummayDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -15,6 +15,6 @@ public interface IOTMapper {
             @Mapping(target = "id", source = "entity.id"),
 
     })
-    TrackingWereableSummayDto gpsToSummaryDto(TrackingWereable entity);
-    List<TrackingWereableSummayDto> gpsToSummaryDtos(List<TrackingWereable> entities);
+    TrackingWereableSummayDto gpsToSummaryDto(TrackingWearable entity);
+    List<TrackingWereableSummayDto> gpsToSummaryDtos(List<TrackingWearable> entities);
 }

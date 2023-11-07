@@ -1,9 +1,9 @@
 package com.nexusnova.lifetravelapi.app.IOT.domain.repositories;
 
-import com.nexusnova.lifetravelapi.app.IOT.domain.model.TrackingWereable;
+import com.nexusnova.lifetravelapi.app.IOT.domain.model.TrackingWearable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TrackingWereableRepository extends JpaRepository<TrackingWereable, Long> {
+public interface TrackingWereableRepository extends JpaRepository<TrackingWearable, Long> {
 }

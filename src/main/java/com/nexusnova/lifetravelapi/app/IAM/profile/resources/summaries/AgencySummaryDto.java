@@ -11,8 +11,10 @@ public class AgencySummaryDto {
     private String legalName;
     @Schema(description="Foto de la agencia")
     private String agencyPhotoUrl;
-    @Schema(description="Id del Usuario")
+    @Schema(description="Telefono del Usuario")
     private String phoneNumber;
+    @Schema(description="Email del Usuario")
+    private String email;
 
     public String getId() {
         return id;
@@ -44,5 +46,13 @@ public class AgencySummaryDto {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
