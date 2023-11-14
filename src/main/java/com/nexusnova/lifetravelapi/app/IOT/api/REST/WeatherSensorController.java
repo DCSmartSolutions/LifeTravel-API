@@ -2,9 +2,7 @@ package com.nexusnova.lifetravelapi.app.IOT.api.REST;
 
 import com.nexusnova.lifetravelapi.app.IOT.api.transformation.UpdateWeatherCommandFromRequestDtoAssembler;
 import com.nexusnova.lifetravelapi.app.IOT.domain.services.WeatherSensorCommandService;
-import com.nexusnova.lifetravelapi.app.IOT.resources.requests.TrackingWereableRequestDto;
 import com.nexusnova.lifetravelapi.app.IOT.resources.requests.WeatherSensorRequestDto;
-import com.nexusnova.lifetravelapi.app.shared.util.MessageUtil;
 import com.nexusnova.lifetravelapi.configuration.constants.HeaderConstants;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -23,13 +21,10 @@ import static com.nexusnova.lifetravelapi.configuration.messages.ConfigurationMe
 public class WeatherSensorController {
 
     private final WeatherSensorCommandService weatherSensorCommandService;
-    private final MessageUtil messageUtil;
 
     @Autowired
-    public WeatherSensorController(WeatherSensorCommandService weatherSensorCommandService,
-                                   MessageUtil messageUtil) {
+    public WeatherSensorController(WeatherSensorCommandService weatherSensorCommandService) {
         this.weatherSensorCommandService = weatherSensorCommandService;
-        this.messageUtil = messageUtil;
     }
 
     @PutMapping("/update-weather/{sensorId}")
@@ -38,6 +33,6 @@ public class WeatherSensorController {
                                @RequestBody @Valid WeatherSensorRequestDto requestDto,
                                HttpServletResponse response) {
         weatherSensorCommandService.handle(UpdateWeatherCommandFromRequestDtoAssembler.toCommandFromDto(sensorId, requestDto));
-        response.setHeader(HeaderConstants.MESSAGES, messageUtil.getMessageByCode(WEATHER_SENSOR_UPDATED));
+        response.setHeader(HeaderConstants.MESSAGES, WEATHER_SENSOR_UPDATED);
     }
 }

@@ -10,7 +10,6 @@ import com.nexusnova.lifetravelapi.app.IAM.identity.service.UserCommandService;
 import com.nexusnova.lifetravelapi.app.IAM.identity.resources.summaries.UserSummaryDto;
 import com.nexusnova.lifetravelapi.app.IAM.identity.service.UserQueryService;
 import com.nexusnova.lifetravelapi.configuration.constants.HeaderConstants;
-import com.nexusnova.lifetravelapi.app.shared.util.MessageUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -29,17 +28,14 @@ import static com.nexusnova.lifetravelapi.configuration.messages.ConfigurationMe
 public class UserController {
     private final UserCommandService userCommandService;
     private final UserQueryService userQueryService;
-    private final MessageUtil messageUtil;
     private final IdentityMapper identityMapper;
 
     @Autowired
     public UserController(UserCommandService userCommandService,
                           UserQueryService userQueryService,
-                          MessageUtil messageUtil,
                           IdentityMapper identityMapper) {
         this.userCommandService = userCommandService;
         this.userQueryService = userQueryService;
-        this.messageUtil = messageUtil;
         this.identityMapper = identityMapper;
     }
 
@@ -57,7 +53,7 @@ public class UserController {
     public UserSummaryDto registerTourist(@RequestBody @Valid UserRequestDto userRequestDto,
                                HttpServletResponse response) {
         User user = userCommandService.handle(RegisterUserTouristCommandFromRequestDtoAssembler.toCommandFromDto(userRequestDto));
-        response.setHeader(HeaderConstants.MESSAGES, messageUtil.getMessageByCode(USER_CREATED));
+        response.setHeader(HeaderConstants.MESSAGES, USER_CREATED);
         return identityMapper.userToSummaryDto(user);
     }
 
@@ -67,7 +63,7 @@ public class UserController {
     public UserSummaryDto registerAgency(@RequestBody @Valid UserRequestDto userRequestDto,
                                HttpServletResponse response) {
         User user = userCommandService.handle(RegisterUserAgencyCommandFromRequestDtoAssembler.toCommandFromDto(userRequestDto));
-        response.setHeader(HeaderConstants.MESSAGES, messageUtil.getMessageByCode(USER_CREATED));
+        response.setHeader(HeaderConstants.MESSAGES, USER_CREATED);
         return identityMapper.userToSummaryDto(user);
     }
 

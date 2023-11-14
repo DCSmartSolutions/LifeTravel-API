@@ -9,6 +9,7 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,8 +26,26 @@ import java.util.List;
 @SQLDelete(sql = "UPDATE tour_experience SET _deleted = true WHERE id = ?")
 public class TourExperience extends AuditModel {
 
-    @Column(name = "start_date")
-    private Date startDate;
+    @Column(name = "start_time")
+    private String day;
+
+    @Column(name = "start_hour")
+    private String startHour;
+
+    @Column(name = "start_minute")
+    private String startMinute;
+
+    @Column(name = "start_day_time")
+    private String startDayTime;
+
+    @Column(name = "end_hour")
+    private String endtHour;
+
+    @Column(name = "end_minute")
+    private String endMinute;
+
+    @Column(name = "end_day_time")
+    private String endDayTime;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "tour_package_id", nullable = false)

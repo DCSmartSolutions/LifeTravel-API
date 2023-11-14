@@ -8,9 +8,6 @@ import com.nexusnova.lifetravelapi.app.core.booking.domain.services.BookingQuery
 import com.nexusnova.lifetravelapi.app.core.booking.mapper.BookingMapper;
 import com.nexusnova.lifetravelapi.app.core.booking.resources.requests.BookingRequestDto;
 import com.nexusnova.lifetravelapi.app.core.booking.resources.summaries.BookingSummaryDto;
-import com.nexusnova.lifetravelapi.app.core.tours.api.transformation.RegisterTourPackageCommandFromRequestDtoAssembler;
-import com.nexusnova.lifetravelapi.app.core.tours.domain.model.TourPackage;
-import com.nexusnova.lifetravelapi.app.shared.util.MessageUtil;
 import com.nexusnova.lifetravelapi.configuration.constants.HeaderConstants;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -24,7 +21,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import static com.nexusnova.lifetravelapi.configuration.messages.ConfigurationMessages.BOOKING_CREATED;
-import static com.nexusnova.lifetravelapi.configuration.messages.ConfigurationMessages.TOUR_PACKAGE_CREATED;
 
 @RestController
 @RequestMapping("/api/v1/booking")
