@@ -5,6 +5,8 @@ import com.nexusnova.lifetravelapi.app.IOT.domain.queries.GetWeaterByTouristQuer
 import com.nexusnova.lifetravelapi.app.IOT.domain.repositories.WeatherSensorRepository;
 import com.nexusnova.lifetravelapi.app.IOT.domain.services.WeatherSensorQueryService;
 import com.nexusnova.lifetravelapi.app.IOT.resources.summaries.WeatherSummaryDto;
+import com.nexusnova.lifetravelapi.app.core.tours.domain.model.Destination;
+import com.nexusnova.lifetravelapi.app.shared.ValidationUtil;
 import com.nexusnova.lifetravelapi.configuration.exceptions.BusinessRuleException;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +18,12 @@ import java.util.Optional;
 public class WeatherSensorQueryServiceImpl implements WeatherSensorQueryService {
 
     private final WeatherSensorRepository weatherSensorRepository;
+    private final ValidationUtil validationUtil;
 
-    public WeatherSensorQueryServiceImpl(WeatherSensorRepository weatherSensorRepository) {
+    public WeatherSensorQueryServiceImpl(WeatherSensorRepository weatherSensorRepository,
+                                         ValidationUtil validationUtil) {
         this.weatherSensorRepository = weatherSensorRepository;
+        this.validationUtil = validationUtil;
     }
 
     @Override
@@ -28,11 +33,13 @@ public class WeatherSensorQueryServiceImpl implements WeatherSensorQueryService 
         if(tourPackageId.isEmpty()) {
             throw new BusinessRuleException("No bookings found for this user");
         }
-        List<WeatherSensor> weatherSensor = weatherSensorRepository.findFirstWeatherSensor(tourPackageId.get());
-        if(weatherSensor.isEmpty()) {
+        List<Destination> destinations = weatherSensorRepository.findFirstWeatherSensor(tourPackageId.get());
+        if(destinations.isEmpty()) {
             throw new BusinessRuleException("No weather sensor found for this package");
         }
-        WeatherSensor _weatherSensor = weatherSensor.get(0);
+
+        WeatherSensor _weatherSensor = weatherSensorRepository.findById(destinations.get(0).getWeatherSensor().getId())
+                .orElseThrow(() -> new BusinessRuleException("No weather sensor found for this package"));
         WeatherSummaryDto summaryDto = new WeatherSummaryDto();
         summaryDto.setTemperature(_weatherSensor.getTemperature());
         summaryDto.setHumidity(_weatherSensor.getHumidity());

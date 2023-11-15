@@ -20,7 +20,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "weather_sensors")
-@Where(clause = "_deleted = false")
+//@Where(clause = "_deleted = false")
 @SQLDelete(sql = "UPDATE weather_sensors SET _deleted = true WHERE id = ?")
 public class WeatherSensor extends AuditModel {
 
