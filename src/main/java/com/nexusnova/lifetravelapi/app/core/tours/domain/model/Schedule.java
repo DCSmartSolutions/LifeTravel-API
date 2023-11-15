@@ -1,18 +1,12 @@
 package com.nexusnova.lifetravelapi.app.core.tours.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.nexusnova.lifetravelapi.app.IOT.domain.model.TrackingWearable;
 import com.nexusnova.lifetravelapi.app.shared.domain.model.AuditModel;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
@@ -21,12 +15,12 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "tour_experience")
+@Table(name = "schedule")
 @Where(clause = "_deleted = false")
-@SQLDelete(sql = "UPDATE tour_experience SET _deleted = true WHERE id = ?")
-public class TourExperience extends AuditModel {
+@SQLDelete(sql = "UPDATE schedule SET _deleted = true WHERE id = ?")
+public class Schedule extends AuditModel {
 
-    @Column(name = "start_time")
+    @Column(name = "day")
     private String day;
 
     @Column(name = "start_hour")
@@ -39,7 +33,7 @@ public class TourExperience extends AuditModel {
     private String startDayTime;
 
     @Column(name = "end_hour")
-    private String endtHour;
+    private String endHour;
 
     @Column(name = "end_minute")
     private String endMinute;
@@ -51,8 +45,5 @@ public class TourExperience extends AuditModel {
     @JoinColumn(name = "tour_package_id", nullable = false)
     @JsonIgnore
     private TourPackage tourPackage;
-
-    @OneToMany(mappedBy = "tourExperience", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<TrackingWearable> bookings = new ArrayList<>();
 
 }

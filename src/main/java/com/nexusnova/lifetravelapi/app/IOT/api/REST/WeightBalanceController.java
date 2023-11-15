@@ -16,7 +16,7 @@ import static com.nexusnova.lifetravelapi.configuration.messages.ConfigurationMe
 
 @RestController
 @RequestMapping("/api/v1/weight-balances")
-@Tag(name="Weather Sensors Controller")
+@Tag(name="Weight Sensors Controller")
 @CrossOrigin
 public class WeightBalanceController {
 

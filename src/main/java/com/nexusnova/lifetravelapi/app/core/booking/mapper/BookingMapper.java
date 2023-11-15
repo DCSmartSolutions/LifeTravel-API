@@ -13,11 +13,11 @@ public interface BookingMapper {
 
     @Mappings({
             @Mapping(target = "id", source = "entity.id"),
-            @Mapping(target = "tourPackageId", source = "entity.tourExperience.tourPackage.id"),
-            @Mapping(target = "tourExperienceDate", source = "entity.tourExperience.startDate"),
-            @Mapping(target = "tourPackageTitle", source = "entity.tourExperience.tourPackage.title"),
-            @Mapping(target = "agencyName", source = "entity.tourExperience.tourPackage.agency.legalName"),
-            @Mapping(target = "imgUrl", source = "entity.tourExperience.tourPackage.imgUrl"),
+            //@Mapping(target = "tourPackageId", source = "entity.tourExperience.tourPackage.id"),
+            //@Mapping(target = "tourExperienceDate", source = "entity.tourExperience.startDate"),
+            //@Mapping(target = "tourPackageTitle", source = "entity.tourExperience.tourPackage.title"),
+            //@Mapping(target = "agencyName", source = "entity.tourExperience.tourPackage.agency.legalName"),
+            //@Mapping(target = "imgUrl", source = "entity.tourExperience.tourPackage.imgUrl"),
     })
     BookingSummaryDto bookingToSummaryDto(Booking entity);
     List<BookingSummaryDto> bookingToSummaryDtos(List<Booking> entities);
