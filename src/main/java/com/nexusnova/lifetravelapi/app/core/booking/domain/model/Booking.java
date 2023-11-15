@@ -1,9 +1,10 @@
 package com.nexusnova.lifetravelapi.app.core.booking.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.nexusnova.lifetravelapi.app.core.tours.domain.model.TourExperience;
+import com.nexusnova.lifetravelapi.app.core.tours.domain.model.Schedule;
 import com.nexusnova.lifetravelapi.app.IAM.identity.domain.model.User;
 import com.nexusnova.lifetravelapi.app.IAM.profile.domain.model.Tourist;
+import com.nexusnova.lifetravelapi.app.core.tours.domain.model.TourPackage;
 import com.nexusnova.lifetravelapi.app.shared.domain.model.AuditModel;
 import jakarta.persistence.*;
 import lombok.*;
@@ -46,10 +47,15 @@ public class Booking extends AuditModel {
     private User touristUser;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "tour_experience_id", nullable = false)
+    @JoinColumn(name = "tour_package_id", nullable = false)
     @JsonIgnore
-    private TourExperience tourExperience;
+    private TourPackage tourPackage;
 
-    @Column(name = "date")
-    private Date date;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "agency_user_id", nullable = false)
+    @JsonIgnore
+    private User agencyUser;
+
+    @Column(name = "selected_date")
+    private Date selectedDate;
 }

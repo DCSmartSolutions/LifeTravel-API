@@ -3,7 +3,7 @@ package com.nexusnova.lifetravelapi.app.IOT.domain.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nexusnova.lifetravelapi.app.IAM.identity.domain.model.User;
 import com.nexusnova.lifetravelapi.app.IAM.profile.domain.model.Tourist;
-import com.nexusnova.lifetravelapi.app.core.tours.domain.model.TourExperience;
+import com.nexusnova.lifetravelapi.app.core.tours.domain.model.Schedule;
 import com.nexusnova.lifetravelapi.app.shared.domain.model.AuditModel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Null;
@@ -35,10 +35,6 @@ public class TrackingWearable extends AuditModel {
     @JoinColumn(name = "tourist_user_id")
     @JsonIgnore
     private User touristUser;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "tour_experience_id")
-    private TourExperience tourExperience;
 
     @Column(name = "latitude", columnDefinition = "decimal(13,10)")
     @Null

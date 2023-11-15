@@ -22,7 +22,7 @@ public class ValidationUtil {
     private final DepartmentRepository departmentRepository;
     private final DestinationRepository destinationRepository;
     private final RegionRepository regionRepository;
-    private final TourExperienceRepository tourExperienceRepository;
+    private final ScheduleRepository scheduleRepository;
     private final TourPackageRepository tourPackageRepository;
     private final RoleRepository roleRepository;
 
@@ -33,7 +33,7 @@ public class ValidationUtil {
                           DepartmentRepository departmentRepository,
                           DestinationRepository destinationRepository,
                           RegionRepository regionRepository,
-                          TourExperienceRepository tourExperienceRepository,
+                          ScheduleRepository scheduleRepository,
                           TourPackageRepository tourPackageRepository,
                           RoleRepository roleRepository) {
         this.userRepository = userRepository;
@@ -43,7 +43,7 @@ public class ValidationUtil {
         this.departmentRepository = departmentRepository;
         this.destinationRepository = destinationRepository;
         this.regionRepository = regionRepository;
-        this.tourExperienceRepository = tourExperienceRepository;
+        this.scheduleRepository = scheduleRepository;
         this.tourPackageRepository = tourPackageRepository;
         this.roleRepository = roleRepository;
     }
@@ -108,8 +108,8 @@ public class ValidationUtil {
                 .orElseThrow(() -> new ResourceNotFoundException("Region not found with id: " + id));
     }
 
-    public TourExperience findTourExperienceById(Long id) {
-        return tourExperienceRepository.findById(id)
+    public Schedule findTourExperienceById(Long id) {
+        return scheduleRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("TourExperience not found with id: " + id));
     }
 

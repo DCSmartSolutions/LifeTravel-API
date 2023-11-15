@@ -7,26 +7,16 @@ import java.util.Date;
 @Schema(description="Booking (Summary)")
 public class BookingSummaryDto {
 
-    @Schema(description="Id del Booking")
-    private Long id;
     @Schema(description="Id del Tour")
     private Long tourPackageId;
-    @Schema(description="Fecha de Tour")
-    private Date tourExperienceDate;
     @Schema(description="Titutlo de TourPackage")
     private String tourPackageTitle;
     @Schema(description="Nombre de Agencia")
     private String agencyName;
     @Schema(description="Imagen de Tour Package")
     private String imgUrl;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Schema(description="Fecha del Tour")
+    private Date tourDate;
 
     public Long getTourPackageId() {
         return tourPackageId;
@@ -34,14 +24,6 @@ public class BookingSummaryDto {
 
     public void setTourPackageId(Long tourPackageId) {
         this.tourPackageId = tourPackageId;
-    }
-
-    public Date getTourExperienceDate() {
-        return tourExperienceDate;
-    }
-
-    public void setTourExperienceDate(Date tourExperienceDate) {
-        this.tourExperienceDate = tourExperienceDate;
     }
 
     public String getTourPackageTitle() {
@@ -66,5 +48,13 @@ public class BookingSummaryDto {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public Date getTourDate() {
+        return tourDate;
+    }
+
+    public void setTourDate(Date tourDate) {
+        this.tourDate = tourDate;
     }
 }

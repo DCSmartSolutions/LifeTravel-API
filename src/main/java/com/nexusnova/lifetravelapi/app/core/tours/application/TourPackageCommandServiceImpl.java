@@ -1,6 +1,8 @@
 package com.nexusnova.lifetravelapi.app.core.tours.application;
 
-import com.nexusnova.lifetravelapi.app.core.tours.domain.commands.RegisterTourPackageCommand;
+import com.nexusnova.lifetravelapi.app.core.tours.domain.commands.ModifyImgPackageCommand;
+import com.nexusnova.lifetravelapi.app.core.tours.domain.commands.ModifyPackageCommand;
+import com.nexusnova.lifetravelapi.app.core.tours.domain.commands.RegisterPackageCommand;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.Activity;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.Department;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.Destination;
@@ -30,9 +32,27 @@ public class TourPackageCommandServiceImpl implements TourPackageCommandService 
     }
 
     @Override
-    public TourPackage handle(RegisterTourPackageCommand registerUserCommand) {
+    public TourPackage handle(RegisterPackageCommand command) {
         TourPackage tourPackage = new TourPackage();
-        TourPackageRequestDto requestDto = registerUserCommand.tourPackageRequestDto();
+        return setTourPackage(tourPackage, command.tourPackageRequestDto());
+    }
+
+    @Override
+    public TourPackage handle(ModifyImgPackageCommand command) {
+        TourPackage tourPackage = validationUtil.findTourPackageById(command.packageId());
+
+        tourPackage.setImgUrl(command.imgUrl());
+        tourPackageRepository.save(tourPackage);
+        return tourPackage;
+    }
+
+    @Override
+    public TourPackage handle(ModifyPackageCommand command) {
+        TourPackage tourPackage = validationUtil.findTourPackageById(command.packageId());
+        return setTourPackage(tourPackage, command.tourPackageRequestDto());
+    }
+
+    private TourPackage setTourPackage(TourPackage tourPackage, TourPackageRequestDto requestDto) {
         Agency agency = validationUtil.findAgencyByUserId(requestDto.getAgencyId());
         Department department = validationUtil.findDepartmentByName(requestDto.getDepartmentName());
 

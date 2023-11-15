@@ -74,4 +74,7 @@ public class TourPackage extends AuditModel {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tourPackage")
     private List<Destination> destinations;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tourPackage")
+    private List<Schedule> schedules;
 }

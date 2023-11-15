@@ -21,9 +21,9 @@ public class TourPackageDetailDto {
     @ApiModelProperty("Rating")
     private Float rating;
     @ApiModelProperty("Latitud de encuentro")
-    private BigDecimal meetintPointLatitude;
+    private BigDecimal meetingPointLatitude;
     @ApiModelProperty("Longitud de encuentro")
-    private BigDecimal meetintPointLongitude;
+    private BigDecimal meetingPointLongitude;
 
     public Long getId() {
         return id;
@@ -73,19 +73,19 @@ public class TourPackageDetailDto {
         this.departmentName = departmentName;
     }
 
-    public BigDecimal getMeetintPointLatitude() {
-        return meetintPointLatitude;
+    public BigDecimal getMeetingPointLatitude() {
+        return meetingPointLatitude;
     }
 
-    public void setMeetintPointLatitude(BigDecimal meetintPointLatitude) {
-        this.meetintPointLatitude = meetintPointLatitude;
+    public void setMeetingPointLatitude(BigDecimal meetingPointLatitude) {
+        this.meetingPointLatitude = meetingPointLatitude;
     }
 
-    public BigDecimal getMeetintPointLongitude() {
-        return meetintPointLongitude;
+    public BigDecimal getMeetingPointLongitude() {
+        return meetingPointLongitude;
     }
 
-    public void setMeetintPointLongitude(BigDecimal meetintPointLongitude) {
-        this.meetintPointLongitude = meetintPointLongitude;
+    public void setMeetingPointLongitude(BigDecimal meetingPointLongitude) {
+        this.meetingPointLongitude = meetingPointLongitude;
     }
 }

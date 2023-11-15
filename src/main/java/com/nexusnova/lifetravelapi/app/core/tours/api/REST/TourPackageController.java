@@ -1,6 +1,8 @@
 package com.nexusnova.lifetravelapi.app.core.tours.api.REST;
 
 import com.nexusnova.lifetravelapi.app.core.tours.api.transformation.RegisterTourPackageCommandFromRequestDtoAssembler;
+import com.nexusnova.lifetravelapi.app.core.tours.domain.commands.ModifyImgPackageCommand;
+import com.nexusnova.lifetravelapi.app.core.tours.domain.commands.ModifyPackageCommand;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.TourPackage;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.queries.GetTourPackageByIdQuery;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.queries.GetTourPackagesByRegionQuery;
@@ -10,10 +12,7 @@ import com.nexusnova.lifetravelapi.app.core.tours.mapper.ToursMapper;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.details.TourPackageDetailDto;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.TourPackageRequestDto;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.summaries.TourPackageSummaryDto;
-import com.nexusnova.lifetravelapi.app.shared.util.MessageUtil;
 import com.nexusnova.lifetravelapi.configuration.constants.HeaderConstants;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -23,8 +22,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.nexusnova.lifetravelapi.configuration.messages.ConfigurationMessages.TOUR_PACKAGE_CREATED;
+import static com.nexusnova.lifetravelapi.configuration.messages.ConfigurationMessages.TOUR_PACKAGE_MODIFIED;
 
 @RestController
 @RequestMapping("/api/v1/tour-packages")
@@ -35,16 +36,13 @@ public class TourPackageController {
     private final TourPackageQueryService tourPackageQueryService;
     private final TourPackageCommandService tourPackageCommandService;
     private final ToursMapper toursMapper;
-    private final MessageUtil messageUtil;
 
     public TourPackageController(TourPackageQueryService tourPackageQueryService,
                                  TourPackageCommandService tourPackageCommandService,
-                                 ToursMapper toursMapper,
-                                 MessageUtil messageUtil) {
+                                 ToursMapper toursMapper) {
         this.tourPackageQueryService = tourPackageQueryService;
         this.tourPackageCommandService = tourPackageCommandService;
         this.toursMapper = toursMapper;
-        this.messageUtil = messageUtil;
     }
 
 
@@ -76,8 +74,31 @@ public class TourPackageController {
                                HttpServletResponse response) {
         TourPackage tourPackage =
                 tourPackageCommandService.handle(RegisterTourPackageCommandFromRequestDtoAssembler.toCommandFromDto(tourPackageRequestDto));
-        response.setHeader(HeaderConstants.MESSAGES, messageUtil.getMessageByCode(TOUR_PACKAGE_CREATED));
+        response.setHeader(HeaderConstants.MESSAGES, TOUR_PACKAGE_CREATED);
         return toursMapper.tourPackageToSummaryDto(tourPackage);
     }
+
+    @PutMapping("/{packageId}")
+    @Operation(summary = "Modificar Imagen", description = "Permite cambiar la url de la imagen.")
+    public TourPackageDetailDto updatePackage(@Parameter @PathVariable("packageId") Long packageId,
+                                              @RequestBody @Valid TourPackageRequestDto tourPackageRequestDto,
+                                              HttpServletResponse response) {
+        TourPackage tourPackage =
+                tourPackageCommandService.handle(new ModifyPackageCommand(packageId, tourPackageRequestDto));
+        response.setHeader(HeaderConstants.MESSAGES, TOUR_PACKAGE_MODIFIED);
+        return toursMapper.tourPackageToDetailDto(tourPackage);
+    }
+
+    @PutMapping("/img/{packageId}")
+    @Operation(summary = "Modificar Imagen", description = "Permite cambiar la url de la imagen.")
+    public TourPackageDetailDto updateImage(@Parameter @PathVariable("packageId") Long packageId,
+                                            @RequestBody Map<String, String> requestBody,
+                                            HttpServletResponse response) {
+        TourPackage tourPackage =
+                tourPackageCommandService.handle(new ModifyImgPackageCommand(packageId, requestBody.get("imgUrl")));
+        response.setHeader(HeaderConstants.MESSAGES, TOUR_PACKAGE_MODIFIED);
+        return toursMapper.tourPackageToDetailDto(tourPackage);
+    }
+
 
 }
