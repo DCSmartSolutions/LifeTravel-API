@@ -16,9 +16,10 @@ public interface TrackingWereableRepository extends JpaRepository<TrackingWearab
 
     @Query("select b.touristUser.id " +
             "from Booking b " +
-            "where b._deleted=false and b.tourPackage.id=:packageId and b.selectedDate=:today")
-    List<String> findUsersofDay(@Param("today") Date today,
-                                @Param("packageId") String packageId);
+            "where b._deleted=false and b.tourPackage.id=:packageId and b.selectedDate between :yesterday and :tomorrow")
+    List<String> findUsersofDay(@Param("yesterday") Date yesterday,
+                                @Param("tomorrow") Date tomorrow,
+                                @Param("packageId") Long packageId);
 
     @Query("SELECT b.tourPackage.id " +
             "FROM Booking b " +
@@ -31,5 +32,5 @@ public interface TrackingWereableRepository extends JpaRepository<TrackingWearab
     @Query("select b " +
             "from TrackingWearable b " +
             "where b._deleted=false and b.touristUser.id=:touristUserId")
-    List<TrackingWearable> findGPS(@Param("touristUserId") String touristUserId);
+    TrackingWearable findGPS(@Param("touristUserId") String touristUserId);
 }
