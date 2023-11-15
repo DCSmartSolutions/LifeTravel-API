@@ -63,7 +63,7 @@ public class BookingController {
         return bookingSummaryAssembler.toSummaryFromData(bookings);
     }
 
-    @PostMapping
+    /*@PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Registrar Booking", description = "Permite registrar un booking.")
     public BookingSummaryDto save(@RequestBody @Valid BookingRequestDto bookingRequestDto,
@@ -72,5 +72,5 @@ public class BookingController {
                 bookingCommandService.handle(CreateBookingCommandFromRequestDtoAssembler.toCommandFromDto(bookingRequestDto));
         response.setHeader(HeaderConstants.MESSAGES, BOOKING_CREATED);
         return bookingMapper.bookingToSummaryDto(booking);
-    }
+    }*/
 }
