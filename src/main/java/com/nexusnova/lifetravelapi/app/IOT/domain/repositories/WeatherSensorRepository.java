@@ -2,6 +2,7 @@ package com.nexusnova.lifetravelapi.app.IOT.domain.repositories;
 
 import com.nexusnova.lifetravelapi.app.IOT.domain.model.WeatherSensor;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.model.Booking;
+import com.nexusnova.lifetravelapi.app.core.tours.domain.model.Destination;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -21,6 +22,6 @@ public interface WeatherSensorRepository extends JpaRepository<WeatherSensor, Lo
     Optional<Long> findFirstBooking(@Param("today") Date today,
                                     @Param("touristUserId") String touristUserId);
 
-    @Query("select d.weatherSensor from Destination d where d._deleted=false and d.tourPackage.id=:packageId")
-    List<WeatherSensor> findFirstWeatherSensor(@Param("packageId") Long packageId);
+    @Query("select d from Destination d where d._deleted=false and d.tourPackage.id=:packageId")
+    List<Destination> findFirstWeatherSensor(@Param("packageId") Long packageId);
 }
