@@ -3,6 +3,7 @@ package com.nexusnova.lifetravelapi.app.core.booking.api.REST;
 import com.nexusnova.lifetravelapi.app.core.booking.api.transformation.BookingSummaryAssembler;
 import com.nexusnova.lifetravelapi.app.core.booking.api.transformation.CreateBookingCommandFromRequestDtoAssembler;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.model.Booking;
+import com.nexusnova.lifetravelapi.app.core.booking.domain.queries.GetBookingByPackageAndTouristQuery;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.queries.GetWeekBookingTouristQuery;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.queries.GetWeekBookingAgencyQuery;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.services.BookingCommandService;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static com.nexusnova.lifetravelapi.configuration.messages.ConfigurationMessages.BOOKING_CREATED;
 
@@ -63,7 +65,19 @@ public class BookingController {
         return bookingSummaryAssembler.toSummaryFromData(bookings);
     }
 
-    /*@PostMapping
+    @GetMapping("package/{packageId}/tourist/{touristId}")
+    @Operation(summary = "Optional Booking", description = "Optional Booking per package and tourist.")
+    @ResponseStatus(HttpStatus.OK)
+    public BookingSummaryDto getBooking(@Parameter @PathVariable("packageId") Long packageId,
+                                        @Parameter @PathVariable("touristId") String touristId) {
+        Optional<Booking> booking = bookingQueryService.handle(new GetBookingByPackageAndTouristQuery(packageId, touristId));
+        if(booking.isEmpty()) {
+            return null;
+        }
+        return bookingMapper.toSummaryFromData(booking.get());
+    }
+
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Registrar Booking", description = "Permite registrar un booking.")
     public BookingSummaryDto save(@RequestBody @Valid BookingRequestDto bookingRequestDto,
@@ -71,6 +85,6 @@ public class BookingController {
         Booking booking =
                 bookingCommandService.handle(CreateBookingCommandFromRequestDtoAssembler.toCommandFromDto(bookingRequestDto));
         response.setHeader(HeaderConstants.MESSAGES, BOOKING_CREATED);
-        return bookingMapper.bookingToSummaryDto(booking);
-    }*/
+        return bookingMapper.toSummaryFromData(booking);
+    }
 }

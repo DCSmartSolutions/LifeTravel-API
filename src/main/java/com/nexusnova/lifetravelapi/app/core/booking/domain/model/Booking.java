@@ -58,4 +58,10 @@ public class Booking extends AuditModel {
 
     @Column(name = "selected_date")
     private Date selectedDate;
+
+    @Column(name = "start_datetime")
+    private Date startDayTime;
+
+    @Column(name = "end_datetime")
+    private Date endDayTime;
 }

@@ -1,6 +1,7 @@
 package com.nexusnova.lifetravelapi.app.core.booking.application;
 
 import com.nexusnova.lifetravelapi.app.core.booking.domain.model.Booking;
+import com.nexusnova.lifetravelapi.app.core.booking.domain.queries.GetBookingByPackageAndTouristQuery;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.queries.GetWeekBookingTouristQuery;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.queries.GetWeekBookingAgencyQuery;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.repositories.BookingRepository;
@@ -10,8 +11,10 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static java.time.DayOfWeek.MONDAY;
 import static java.time.DayOfWeek.SUNDAY;
@@ -57,5 +60,10 @@ public class BookingQueryServiceImpl implements BookingQueryService {
                 java.util.Date.from(endWeek), query.agencyUserId());
 
         return bookings;
+    }
+
+    @Override
+    public Optional<Booking> handle(GetBookingByPackageAndTouristQuery query) {
+        return scheduleRepository.findByTouristAndPackage(query.packageId(), query.touristUserId());
     }
 }

@@ -11,4 +11,12 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface BookingMapper {
 
+    @Mappings({
+        @Mapping(target = "tourPackageId", source = "tourPackage.id"),
+        @Mapping(target = "tourPackageTitle", source = "tourPackage.title"),
+        @Mapping(target = "agencyName", source = "tourPackage.agency.legalName"),
+        @Mapping(target = "imgUrl", source = "tourPackage.imgUrl"),
+        @Mapping(target = "tourDate", source = "startDayTime")
+    })
+    BookingSummaryDto toSummaryFromData(Booking booking);
 }
