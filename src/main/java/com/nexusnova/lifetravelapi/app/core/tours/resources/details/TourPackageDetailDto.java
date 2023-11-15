@@ -1,28 +1,38 @@
 package com.nexusnova.lifetravelapi.app.core.tours.resources.details;
 
+import com.nexusnova.lifetravelapi.app.core.booking.domain.services.BookingQueryService;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.math.BigDecimal;
 
-@ApiModel("TourPackage (Detail)")
+@Schema(name = "TourPackage (Detail)")
 public class TourPackageDetailDto {
 
-    @ApiModelProperty("Id del paquete")
+    @Schema(name = "Id del paquete")
     private Long id;
-    @ApiModelProperty("Nombre del Usuario")
+    @Schema(name = "Nombre del Usuario")
     private String title;
-    @ApiModelProperty("Nombre del departamento")
+    @Schema(name = "Nombre del departamento")
     private String departmentName;
-    @ApiModelProperty("Nombre del Usuario")
+    @Schema(name = "Nombre del Usuario")
     private String description;
-    @ApiModelProperty("Nombre del Usuario")
+    @Schema(name = "Nombre del Usuario")
     private String imgUrl;
-    @ApiModelProperty("Rating")
+    @Schema(name = "Rating")
     private Float rating;
-    @ApiModelProperty("Latitud de encuentro")
+    @Schema(name = "Id Agencia")
+    private Long agencyId;
+    @Schema(name = "Precio")
+    private BigDecimal price;
+    @Schema(name = "Id Region")
+    private Long regionId;
+    @Schema(name = "Visible")
+    private Boolean visible;
+    @Schema(name = "Latitud de encuentro")
     private BigDecimal meetingPointLatitude;
-    @ApiModelProperty("Longitud de encuentro")
+    @Schema(name = "Longitud de encuentro")
     private BigDecimal meetingPointLongitude;
 
     public Long getId() {
@@ -87,5 +97,37 @@ public class TourPackageDetailDto {
 
     public void setMeetingPointLongitude(BigDecimal meetingPointLongitude) {
         this.meetingPointLongitude = meetingPointLongitude;
+    }
+
+    public Long getAgencyId() {
+        return agencyId;
+    }
+
+    public void setAgencyId(Long agencyId) {
+        this.agencyId = agencyId;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Long getRegionId() {
+        return regionId;
+    }
+
+    public void setRegionId(Long regionId) {
+        this.regionId = regionId;
+    }
+
+    public Boolean getVisible() {
+        return visible;
+    }
+
+    public void setVisible(Boolean visible) {
+        this.visible = visible;
     }
 }
