@@ -29,6 +29,9 @@ public class Destination extends AuditModel {
     @Column(name = "longitude", columnDefinition = "decimal(13,10)")
     private BigDecimal longitude;
 
+    @Column(name = "name")
+    private String name;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "tour_package_id", nullable = false)
     @JsonIgnore
@@ -36,4 +39,5 @@ public class Destination extends AuditModel {
 
     @OneToOne(mappedBy = "destination", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private WeatherSensor weatherSensor;
+
 }

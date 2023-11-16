@@ -15,17 +15,16 @@ public class FirebaseConfig {
 
     @PostConstruct
     public void initializeFirebaseApp() throws IOException {
+        if (FirebaseApp.getApps().isEmpty()) {
+            ClassLoader classLoader = Application.class.getClassLoader();
+            InputStream serviceAccount = classLoader.getResourceAsStream("firebase_adminsdk.json");
 
-        ClassLoader classLoader = Application.class.getClassLoader();
+            FirebaseOptions options = new FirebaseOptions.Builder()
+                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                    .build();
 
-        InputStream serviceAccount = classLoader.getResourceAsStream("firebase_adminsdk.json");
-
-        FirebaseOptions options = new FirebaseOptions.Builder()
-                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                .build();
-
-        FirebaseApp.initializeApp(options);
-
+            FirebaseApp.initializeApp(options);
+        }
     }
 
 }

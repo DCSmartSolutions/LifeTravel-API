@@ -1,7 +1,9 @@
 package com.nexusnova.lifetravelapi.app.core.tours.resources.requests;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Getter;
 
+@Getter
 @Schema(description="Schedule (Request)")
 public class ScheduleDto {
 
@@ -10,16 +12,8 @@ public class ScheduleDto {
     @Schema(description="Rango de Hora")
     private HourRangeDto hourRange;
 
-    public String getDay() {
-        return day;
-    }
-
     public void setDay(String day) {
         this.day = day;
-    }
-
-    public HourRangeDto getHourRange() {
-        return hourRange;
     }
 
     public void setHourRange(HourRangeDto hourRange) {

@@ -1,7 +1,9 @@
 package com.nexusnova.lifetravelapi.app.core.tours.resources.summaries;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Getter;
 
+@Getter
 @Schema(description="Actividad (Summary)")
 public class ActivitySummaryDto {
 
@@ -12,24 +14,12 @@ public class ActivitySummaryDto {
     @Schema(description="Url de la imagens")
     private String imgUrl;
 
-    public String getId() {
-        return id;
-    }
-
     public void setId(String id) {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getImgUrl() {
-        return imgUrl;
     }
 
     public void setImgUrl(String imgUrl) {

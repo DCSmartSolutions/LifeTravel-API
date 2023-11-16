@@ -9,6 +9,8 @@ import com.nexusnova.lifetravelapi.app.IAM.profile.domain.repositories.*;
 import com.nexusnova.lifetravelapi.configuration.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+
 import static com.nexusnova.lifetravelapi.app.shared.util.CoreConstants.AGENCY_ROLE_ID;
 import static com.nexusnova.lifetravelapi.app.shared.util.CoreConstants.TOURIST_ROLE_ID;
 
@@ -101,6 +103,9 @@ public class ValidationUtil {
     public Destination findDestinationById(Long id) {
         return destinationRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Destination not found with id: " + id));
+    }
+    public Destination findDestinationByLatAndLongAndName(BigDecimal latitude, BigDecimal longitude, String name) {
+        return destinationRepository.findByLatitudeAndLongitudeAndName(latitude, longitude, name);
     }
 
     public Region findRegionById(Long id) {

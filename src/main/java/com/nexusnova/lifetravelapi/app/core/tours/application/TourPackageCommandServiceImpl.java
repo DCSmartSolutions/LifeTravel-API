@@ -10,6 +10,7 @@ import com.nexusnova.lifetravelapi.app.core.tours.domain.model.TourPackage;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.repositories.TourPackageRepository;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.services.TourPackageCommandService;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.ActivityRequestDto;
+import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.LocationNameDto;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.MeetingPointRequestDto;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.TourPackageRequestDto;
 import com.nexusnova.lifetravelapi.app.IAM.profile.domain.model.Agency;
@@ -54,14 +55,14 @@ public class TourPackageCommandServiceImpl implements TourPackageCommandService 
 
     private TourPackage setTourPackage(TourPackage tourPackage, TourPackageRequestDto requestDto) {
         Agency agency = validationUtil.findAgencyByUserId(requestDto.getAgencyId());
-        Department department = validationUtil.findDepartmentByName(requestDto.getDepartmentName());
+        Department department = validationUtil.findDepartmentByName(requestDto.getDestiny());
 
         tourPackage.setTitle(requestDto.getTitle());
         tourPackage.setDescription(requestDto.getDescription());
         tourPackage.setImgUrl(requestDto.getImgUrl());
         tourPackage.setPrice(requestDto.getPrice());
-        tourPackage.setLatitude(requestDto.getMeetingPoint().getLatitude());
-        tourPackage.setLongitude(requestDto.getMeetingPoint().getLongitude());
+        tourPackage.setLatitude(requestDto.getMeetingPointLatitude());
+        tourPackage.setLongitude(requestDto.getMeetingPointLongitude());
         tourPackage.setDepartment(department);
         tourPackage.setRegion(department.getRegion());
         tourPackage.setAgency(agency);
@@ -78,14 +79,16 @@ public class TourPackageCommandServiceImpl implements TourPackageCommandService 
         tourPackageRepository.save(tourPackage);
 
         List<Destination> destinationList = new ArrayList<>();
-        for(MeetingPointRequestDto destination : requestDto.getActivitiesMeetingPoints()) {
 
+        for(LocationNameDto destination : requestDto.getDestinations()) {
             Destination _destination = new Destination();
             _destination.setLatitude(destination.getLatitude());
             _destination.setLongitude(destination.getLongitude());
+            _destination.setName(destination.getName());
             _destination.setTourPackage(tourPackage);
             destinationList.add(_destination);
         }
+        System.out.println("destinations: " + destinationList.toString());
         tourPackage.setDestinations(destinationList);
         tourPackageRepository.save(tourPackage);
 

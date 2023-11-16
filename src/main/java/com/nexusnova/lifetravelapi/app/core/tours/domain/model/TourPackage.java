@@ -24,12 +24,9 @@ import java.util.List;
 @Where(clause = "_deleted = false")
 @SQLDelete(sql = "UPDATE tour_packages SET _deleted = true WHERE id = ?")
 public class TourPackage extends AuditModel {
-
-
     @Column(name = "title")
     private String title;
-
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "nvarchar(max)")
     private String description;
 
     @Column(name = "img_url")
@@ -38,8 +35,8 @@ public class TourPackage extends AuditModel {
     @Column(name = "price")
     private BigDecimal price;
 
-    @Column(name = "visible")
-    private Boolean visible;
+    @Column(name = "visible", nullable = false)
+    private Boolean visible = false;
 
     @Column(name = "rating")
     @Max(5)
@@ -77,4 +74,6 @@ public class TourPackage extends AuditModel {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tourPackage")
     private List<Schedule> schedules;
+
+
 }

@@ -44,8 +44,6 @@ public class TourPackageController {
         this.tourPackageCommandService = tourPackageCommandService;
         this.toursMapper = toursMapper;
     }
-
-
     @GetMapping
     @Operation(summary = "Listado", description = "Listado de Actividades.")
     public List<TourPackageSummaryDto> getTours() {
@@ -69,11 +67,11 @@ public class TourPackageController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "Registrar Paquete", description = "Permite registrar un paquete.")
+    @Operation(summary = "Create a Package", description = "Create a package associated to an agency.")
     public TourPackageSummaryDto save(@RequestBody @Valid TourPackageRequestDto tourPackageRequestDto,
                                HttpServletResponse response) {
-        TourPackage tourPackage =
-                tourPackageCommandService.handle(RegisterTourPackageCommandFromRequestDtoAssembler.toCommandFromDto(tourPackageRequestDto));
+        System.out.println(tourPackageRequestDto);
+        TourPackage tourPackage = tourPackageCommandService.handle(RegisterTourPackageCommandFromRequestDtoAssembler.toCommandFromDto(tourPackageRequestDto));
         response.setHeader(HeaderConstants.MESSAGES, TOUR_PACKAGE_CREATED);
         return toursMapper.tourPackageToSummaryDto(tourPackage);
     }
@@ -99,6 +97,4 @@ public class TourPackageController {
         response.setHeader(HeaderConstants.MESSAGES, TOUR_PACKAGE_MODIFIED);
         return toursMapper.tourPackageToDetailDto(tourPackage);
     }
-
-
 }
