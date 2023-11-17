@@ -24,5 +24,5 @@ public class TourPackageRequestDto {
     private BigDecimal meetingPointLongitude;
     private List<ActivityRequestDto> activities;
     private List<LocationNameDto> destinations;
-    private List<ScheduleDto> schedules;
+    //private List<ScheduleDto> schedules;
 }

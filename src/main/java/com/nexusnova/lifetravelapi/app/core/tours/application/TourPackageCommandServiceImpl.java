@@ -37,26 +37,21 @@ public class TourPackageCommandServiceImpl implements TourPackageCommandService 
         TourPackage tourPackage = new TourPackage();
         return setTourPackage(tourPackage, command.tourPackageRequestDto());
     }
-
     @Override
     public TourPackage handle(ModifyImgPackageCommand command) {
         TourPackage tourPackage = validationUtil.findTourPackageById(command.packageId());
-
         tourPackage.setImgUrl(command.imgUrl());
         tourPackageRepository.save(tourPackage);
         return tourPackage;
     }
-
     @Override
     public TourPackage handle(ModifyPackageCommand command) {
         TourPackage tourPackage = validationUtil.findTourPackageById(command.packageId());
         return setTourPackage(tourPackage, command.tourPackageRequestDto());
     }
-
     private TourPackage setTourPackage(TourPackage tourPackage, TourPackageRequestDto requestDto) {
         Agency agency = validationUtil.findAgencyByUserId(requestDto.getAgencyId());
         Department department = validationUtil.findDepartmentByName(requestDto.getDestiny());
-
         tourPackage.setTitle(requestDto.getTitle());
         tourPackage.setDescription(requestDto.getDescription());
         tourPackage.setImgUrl(requestDto.getImgUrl());
@@ -66,10 +61,8 @@ public class TourPackageCommandServiceImpl implements TourPackageCommandService 
         tourPackage.setDepartment(department);
         tourPackage.setRegion(department.getRegion());
         tourPackage.setAgency(agency);
-
-
         List<Activity> activityList = new ArrayList<>();
-        for(ActivityRequestDto activities : requestDto.getActivities()) {
+        for (ActivityRequestDto activities : requestDto.getActivities()) {
 
             Activity activity = validationUtil.findActivityById(activities.getId());
             activityList.add(activity);
@@ -80,17 +73,17 @@ public class TourPackageCommandServiceImpl implements TourPackageCommandService 
 
         List<Destination> destinationList = new ArrayList<>();
 
-        for(LocationNameDto destination : requestDto.getDestinations()) {
-            Destination _destination = new Destination();
+        for (LocationNameDto destination : requestDto.getDestinations()) {
+            Destination _destination = validationUtil.findDestinationById(destination.getId());
+            _destination.setName(destination.getName());
             _destination.setLatitude(destination.getLatitude());
             _destination.setLongitude(destination.getLongitude());
-            _destination.setName(destination.getName());
             _destination.setTourPackage(tourPackage);
             destinationList.add(_destination);
         }
-        System.out.println("destinations: " + destinationList.toString());
         tourPackage.setDestinations(destinationList);
         tourPackageRepository.save(tourPackage);
+        System.out.println("destinations: " + tourPackage.getDestinations().size());
 
         return tourPackage;
     }

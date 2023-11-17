@@ -8,5 +8,4 @@ import java.math.BigDecimal;
 
 @Repository
 public interface DestinationRepository extends JpaRepository<Destination, Long> {
-    Destination findByLatitudeAndLongitudeAndName(BigDecimal latitude, BigDecimal longitude, String name);
 }

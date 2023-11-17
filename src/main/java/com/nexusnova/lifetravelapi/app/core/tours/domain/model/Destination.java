@@ -34,7 +34,6 @@ public class Destination extends AuditModel {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "tour_package_id", nullable = false)
-    @JsonIgnore
     private TourPackage tourPackage;
 
     @OneToOne(mappedBy = "destination", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

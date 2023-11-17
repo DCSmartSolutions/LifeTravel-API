@@ -1,6 +1,5 @@
 package com.nexusnova.lifetravelapi.app.core.tours.api.REST;
 
-import com.nexusnova.lifetravelapi.app.core.tours.api.transformation.RegisterTourPackageCommandFromRequestDtoAssembler;
 import com.nexusnova.lifetravelapi.app.core.tours.api.transformation.ScheduleRangeAssembler;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.commands.CreateScheduleCommand;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.Schedule;
@@ -8,7 +7,6 @@ import com.nexusnova.lifetravelapi.app.core.tours.domain.queries.GetSchedulesByP
 import com.nexusnova.lifetravelapi.app.core.tours.domain.services.ScheduleCommandService;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.services.ScheduleQueryService;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.ScheduleDto;
-import com.nexusnova.lifetravelapi.app.core.tours.resources.summaries.TourPackageSummaryDto;
 import com.nexusnova.lifetravelapi.configuration.constants.HeaderConstants;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
@@ -17,21 +15,16 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-
 import static com.nexusnova.lifetravelapi.configuration.messages.ConfigurationMessages.TOUR_PACKAGE_CREATED;
-
 @RestController
 @RequestMapping("/api/v1/schedules")
 @Api(tags = "Api de Horarios", consumes = "application/json")
 @CrossOrigin
 public class ScheduleController {
-
     private final ScheduleCommandService scheduleCommandService;
     private final ScheduleQueryService scheduleQueryService;
     private final ScheduleRangeAssembler scheduleRangeAssembler;
-
     public ScheduleController(ScheduleCommandService scheduleCommandService,
                               ScheduleQueryService scheduleQueryService,
                               ScheduleRangeAssembler scheduleRangeAssembler) {
@@ -39,17 +32,15 @@ public class ScheduleController {
         this.scheduleQueryService = scheduleQueryService;
         this.scheduleRangeAssembler = scheduleRangeAssembler;
     }
-
     @GetMapping("/package/{packageId}")
     @Operation(summary = "Listado Por Paquete", description = "Listado de horariosn por Paquetes.")
     public List<ScheduleDto> getToursByRegion(@Parameter @PathVariable("packageId") Long packageId) {
         List<Schedule> schedules = scheduleQueryService.handle(new GetSchedulesByPackageQuery(packageId));
         return scheduleRangeAssembler.toSummariesFromData(schedules);
     }
-
     @PostMapping("/package/{packageId}")
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "Registrar Horario", description = "Permite registrar un horario.")
+    @Operation(summary = "Save schedule in Tour Package")
     public ScheduleDto save(@Parameter @PathVariable("packageId") Long packageId,
                                       @RequestBody @Valid ScheduleDto scheduleDto,
                                       HttpServletResponse response) {

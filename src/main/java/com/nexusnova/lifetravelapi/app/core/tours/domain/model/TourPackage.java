@@ -69,7 +69,7 @@ public class TourPackage extends AuditModel {
             inverseJoinColumns = @JoinColumn(name = "activity_id"))
     private List<Activity> activities;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tourPackage")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tourPackage", cascade = CascadeType.ALL)
     private List<Destination> destinations;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tourPackage")

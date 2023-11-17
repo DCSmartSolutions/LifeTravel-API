@@ -30,7 +30,7 @@ public class ScheduleRangeAssembler {
         HourRangeDto hourRange = new HourRangeDto();
         TimeDto startTime = new TimeDto();
         TimeDto endTime = new TimeDto();
-
+        summary.setId(schedule.getId());
         startTime.setHour(schedule.getStartHour());
         startTime.setMinute(schedule.getStartMinute());
         startTime.setDayTime(schedule.getStartDayTime());

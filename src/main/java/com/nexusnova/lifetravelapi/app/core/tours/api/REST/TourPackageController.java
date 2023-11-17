@@ -5,13 +5,14 @@ import com.nexusnova.lifetravelapi.app.core.tours.domain.commands.ModifyImgPacka
 import com.nexusnova.lifetravelapi.app.core.tours.domain.commands.ModifyPackageCommand;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.TourPackage;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.queries.GetTourPackageByIdQuery;
+import com.nexusnova.lifetravelapi.app.core.tours.domain.queries.GetTourPackagesByAgencyUserIdQuery;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.queries.GetTourPackagesByRegionQuery;
+import com.nexusnova.lifetravelapi.app.core.tours.domain.queries.GetTourPackagesByAgencyIdAndVisibilityQuery;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.services.TourPackageCommandService;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.services.TourPackageQueryService;
 import com.nexusnova.lifetravelapi.app.core.tours.mapper.ToursMapper;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.details.TourPackageDetailDto;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.TourPackageRequestDto;
-import com.nexusnova.lifetravelapi.app.core.tours.resources.summaries.TourPackageSummaryDto;
 import com.nexusnova.lifetravelapi.configuration.constants.HeaderConstants;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -45,39 +46,57 @@ public class TourPackageController {
         this.toursMapper = toursMapper;
     }
     @GetMapping
-    @Operation(summary = "Listado", description = "Listado de Actividades.")
-    public List<TourPackageSummaryDto> getTours() {
+    @Operation(summary = "List existing Visible Packages")
+    public List<TourPackageDetailDto> getTours() {
         List<TourPackage> tourPackages = tourPackageQueryService.handle();
-        return toursMapper.tourPackageToSummaryDtos(tourPackages);
+        return toursMapper.tourPackageToDetailDtos(tourPackages);
+    }
+    @GetMapping("/all-hidden-packages-by-agency/{agencyId}")
+    @Operation(summary = "List existing Hidden Packages by Agency Id")
+    public List<TourPackageDetailDto> getAllHiddenPackagesByAgency(@Parameter @PathVariable("agencyId") String agencyId) {
+        List<TourPackage> tourPackages = tourPackageQueryService.handle(new GetTourPackagesByAgencyIdAndVisibilityQuery(agencyId, false));
+        return toursMapper.tourPackageToDetailDtos(tourPackages);
+    }
+    @GetMapping("/all-visible-packages-by-agency/{agencyId}")
+    @Operation(summary = "List existing Visible Packages by Agency Id")
+    public List<TourPackageDetailDto> getAllVisiblePackagesByAgency(@Parameter @PathVariable("agencyId") String agencyId) {
+        List<TourPackage> tourPackages = tourPackageQueryService.handle(new GetTourPackagesByAgencyIdAndVisibilityQuery(agencyId, true));
+        return toursMapper.tourPackageToDetailDtos(tourPackages);
     }
 
     @GetMapping("/region/{regionId}")
-    @Operation(summary = "Listado Por Region", description = "Listado de Paquetes Por Region Id.")
-    public List<TourPackageSummaryDto> getToursByRegion(@Parameter @PathVariable("regionId") Long regionId) {
+    @Operation(summary = "List existing Tour packages by Region Id")
+    public List<TourPackageDetailDto> getToursByRegion(@Parameter @PathVariable("regionId") Long regionId) {
         List<TourPackage> tourPackages = tourPackageQueryService.handle(new GetTourPackagesByRegionQuery(regionId));
-        return toursMapper.tourPackageToSummaryDtos(tourPackages);
+        return toursMapper.tourPackageToDetailDtos(tourPackages);
     }
 
     @GetMapping("/{packageId}")
-    @Operation(summary = "Obtener Por Id", description = "Obtener Por Id.")
+    @Operation(summary = "Get Package by Id")
     public TourPackageDetailDto getToursById(@Parameter @PathVariable("packageId") Long packageId) {
         TourPackage tourPackage = tourPackageQueryService.handle(new GetTourPackageByIdQuery(packageId));
         return toursMapper.tourPackageToDetailDto(tourPackage);
+    }
+    @GetMapping("/agency/{agencyId}")
+    @Operation(summary = "List existing Tour packages by Agency Id")
+    public List<TourPackageDetailDto> getToursByAgency(@Parameter @PathVariable("agencyId") String agencyId) {
+        List<TourPackage> tourPackages = tourPackageQueryService.handle(new GetTourPackagesByAgencyUserIdQuery(agencyId));
+        return toursMapper.tourPackageToDetailDtos(tourPackages);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Create a Package", description = "Create a package associated to an agency.")
-    public TourPackageSummaryDto save(@RequestBody @Valid TourPackageRequestDto tourPackageRequestDto,
+    public TourPackageDetailDto save(@RequestBody @Valid TourPackageRequestDto tourPackageRequestDto,
                                HttpServletResponse response) {
         System.out.println(tourPackageRequestDto);
         TourPackage tourPackage = tourPackageCommandService.handle(RegisterTourPackageCommandFromRequestDtoAssembler.toCommandFromDto(tourPackageRequestDto));
         response.setHeader(HeaderConstants.MESSAGES, TOUR_PACKAGE_CREATED);
-        return toursMapper.tourPackageToSummaryDto(tourPackage);
+        return toursMapper.tourPackageToDetailDto(tourPackage);
     }
 
     @PutMapping("/{packageId}")
-    @Operation(summary = "Modificar Imagen", description = "Permite cambiar la url de la imagen.")
+    @Operation(summary = "Modify Tour Package")
     public TourPackageDetailDto updatePackage(@Parameter @PathVariable("packageId") Long packageId,
                                               @RequestBody @Valid TourPackageRequestDto tourPackageRequestDto,
                                               HttpServletResponse response) {
@@ -88,7 +107,7 @@ public class TourPackageController {
     }
 
     @PutMapping("/img/{packageId}")
-    @Operation(summary = "Modificar Imagen", description = "Permite cambiar la url de la imagen.")
+    @Operation(summary = "Modify associated image of a Tour Package")
     public TourPackageDetailDto updateImage(@Parameter @PathVariable("packageId") Long packageId,
                                             @RequestBody Map<String, String> requestBody,
                                             HttpServletResponse response) {

@@ -101,13 +101,8 @@ public class ValidationUtil {
     }
 
     public Destination findDestinationById(Long id) {
-        return destinationRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Destination not found with id: " + id));
+        return destinationRepository.findById(id).orElse(new Destination());
     }
-    public Destination findDestinationByLatAndLongAndName(BigDecimal latitude, BigDecimal longitude, String name) {
-        return destinationRepository.findByLatitudeAndLongitudeAndName(latitude, longitude, name);
-    }
-
     public Region findRegionById(Long id) {
         return regionRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Region not found with id: " + id));

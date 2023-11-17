@@ -12,7 +12,6 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface ToursMapper {
-
     @Mappings({
             @Mapping(target = "id", source = "entity.id"),
             @Mapping(target = "title", source = "entity.title"),
@@ -20,7 +19,6 @@ public interface ToursMapper {
     })
     ActivitySummaryDto activityToSummaryDto(Activity entity);
     List<ActivitySummaryDto> activityToSummaryDtos(List<Activity> entities);
-
     @Mappings({
             @Mapping(target = "id", source = "entity.id"),
             @Mapping(target = "destiny", source = "entity.department.name"),
@@ -33,7 +31,6 @@ public interface ToursMapper {
     })
     TourPackageSummaryDto tourPackageToSummaryDto(TourPackage entity);
     List<TourPackageSummaryDto> tourPackageToSummaryDtos(List<TourPackage> entities);
-
     @Mappings({
             @Mapping(target = "id", source = "entity.id"),
             @Mapping(target = "title", source = "entity.title"),
@@ -48,21 +45,18 @@ public interface ToursMapper {
             @Mapping(target = "destinations", source = "entity.destinations"),
             @Mapping(target = "schedules", source = "entity.schedules"),
     })
-
-
     TourPackageDetailDto tourPackageToDetailDto(TourPackage entity);
     List<TourPackageDetailDto> tourPackageToDetailDtos(List<TourPackage> entities);
-
     @Mappings({
+            @Mapping(target = "id", source = "entity.id"),
             @Mapping(target = "name", source = "entity.name"),
             @Mapping(target = "latitude", source = "entity.latitude"),
             @Mapping(target = "longitude", source = "entity.longitude"),
     })
     LocationNameDto destinationToLocationNameDto(Destination entity);
     List<LocationNameDto> destinationToLocationNameDtos(List<Destination> entities);
-
-    //map locationNameDto to destination
     @Mappings({
+            @Mapping(target = "id", source = "dto.id"),
             @Mapping(target = "name", source = "dto.name"),
             @Mapping(target = "latitude", source = "dto.latitude"),
             @Mapping(target = "longitude", source = "dto.longitude"),

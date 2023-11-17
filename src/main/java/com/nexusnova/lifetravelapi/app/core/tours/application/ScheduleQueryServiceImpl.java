@@ -5,7 +5,6 @@ import com.nexusnova.lifetravelapi.app.core.tours.domain.queries.GetSchedulesByP
 import com.nexusnova.lifetravelapi.app.core.tours.domain.repositories.ScheduleRepository;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.services.ScheduleQueryService;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

@@ -3,6 +3,7 @@ package com.nexusnova.lifetravelapi.app.core.tours.resources.details;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.Activity;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.Schedule;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.LocationNameDto;
+import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.ScheduleDto;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.summaries.ActivitySummaryDto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
@@ -45,5 +46,5 @@ public class TourPackageDetailDto {
     @Schema(name = "Actividades")
     private List<ActivitySummaryDto> activities;
     @Schema(name = "Horarios")
-    private List<Schedule> schedules;
+    private List<ScheduleDto> schedules;
 }
