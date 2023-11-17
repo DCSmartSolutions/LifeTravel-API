@@ -13,4 +13,6 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
 
     @Query("select d from Department d where d._deleted = false and d.name like %:departmentName%")
     Optional<Department> findByName(@Param("departmentName") String departmentName);
+
+
 }
