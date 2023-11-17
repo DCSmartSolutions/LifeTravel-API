@@ -41,12 +41,12 @@ public class ScheduleController {
     @PostMapping("/package/{packageId}")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Save schedule in Tour Package")
-    public ScheduleDto save(@Parameter @PathVariable("packageId") Long packageId,
-                                      @RequestBody @Valid ScheduleDto scheduleDto,
+    public List<ScheduleDto> save(@Parameter @PathVariable("packageId") Long packageId,
+                                      @RequestBody @Valid List<ScheduleDto> scheduleDto,
                                       HttpServletResponse response) {
-        Schedule schedule =
+        List<Schedule> schedule =
                 scheduleCommandService.handle(new CreateScheduleCommand(packageId, scheduleDto));
         response.setHeader(HeaderConstants.MESSAGES, TOUR_PACKAGE_CREATED);
-        return scheduleRangeAssembler.toSummaryFromData(schedule);
+        return scheduleRangeAssembler.toSummariesFromData(schedule);
     }
 }
