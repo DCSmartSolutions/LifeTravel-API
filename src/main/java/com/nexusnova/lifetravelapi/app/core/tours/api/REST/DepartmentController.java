@@ -6,6 +6,7 @@ import com.nexusnova.lifetravelapi.app.core.tours.mapper.DepartmentMapper;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.details.DepartmentDetail;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/departments")
-@Api(tags = "Api de Departamentos", consumes = "application/json")
+@Tag(name = "Department Controller")
 @CrossOrigin
 public class DepartmentController {
     private final RegionQueryService regionQueryService;

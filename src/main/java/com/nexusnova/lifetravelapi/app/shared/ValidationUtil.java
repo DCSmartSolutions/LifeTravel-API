@@ -6,6 +6,8 @@ import com.nexusnova.lifetravelapi.app.IAM.identity.domain.model.*;
 import com.nexusnova.lifetravelapi.app.IAM.identity.domain.repositories.*;
 import com.nexusnova.lifetravelapi.app.IAM.profile.domain.model.*;
 import com.nexusnova.lifetravelapi.app.IAM.profile.domain.repositories.*;
+import com.nexusnova.lifetravelapi.app.core.transportation.domain.model.Vehicle;
+import com.nexusnova.lifetravelapi.app.core.transportation.domain.repositories.VehicleRepository;
 import com.nexusnova.lifetravelapi.configuration.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +29,7 @@ public class ValidationUtil {
     private final ScheduleRepository scheduleRepository;
     private final TourPackageRepository tourPackageRepository;
     private final RoleRepository roleRepository;
-
+    private final VehicleRepository vehicleRepository;
     public ValidationUtil(UserRepository userRepository,
                           AgencyRepository agencyRepository,
                           TouristRepository touristRepository,
@@ -37,6 +39,7 @@ public class ValidationUtil {
                           RegionRepository regionRepository,
                           ScheduleRepository scheduleRepository,
                           TourPackageRepository tourPackageRepository,
+                          VehicleRepository vehicleRepository,
                           RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.agencyRepository = agencyRepository;
@@ -47,6 +50,7 @@ public class ValidationUtil {
         this.regionRepository = regionRepository;
         this.scheduleRepository = scheduleRepository;
         this.tourPackageRepository = tourPackageRepository;
+        this.vehicleRepository = vehicleRepository;
         this.roleRepository = roleRepository;
     }
 
@@ -63,6 +67,10 @@ public class ValidationUtil {
     public Role getAgencyRole() {
         return roleRepository.findById(AGENCY_ROLE_ID)
                 .orElseThrow(() -> new ResourceNotFoundException("Role not found for agency"));
+    }
+    public Vehicle findVehicleById(Long id) {
+        return vehicleRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Vehicle not found with id: " + id));
     }
 
     public Agency findAgencyById(Long id) {

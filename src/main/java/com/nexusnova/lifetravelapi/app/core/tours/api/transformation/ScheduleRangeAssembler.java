@@ -4,6 +4,7 @@ import com.nexusnova.lifetravelapi.app.core.tours.domain.model.Schedule;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.HourRangeDto;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.ScheduleDto;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.TimeDto;
+import com.nexusnova.lifetravelapi.app.core.transportation.domain.enums.VehicleStatus;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -44,7 +45,6 @@ public class ScheduleRangeAssembler {
 
         summary.setDay(schedule.getDay());
         summary.setHourRange(hourRange);
-
         return summary;
     }
 }

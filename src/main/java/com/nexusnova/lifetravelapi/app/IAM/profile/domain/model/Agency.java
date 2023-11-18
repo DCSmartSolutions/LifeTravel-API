@@ -2,6 +2,7 @@ package com.nexusnova.lifetravelapi.app.IAM.profile.domain.model;
 
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.TourPackage;
 import com.nexusnova.lifetravelapi.app.IAM.identity.domain.model.User;
+import com.nexusnova.lifetravelapi.app.core.transportation.domain.model.Vehicle;
 import com.nexusnova.lifetravelapi.app.shared.domain.model.AuditModel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -53,4 +54,6 @@ public class Agency extends AuditModel {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "agency")
     private Set<TourPackage> tourPackages;
+
+
 }

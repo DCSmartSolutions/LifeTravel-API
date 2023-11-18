@@ -43,7 +43,7 @@ public interface ToursMapper {
             @Mapping(target = "meetingPointLongitude", source = "entity.longitude"),
             @Mapping(target = "activities", source = "entity.activities"),
             @Mapping(target = "destinations", source = "entity.destinations"),
-            @Mapping(target = "schedules", source = "entity.schedules"),
+            //@Mapping(target = "schedules", source = "entity.schedules"),
     })
     TourPackageDetailDto tourPackageToDetailDto(TourPackage entity);
     List<TourPackageDetailDto> tourPackageToDetailDtos(List<TourPackage> entities);

@@ -45,6 +45,6 @@ public class TourPackageDetailDto {
     private List<LocationNameDto> destinations;
     @Schema(name = "Actividades")
     private List<ActivitySummaryDto> activities;
-    @Schema(name = "Horarios")
-    private List<ScheduleDto> schedules;
+    //@Schema(name = "Horarios")
+    //private List<ScheduleDto> schedules;
 }
