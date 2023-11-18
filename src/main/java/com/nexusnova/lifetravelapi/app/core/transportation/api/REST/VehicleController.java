@@ -1,9 +1,6 @@
 package com.nexusnova.lifetravelapi.app.core.transportation.api.REST;
 
-import com.nexusnova.lifetravelapi.app.core.transportation.domain.commands.AssignVehicleToTourPackageCommand;
-import com.nexusnova.lifetravelapi.app.core.transportation.domain.commands.CreateVehicleCommand;
-import com.nexusnova.lifetravelapi.app.core.transportation.domain.commands.ModifyImgVehicleCommand;
-import com.nexusnova.lifetravelapi.app.core.transportation.domain.commands.RemoveVehicleToTourPackageCommand;
+import com.nexusnova.lifetravelapi.app.core.transportation.domain.commands.*;
 import com.nexusnova.lifetravelapi.app.core.transportation.domain.enums.VehicleStatus;
 import com.nexusnova.lifetravelapi.app.core.transportation.domain.model.Vehicle;
 import com.nexusnova.lifetravelapi.app.core.transportation.domain.queries.GetVehicleByIdQuery;
@@ -52,6 +49,12 @@ public class VehicleController {
     public Vehicle modifyVehicleImg(@PathVariable("vehicleId") Long vehicleId,
                                     @RequestBody String img) {
         return vehicleCommandService.handle(new ModifyImgVehicleCommand(vehicleId, img));
+    }
+    @PutMapping("/modify/{vehicleId}")
+    @Operation(summary = "Modify Vehicle")
+    public Vehicle modifyVehicle(@PathVariable("vehicleId") Long vehicleId,
+                                 @RequestBody VehicleRequestDto vehicle) {
+        return vehicleCommandService.handle(new ModifyVehicleCommand(vehicleId, vehicle));
     }
     @GetMapping("/all-vehicles-by-tour-package/{tourPackageId}")
     @Operation(summary = "List existing Vehicles by Tour Package Id")
