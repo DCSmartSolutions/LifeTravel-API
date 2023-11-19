@@ -1,8 +1,11 @@
 package com.nexusnova.lifetravelapi.app.IOT.api.REST;
 
 import com.nexusnova.lifetravelapi.app.IOT.api.transformation.UpdateWeightBalanceCommandFromRequestDtoAssembler;
+import com.nexusnova.lifetravelapi.app.IOT.domain.model.WeightBalance;
 import com.nexusnova.lifetravelapi.app.IOT.domain.services.WeightBalanceCommandService;
+import com.nexusnova.lifetravelapi.app.IOT.mapper.IOTMapper;
 import com.nexusnova.lifetravelapi.app.IOT.resources.requests.WeightBalanceRequestDto;
+import com.nexusnova.lifetravelapi.app.IOT.resources.summaries.WeightBalanceSummaryDto;
 import com.nexusnova.lifetravelapi.configuration.constants.HeaderConstants;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -21,18 +24,23 @@ import static com.nexusnova.lifetravelapi.configuration.messages.ConfigurationMe
 public class WeightBalanceController {
 
     private final WeightBalanceCommandService weightBalanceCommandService;
+    private final IOTMapper iotMapper;
 
     @Autowired
-    public WeightBalanceController(WeightBalanceCommandService weightBalanceCommandService) {
+    public WeightBalanceController(WeightBalanceCommandService weightBalanceCommandService,
+                                   IOTMapper iotMapper) {
         this.weightBalanceCommandService = weightBalanceCommandService;
+        this.iotMapper = iotMapper;
     }
 
     @PutMapping("/update-weight/{balanceId}")
     @Operation(summary = "Actualizar Peso", description = "Permite actualizar el peso de la balanza.")
-    public void updateWeight(@Parameter @PathVariable("balanceId") Long balanceId,
-                               @RequestBody @Valid WeightBalanceRequestDto requestDto,
-                               HttpServletResponse response) {
-        weightBalanceCommandService.handle(UpdateWeightBalanceCommandFromRequestDtoAssembler.toCommandFromDto(balanceId, requestDto));
+    public WeightBalanceSummaryDto updateWeight(@Parameter @PathVariable("balanceId") Long balanceId,
+                                                @RequestBody @Valid WeightBalanceRequestDto requestDto,
+                                                HttpServletResponse response) {
+        WeightBalance balance =
+                weightBalanceCommandService.handle(UpdateWeightBalanceCommandFromRequestDtoAssembler.toCommandFromDto(balanceId, requestDto));
         response.setHeader(HeaderConstants.MESSAGES, WEIGHT_BALANCE_UPDATED);
+        return iotMapper.balanceToSummaryDto(balance);
     }
 }
