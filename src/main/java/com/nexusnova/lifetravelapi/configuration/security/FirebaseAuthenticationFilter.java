@@ -1,7 +1,9 @@
 package com.nexusnova.lifetravelapi.configuration.security;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseToken;
+import io.grpc.netty.shaded.io.netty.channel.FixedRecvByteBufAllocator;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,6 +13,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.concurrent.ExecutionException;
 
 public class FirebaseAuthenticationFilter extends OncePerRequestFilter {
 
@@ -25,8 +28,12 @@ public class FirebaseAuthenticationFilter extends OncePerRequestFilter {
             "/demo",
             "/error",
             "/swagger-ui.html",
+            "/iot/logger",
     };
 
+    private static final String[] IOT_AUTH = { "/iot/logger" };
+
+    private static final String IOT_REFRESH_TOKEN = "GGRJO9CS1OG8D28KasJ0tqEW9TShkdkJXeRd2bwrcGMZPGPUcItdeXhWRO";
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
@@ -35,8 +42,18 @@ public class FirebaseAuthenticationFilter extends OncePerRequestFilter {
         boolean isWhitelisted = Arrays.stream(AUTH_WHITELIST_PUBLIC)
                 .anyMatch(path -> request.getServletPath().startsWith(path));
 
+        boolean isIotDevice = Arrays.stream(IOT_AUTH)
+                .anyMatch(path -> request.getServletPath().startsWith(path));
+
         // If the request is whitelisted, skip the filter
+
+
         if (isWhitelisted) {
+            chain.doFilter(request, response);
+            return;
+        }
+
+        if  (isIotDevice && request.getHeader("CustomToken").equals(IOT_REFRESH_TOKEN)) {
             chain.doFilter(request, response);
             return;
         }
@@ -75,4 +92,5 @@ public class FirebaseAuthenticationFilter extends OncePerRequestFilter {
         // Continue the filter chain
         chain.doFilter(request, response);
     }
+
 }
