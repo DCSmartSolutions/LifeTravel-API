@@ -20,7 +20,7 @@ import java.math.BigDecimal;
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "destinations")
 @Where(clause = "_deleted = false")
-@SQLDelete(sql = "UPDATE destinations SET _deleted = true WHERE id = ?")
+@SQLDelete(sql = "UPDATE destinations SET _deleted = 1 WHERE id = ?")
 public class Destination extends AuditModel {
 
     @Column(name = "latitude", columnDefinition = "decimal(13,10)")

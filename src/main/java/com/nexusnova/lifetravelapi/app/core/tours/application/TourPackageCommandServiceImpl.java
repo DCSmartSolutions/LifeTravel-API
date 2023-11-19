@@ -7,6 +7,7 @@ import com.nexusnova.lifetravelapi.app.core.tours.domain.model.Activity;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.Department;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.Destination;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.TourPackage;
+import com.nexusnova.lifetravelapi.app.core.tours.domain.repositories.DestinationRepository;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.repositories.TourPackageRepository;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.services.TourPackageCommandService;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.ActivityRequestDto;
@@ -16,6 +17,7 @@ import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.TourPackage
 import com.nexusnova.lifetravelapi.app.IAM.profile.domain.model.Agency;
 import com.nexusnova.lifetravelapi.app.shared.ValidationUtil;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +26,15 @@ import java.util.List;
 public class TourPackageCommandServiceImpl implements TourPackageCommandService {
 
     private final TourPackageRepository tourPackageRepository;
+    private final DestinationRepository destinationRepository;
     private final ValidationUtil validationUtil;
 
     public TourPackageCommandServiceImpl(TourPackageRepository tourPackageRepository,
-                                         ValidationUtil validationUtil) {
+                                         ValidationUtil validationUtil,
+                                         DestinationRepository destinationRepository) {
         this.tourPackageRepository = tourPackageRepository;
         this.validationUtil = validationUtil;
+        this.destinationRepository = destinationRepository;
     }
 
     @Override
@@ -45,10 +50,12 @@ public class TourPackageCommandServiceImpl implements TourPackageCommandService 
         return tourPackage;
     }
     @Override
+    @Transactional
     public TourPackage handle(ModifyPackageCommand command) {
         TourPackage tourPackage = validationUtil.findTourPackageById(command.packageId());
         return setTourPackage(tourPackage, command.tourPackageRequestDto());
     }
+
     private TourPackage setTourPackage(TourPackage tourPackage, TourPackageRequestDto requestDto) {
         Agency agency = validationUtil.findAgencyByUserId(requestDto.getAgencyId());
         Department department = validationUtil.findDepartmentByName(requestDto.getDestiny());
@@ -63,7 +70,6 @@ public class TourPackageCommandServiceImpl implements TourPackageCommandService 
         tourPackage.setAgency(agency);
         List<Activity> activityList = new ArrayList<>();
         for (ActivityRequestDto activities : requestDto.getActivities()) {
-
             Activity activity = validationUtil.findActivityById(activities.getId());
             activityList.add(activity);
         }
@@ -73,8 +79,11 @@ public class TourPackageCommandServiceImpl implements TourPackageCommandService 
 
         List<Destination> destinationList = new ArrayList<>();
 
+        //delete all destinations of package
+        destinationRepository.deleteByTourPackage(tourPackage);
+
         for (LocationNameDto destination : requestDto.getDestinations()) {
-            Destination _destination = validationUtil.findDestinationById(destination.getId());
+            Destination _destination = new Destination();
             _destination.setName(destination.getName());
             _destination.setLatitude(destination.getLatitude());
             _destination.setLongitude(destination.getLongitude());
