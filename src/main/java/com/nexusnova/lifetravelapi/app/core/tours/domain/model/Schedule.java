@@ -17,7 +17,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "schedule")
 @Where(clause = "_deleted = false")
-@SQLDelete(sql = "UPDATE schedule SET _deleted = true WHERE id = ?")
+@SQLDelete(sql = "UPDATE schedule SET _deleted = 1 WHERE id = ?")
 public class Schedule extends AuditModel {
 
     @Column(name = "day")
