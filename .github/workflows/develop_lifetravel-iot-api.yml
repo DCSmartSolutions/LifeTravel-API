@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'lifetravel-iot-api'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FFD0395C653C411DB6F83A96112AD5EF }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_756B33A7A10141FCA601B2D9CE24BB8E }}
           package: '*.jar'
