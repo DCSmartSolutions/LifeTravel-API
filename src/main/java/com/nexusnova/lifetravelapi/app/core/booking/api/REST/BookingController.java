@@ -1,9 +1,13 @@
 package com.nexusnova.lifetravelapi.app.core.booking.api.REST;
 
+import com.nexusnova.lifetravelapi.app.IAM.profile.domain.model.Tourist;
+import com.nexusnova.lifetravelapi.app.IAM.profile.mapper.ProfileMapper;
+import com.nexusnova.lifetravelapi.app.IAM.profile.resources.summaries.TouristSummaryDto;
 import com.nexusnova.lifetravelapi.app.core.booking.api.transformation.BookingSummaryAssembler;
 import com.nexusnova.lifetravelapi.app.core.booking.api.transformation.CreateBookingCommandFromRequestDtoAssembler;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.model.Booking;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.queries.GetBookingByPackageAndTouristQuery;
+import com.nexusnova.lifetravelapi.app.core.booking.domain.queries.GetUsersByBookingQuery;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.queries.GetWeekBookingTouristQuery;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.queries.GetWeekBookingAgencyQuery;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.services.BookingCommandService;
@@ -21,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -37,16 +42,19 @@ public class BookingController {
     private final BookingQueryService bookingQueryService;
     private final BookingMapper bookingMapper;
     private final BookingSummaryAssembler bookingSummaryAssembler;
+    private final ProfileMapper profileMapper;
 
     @Autowired
     public BookingController(BookingCommandService bookingCommandService,
                              BookingQueryService bookingQueryService,
                              BookingMapper bookingMapper,
-                             BookingSummaryAssembler bookingSummaryAssembler) {
+                             BookingSummaryAssembler bookingSummaryAssembler,
+                             ProfileMapper profileMapper) {
         this.bookingCommandService = bookingCommandService;
         this.bookingQueryService = bookingQueryService;
         this.bookingMapper = bookingMapper;
         this.bookingSummaryAssembler = bookingSummaryAssembler;
+        this.profileMapper = profileMapper;
     }
 
     @GetMapping("tourist/{touristId}")
@@ -75,6 +83,15 @@ public class BookingController {
             return null;
         }
         return bookingMapper.toSummaryFromData(booking.get());
+    }
+
+    @GetMapping("package/{packageId}/date/{date}")
+    @Operation(summary = "Usuarios de Booking", description = "Usuarios de Booking.")
+    @ResponseStatus(HttpStatus.OK)
+    public List<TouristSummaryDto> getUsersBooking(@Parameter @PathVariable("packageId") Long packageId,
+                                                   @Parameter @PathVariable("date") Date date) {
+        List<Tourist> tourists = bookingQueryService.handle(new GetUsersByBookingQuery(packageId, date));
+        return profileMapper.touristToSummaryDtos(tourists);
     }
 
     @PostMapping
