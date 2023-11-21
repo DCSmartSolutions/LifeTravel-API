@@ -34,4 +34,8 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
     Optional<Booking> findByTouristAndPackage(@Param("packageId") Long packageId,
                                               @Param("touristUserId") String touristUserId);
 
+    @Query("select b.touristUser.id from Booking b where b._deleted=false and b.tourPackage.id=:packageId and b.selectedDate=:tourDate")
+    List<String> findByTouristAndPackage(@Param("packageId") Long packageId,
+                                              @Param("tourDate") Date tourDate);
+
 }

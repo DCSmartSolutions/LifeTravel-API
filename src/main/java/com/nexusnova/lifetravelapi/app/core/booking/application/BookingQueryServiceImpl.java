@@ -1,20 +1,20 @@
 package com.nexusnova.lifetravelapi.app.core.booking.application;
 
+import com.nexusnova.lifetravelapi.app.IAM.profile.domain.model.Tourist;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.model.Booking;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.queries.GetBookingByPackageAndTouristQuery;
+import com.nexusnova.lifetravelapi.app.core.booking.domain.queries.GetUsersByBookingQuery;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.queries.GetWeekBookingTouristQuery;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.queries.GetWeekBookingAgencyQuery;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.repositories.BookingRepository;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.services.BookingQueryService;
+import com.nexusnova.lifetravelapi.app.shared.ValidationUtil;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import static java.time.DayOfWeek.MONDAY;
 import static java.time.DayOfWeek.SUNDAY;
@@ -25,9 +25,12 @@ import static java.time.temporal.TemporalAdjusters.previousOrSame;
 public class BookingQueryServiceImpl implements BookingQueryService {
 
     private final BookingRepository scheduleRepository;
+    private final ValidationUtil validationUtil;
 
-    public BookingQueryServiceImpl(BookingRepository scheduleRepository) {
+    public BookingQueryServiceImpl(BookingRepository scheduleRepository,
+                                   ValidationUtil validationUtil) {
         this.scheduleRepository = scheduleRepository;
+        this.validationUtil = validationUtil;
     }
 
     @Override
@@ -65,5 +68,17 @@ public class BookingQueryServiceImpl implements BookingQueryService {
     @Override
     public Optional<Booking> handle(GetBookingByPackageAndTouristQuery query) {
         return scheduleRepository.findByTouristAndPackage(query.packageId(), query.touristUserId());
+    }
+
+    @Override
+    public List<Tourist> handle(GetUsersByBookingQuery query) {
+        List<String> touristsIds = scheduleRepository.findByTouristAndPackage(query.packageId(), query.tourDate());
+
+        List<Tourist> tourists = new ArrayList<>();
+        for (String touristId : touristsIds) {
+            Tourist tourist = validationUtil.findTouristByUserId(touristId);
+            tourists.add(tourist);
+        }
+        return tourists;
     }
 }
