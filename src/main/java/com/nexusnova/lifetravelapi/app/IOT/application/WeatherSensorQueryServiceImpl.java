@@ -28,7 +28,12 @@ public class WeatherSensorQueryServiceImpl implements WeatherSensorQueryService 
 
     @Override
     public WeatherSummaryDto handle(GetWeaterByTouristQuery query) {
-        Optional<Long> tourPackageId = weatherSensorRepository.findFirstBooking(new Date(), query.touristUserId());
+
+        Date dt = new Date();
+        dt.setHours(0);
+        dt.setMinutes(0);
+
+        Optional<Long> tourPackageId = weatherSensorRepository.findFirstBooking(dt, query.touristUserId());
 
         if(tourPackageId.isEmpty()) {
             throw new BusinessRuleException("No bookings found for this user");

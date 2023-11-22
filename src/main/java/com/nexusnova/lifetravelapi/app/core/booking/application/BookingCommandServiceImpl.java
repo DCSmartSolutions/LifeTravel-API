@@ -60,6 +60,8 @@ public class BookingCommandServiceImpl implements BookingCommandService {
         booking.setTourPackage(tourPackage);
         booking.setAgencyUser(agencyUser);
 
+        booking.setSelectedDate(requestDto.getSelectedDate());
+
         booking.setStartDayTime(getDateTime(requestDto.getSelectedDate(), requestDto.getHourRange().getStart()));
         booking.setEndDayTime(getDateTime(requestDto.getSelectedDate(), requestDto.getHourRange().getEnd()));
 
