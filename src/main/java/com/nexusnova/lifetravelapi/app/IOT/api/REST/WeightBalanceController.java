@@ -2,9 +2,12 @@ package com.nexusnova.lifetravelapi.app.IOT.api.REST;
 
 import com.nexusnova.lifetravelapi.app.IOT.api.transformation.UpdateWeightBalanceCommandFromRequestDtoAssembler;
 import com.nexusnova.lifetravelapi.app.IOT.domain.model.WeightBalance;
+import com.nexusnova.lifetravelapi.app.IOT.domain.queries.GetWeaterByTouristQuery;
+import com.nexusnova.lifetravelapi.app.IOT.domain.queries.GetWeightBalanceByIdQuery;
 import com.nexusnova.lifetravelapi.app.IOT.domain.services.WeightBalanceCommandService;
 import com.nexusnova.lifetravelapi.app.IOT.mapper.IOTMapper;
 import com.nexusnova.lifetravelapi.app.IOT.resources.requests.WeightBalanceRequestDto;
+import com.nexusnova.lifetravelapi.app.IOT.resources.summaries.WeatherSummaryDto;
 import com.nexusnova.lifetravelapi.app.IOT.resources.summaries.WeightBalanceSummaryDto;
 import com.nexusnova.lifetravelapi.configuration.constants.HeaderConstants;
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,6 +34,13 @@ public class WeightBalanceController {
                                    IOTMapper iotMapper) {
         this.weightBalanceCommandService = weightBalanceCommandService;
         this.iotMapper = iotMapper;
+    }
+
+    @GetMapping("/{balanceId}")
+    @Operation(summary = "Obtener Peso", description = "Permite ver peso.")
+    public WeightBalanceSummaryDto getTemperature(@Parameter @PathVariable("balanceId") Long balanceId) {
+        WeightBalance balance = WeightBalanceCommandService.handle(new GetWeightBalanceByIdQuery(balanceId));
+        return iotMapper.balanceToSummaryDto(balance);
     }
 
     @PutMapping("/update-weight/{balanceId}")

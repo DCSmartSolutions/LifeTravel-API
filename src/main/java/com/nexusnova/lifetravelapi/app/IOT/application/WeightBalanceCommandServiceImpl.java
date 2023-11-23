@@ -2,6 +2,7 @@ package com.nexusnova.lifetravelapi.app.IOT.application;
 
 import com.nexusnova.lifetravelapi.app.IOT.domain.commands.UpdateWeightCommand;
 import com.nexusnova.lifetravelapi.app.IOT.domain.model.WeightBalance;
+import com.nexusnova.lifetravelapi.app.IOT.domain.queries.GetWeightBalanceByIdQuery;
 import com.nexusnova.lifetravelapi.app.IOT.domain.repositories.WeightBalanceRepository;
 import com.nexusnova.lifetravelapi.app.IOT.domain.services.WeightBalanceCommandService;
 import com.nexusnova.lifetravelapi.configuration.exceptions.ResourceNotFoundException;
@@ -23,6 +24,13 @@ public class WeightBalanceCommandServiceImpl implements WeightBalanceCommandServ
 
         weightBalance.setWeight(weightBalance.getWeight() + command.requestDto().getWeight());
         weightBalanceRepository.save(weightBalance);
+        return weightBalance;
+    }
+
+    @Override
+    public WeightBalance handle(GetWeightBalanceByIdQuery command) {
+        WeightBalance weightBalance = weightBalanceRepository.findById(command.id())
+                .orElseThrow(() -> new ResourceNotFoundException("WeightBalance not found with id: " + command.id()));
         return weightBalance;
     }
 }
