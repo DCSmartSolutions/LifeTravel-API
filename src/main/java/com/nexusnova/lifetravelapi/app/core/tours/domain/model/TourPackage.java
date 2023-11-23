@@ -1,7 +1,7 @@
 package com.nexusnova.lifetravelapi.app.core.tours.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.nexusnova.lifetravelapi.app.IAM.profile.domain.model.Agency;
+import com.nexusnova.lifetravelapi.app.iam.profile.domain.model.Agency;
 import com.nexusnova.lifetravelapi.app.core.transportation.domain.model.Vehicle;
 import com.nexusnova.lifetravelapi.app.shared.domain.model.AuditModel;
 import jakarta.persistence.*;

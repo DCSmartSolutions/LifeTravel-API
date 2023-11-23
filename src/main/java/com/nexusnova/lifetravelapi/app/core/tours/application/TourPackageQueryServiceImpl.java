@@ -1,6 +1,6 @@
 package com.nexusnova.lifetravelapi.app.core.tours.application;
 
-import com.nexusnova.lifetravelapi.app.IAM.profile.domain.repositories.AgencyRepository;
+import com.nexusnova.lifetravelapi.app.iam.profile.domain.repositories.AgencyRepository;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.TourPackage;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.queries.GetTourPackageByIdQuery;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.queries.GetTourPackagesByAgencyIdAndVisibilityQuery;
@@ -8,7 +8,7 @@ import com.nexusnova.lifetravelapi.app.core.tours.domain.queries.GetTourPackages
 import com.nexusnova.lifetravelapi.app.core.tours.domain.queries.GetTourPackagesByRegionQuery;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.repositories.TourPackageRepository;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.services.TourPackageQueryService;
-import com.nexusnova.lifetravelapi.configuration.exceptions.ResourceNotFoundException;
+import com.nexusnova.lifetravelapi.app.shared.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

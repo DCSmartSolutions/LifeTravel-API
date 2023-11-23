@@ -1,6 +1,6 @@
 package com.nexusnova.lifetravelapi.app.core.booking.domain.services;
 
-import com.nexusnova.lifetravelapi.app.IAM.profile.domain.model.Tourist;
+import com.nexusnova.lifetravelapi.app.iam.profile.domain.model.Tourist;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.model.Booking;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.queries.GetBookingByPackageAndTouristQuery;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.queries.GetUsersByBookingQuery;

@@ -1,11 +1,11 @@
 package com.nexusnova.lifetravelapi.app.IOT.service;
 
-import com.nexusnova.lifetravelapi.app.IOT.application.TrackingWearableCommandServiceImpl;
-import com.nexusnova.lifetravelapi.app.IOT.domain.commands.UpdateLocationCommand;
-import com.nexusnova.lifetravelapi.app.IOT.domain.model.TrackingWearable;
-import com.nexusnova.lifetravelapi.app.IOT.domain.repositories.TrackingWereableRepository;
-import com.nexusnova.lifetravelapi.app.IOT.resources.requests.TrackingWereableRequestDto;
-import com.nexusnova.lifetravelapi.configuration.exceptions.ResourceNotFoundException;
+import com.nexusnova.lifetravelapi.app.assets.application.TrackingWearableCommandServiceImpl;
+import com.nexusnova.lifetravelapi.app.assets.domain.commands.UpdateLocationCommand;
+import com.nexusnova.lifetravelapi.app.assets.domain.model.TrackingWearable;
+import com.nexusnova.lifetravelapi.app.assets.domain.repositories.TrackingWereableRepository;
+import com.nexusnova.lifetravelapi.app.assets.resources.requests.TrackingWereableRequestDto;
+import com.nexusnova.lifetravelapi.app.shared.exceptions.ResourceNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

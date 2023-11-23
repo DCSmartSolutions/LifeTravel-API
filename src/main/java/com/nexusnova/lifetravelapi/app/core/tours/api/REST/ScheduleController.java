@@ -7,7 +7,7 @@ import com.nexusnova.lifetravelapi.app.core.tours.domain.queries.GetSchedulesByP
 import com.nexusnova.lifetravelapi.app.core.tours.domain.services.ScheduleCommandService;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.services.ScheduleQueryService;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.ScheduleDto;
-import com.nexusnova.lifetravelapi.configuration.constants.HeaderConstants;
+import com.nexusnova.lifetravelapi.app.shared.constants.HeaderConstants;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -16,7 +16,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import static com.nexusnova.lifetravelapi.configuration.messages.ConfigurationMessages.TOUR_PACKAGE_CREATED;
+import static com.nexusnova.lifetravelapi.app.shared.messages.ConfigurationMessages.TOUR_PACKAGE_CREATED;
 @RestController
 @RequestMapping("/api/v1/schedules")
 @Api(tags = "Api de Horarios", consumes = "application/json")

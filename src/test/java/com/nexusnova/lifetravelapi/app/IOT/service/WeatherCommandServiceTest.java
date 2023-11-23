@@ -1,12 +1,12 @@
 package com.nexusnova.lifetravelapi.app.IOT.service;
 
-import com.nexusnova.lifetravelapi.app.IOT.application.WeatherSensorCommandServiceImpl;
-import com.nexusnova.lifetravelapi.app.IOT.domain.commands.UpdateWeatherCommand;
-import com.nexusnova.lifetravelapi.app.IOT.domain.model.TrackingWearable;
-import com.nexusnova.lifetravelapi.app.IOT.domain.model.WeatherSensor;
-import com.nexusnova.lifetravelapi.app.IOT.domain.repositories.WeatherSensorRepository;
-import com.nexusnova.lifetravelapi.app.IOT.resources.requests.WeatherSensorRequestDto;
-import com.nexusnova.lifetravelapi.configuration.exceptions.ResourceNotFoundException;
+import com.nexusnova.lifetravelapi.app.assets.application.WeatherSensorCommandServiceImpl;
+import com.nexusnova.lifetravelapi.app.assets.domain.commands.UpdateWeatherCommand;
+import com.nexusnova.lifetravelapi.app.assets.domain.model.TrackingWearable;
+import com.nexusnova.lifetravelapi.app.assets.domain.model.WeatherSensor;
+import com.nexusnova.lifetravelapi.app.assets.domain.repositories.WeatherSensorRepository;
+import com.nexusnova.lifetravelapi.app.assets.resources.requests.WeatherSensorRequestDto;
+import com.nexusnova.lifetravelapi.app.shared.exceptions.ResourceNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

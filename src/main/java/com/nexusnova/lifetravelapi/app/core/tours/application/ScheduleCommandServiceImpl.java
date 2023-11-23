@@ -2,14 +2,13 @@ package com.nexusnova.lifetravelapi.app.core.tours.application;
 
 
 import com.nexusnova.lifetravelapi.app.core.tours.domain.commands.CreateScheduleCommand;
-import com.nexusnova.lifetravelapi.app.core.tours.domain.commands.DeleteExistingSchedulesOfPackageCommand;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.Schedule;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.TourPackage;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.repositories.ScheduleRepository;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.repositories.TourPackageRepository;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.services.ScheduleCommandService;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.ScheduleDto;
-import com.nexusnova.lifetravelapi.app.shared.ValidationUtil;
+import com.nexusnova.lifetravelapi.app.shared.util.ValidationUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -13,7 +13,7 @@ import com.nexusnova.lifetravelapi.app.core.tours.domain.services.TourPackageQue
 import com.nexusnova.lifetravelapi.app.core.tours.mapper.ToursMapper;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.details.TourPackageDetailDto;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.TourPackageRequestDto;
-import com.nexusnova.lifetravelapi.configuration.constants.HeaderConstants;
+import com.nexusnova.lifetravelapi.app.shared.constants.HeaderConstants;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -25,8 +25,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-import static com.nexusnova.lifetravelapi.configuration.messages.ConfigurationMessages.TOUR_PACKAGE_CREATED;
-import static com.nexusnova.lifetravelapi.configuration.messages.ConfigurationMessages.TOUR_PACKAGE_MODIFIED;
+import static com.nexusnova.lifetravelapi.app.shared.messages.ConfigurationMessages.TOUR_PACKAGE_CREATED;
+import static com.nexusnova.lifetravelapi.app.shared.messages.ConfigurationMessages.TOUR_PACKAGE_MODIFIED;
 
 @RestController
 @RequestMapping("/api/v1/tour-packages")

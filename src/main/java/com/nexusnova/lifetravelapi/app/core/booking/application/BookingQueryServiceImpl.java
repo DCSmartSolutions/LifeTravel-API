@@ -1,6 +1,6 @@
 package com.nexusnova.lifetravelapi.app.core.booking.application;
 
-import com.nexusnova.lifetravelapi.app.IAM.profile.domain.model.Tourist;
+import com.nexusnova.lifetravelapi.app.iam.profile.domain.model.Tourist;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.model.Booking;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.queries.GetBookingByPackageAndTouristQuery;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.queries.GetUsersByBookingQuery;
@@ -8,7 +8,7 @@ import com.nexusnova.lifetravelapi.app.core.booking.domain.queries.GetWeekBookin
 import com.nexusnova.lifetravelapi.app.core.booking.domain.queries.GetWeekBookingAgencyQuery;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.repositories.BookingRepository;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.services.BookingQueryService;
-import com.nexusnova.lifetravelapi.app.shared.ValidationUtil;
+import com.nexusnova.lifetravelapi.app.shared.util.ValidationUtil;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;

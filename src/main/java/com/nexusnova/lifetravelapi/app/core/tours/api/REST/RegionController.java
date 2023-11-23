@@ -1,12 +1,9 @@
 package com.nexusnova.lifetravelapi.app.core.tours.api.REST;
 
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.Region;
-import com.nexusnova.lifetravelapi.app.core.tours.domain.repositories.RegionRepository;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.services.RegionQueryService;
 import com.nexusnova.lifetravelapi.app.core.tours.mapper.RegionMapper;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.details.RegionDetail;
-import com.nexusnova.lifetravelapi.configuration.exceptions.ResourceNotFoundException;
-import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
