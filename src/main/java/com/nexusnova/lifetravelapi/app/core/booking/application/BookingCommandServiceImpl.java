@@ -1,18 +1,15 @@
 package com.nexusnova.lifetravelapi.app.core.booking.application;
 
-import com.nexusnova.lifetravelapi.app.IAM.identity.domain.model.User;
-import com.nexusnova.lifetravelapi.app.IAM.profile.domain.model.Agency;
+import com.nexusnova.lifetravelapi.app.iam.identity.domain.model.User;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.commands.CreateBookingCommand;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.model.Booking;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.repositories.BookingRepository;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.services.BookingCommandService;
 import com.nexusnova.lifetravelapi.app.core.booking.resources.requests.BookingRequestDto;
-import com.nexusnova.lifetravelapi.app.core.tours.domain.model.Schedule;
-import com.nexusnova.lifetravelapi.app.IAM.profile.domain.model.Tourist;
+import com.nexusnova.lifetravelapi.app.iam.profile.domain.model.Tourist;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.TourPackage;
-import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.HourRangeDto;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.TimeDto;
-import com.nexusnova.lifetravelapi.app.shared.ValidationUtil;
+import com.nexusnova.lifetravelapi.app.shared.util.ValidationUtil;
 import com.nexusnova.lifetravelapi.app.shared.domain.model.SerieNumber;
 import com.nexusnova.lifetravelapi.app.shared.domain.repositories.SerieNumberRepository;
 import com.nexusnova.lifetravelapi.app.shared.util.SerieNumberUtil;

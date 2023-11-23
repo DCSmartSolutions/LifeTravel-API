@@ -1,6 +1,6 @@
 package com.nexusnova.lifetravelapi.app.core.transportation.application;
 
-import com.nexusnova.lifetravelapi.app.IAM.profile.domain.model.Agency;
+import com.nexusnova.lifetravelapi.app.iam.profile.domain.model.Agency;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.TourPackage;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.repositories.TourPackageRepository;
 import com.nexusnova.lifetravelapi.app.core.transportation.domain.commands.*;
@@ -8,7 +8,7 @@ import com.nexusnova.lifetravelapi.app.core.transportation.domain.model.Vehicle;
 import com.nexusnova.lifetravelapi.app.core.transportation.domain.repositories.VehicleRepository;
 import com.nexusnova.lifetravelapi.app.core.transportation.domain.services.VehicleCommandService;
 import com.nexusnova.lifetravelapi.app.core.transportation.resources.requests.VehicleRequestDto;
-import com.nexusnova.lifetravelapi.app.shared.ValidationUtil;
+import com.nexusnova.lifetravelapi.app.shared.util.ValidationUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

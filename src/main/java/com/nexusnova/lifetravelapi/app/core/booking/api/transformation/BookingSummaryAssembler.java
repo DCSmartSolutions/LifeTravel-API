@@ -1,9 +1,8 @@
 package com.nexusnova.lifetravelapi.app.core.booking.api.transformation;
 
-import com.nexusnova.lifetravelapi.app.core.booking.domain.commands.CreateBookingCommand;
 import com.nexusnova.lifetravelapi.app.core.booking.resources.summaries.BookingSummaryDto;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.TourPackage;
-import com.nexusnova.lifetravelapi.app.shared.ValidationUtil;
+import com.nexusnova.lifetravelapi.app.shared.util.ValidationUtil;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

@@ -12,10 +12,9 @@ import com.nexusnova.lifetravelapi.app.core.tours.domain.repositories.TourPackag
 import com.nexusnova.lifetravelapi.app.core.tours.domain.services.TourPackageCommandService;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.ActivityRequestDto;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.LocationNameDto;
-import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.MeetingPointRequestDto;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.requests.TourPackageRequestDto;
-import com.nexusnova.lifetravelapi.app.IAM.profile.domain.model.Agency;
-import com.nexusnova.lifetravelapi.app.shared.ValidationUtil;
+import com.nexusnova.lifetravelapi.app.iam.profile.domain.model.Agency;
+import com.nexusnova.lifetravelapi.app.shared.util.ValidationUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,8 +1,8 @@
 package com.nexusnova.lifetravelapi.app.core.booking.api.REST;
 
-import com.nexusnova.lifetravelapi.app.IAM.profile.domain.model.Tourist;
-import com.nexusnova.lifetravelapi.app.IAM.profile.mapper.ProfileMapper;
-import com.nexusnova.lifetravelapi.app.IAM.profile.resources.summaries.TouristSummaryDto;
+import com.nexusnova.lifetravelapi.app.iam.profile.domain.model.Tourist;
+import com.nexusnova.lifetravelapi.app.iam.profile.mapper.ProfileMapper;
+import com.nexusnova.lifetravelapi.app.iam.profile.resources.summaries.TouristSummaryDto;
 import com.nexusnova.lifetravelapi.app.core.booking.api.transformation.BookingSummaryAssembler;
 import com.nexusnova.lifetravelapi.app.core.booking.api.transformation.CreateBookingCommandFromRequestDtoAssembler;
 import com.nexusnova.lifetravelapi.app.core.booking.domain.model.Booking;
@@ -15,7 +15,7 @@ import com.nexusnova.lifetravelapi.app.core.booking.domain.services.BookingQuery
 import com.nexusnova.lifetravelapi.app.core.booking.mapper.BookingMapper;
 import com.nexusnova.lifetravelapi.app.core.booking.resources.requests.BookingRequestDto;
 import com.nexusnova.lifetravelapi.app.core.booking.resources.summaries.BookingSummaryDto;
-import com.nexusnova.lifetravelapi.configuration.constants.HeaderConstants;
+import com.nexusnova.lifetravelapi.app.shared.constants.HeaderConstants;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static com.nexusnova.lifetravelapi.configuration.messages.ConfigurationMessages.BOOKING_CREATED;
+import static com.nexusnova.lifetravelapi.app.shared.messages.ConfigurationMessages.BOOKING_CREATED;
 
 @RestController
 @RequestMapping("/api/v1/booking")

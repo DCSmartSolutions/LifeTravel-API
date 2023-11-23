@@ -2,7 +2,7 @@ package com.nexusnova.lifetravelapi.app.shared.util;
 
 import com.nexusnova.lifetravelapi.app.shared.domain.model.SerieNumber;
 import com.nexusnova.lifetravelapi.app.shared.domain.repositories.SerieNumberRepository;
-import com.nexusnova.lifetravelapi.configuration.exceptions.BusinessRuleException;
+import com.nexusnova.lifetravelapi.app.shared.exceptions.BusinessRuleException;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
