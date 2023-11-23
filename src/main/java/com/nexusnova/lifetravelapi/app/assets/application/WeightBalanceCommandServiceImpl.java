@@ -22,7 +22,7 @@ public class WeightBalanceCommandServiceImpl implements WeightBalanceCommandServ
         WeightBalance weightBalance = weightBalanceRepository.findById(command.id())
                 .orElseThrow(() -> new ResourceNotFoundException("WeightBalance not found with id: " + command.id()));
 
-        weightBalance.setWeight(weightBalance.getWeight() + command.requestDto().getWeight());
+        weightBalance.setWeight(command.requestDto().getWeight());
         weightBalanceRepository.save(weightBalance);
         return weightBalance;
     }
