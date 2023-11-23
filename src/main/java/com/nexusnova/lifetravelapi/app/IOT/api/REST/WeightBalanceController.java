@@ -39,7 +39,7 @@ public class WeightBalanceController {
     @GetMapping("/{balanceId}")
     @Operation(summary = "Obtener Peso", description = "Permite ver peso.")
     public WeightBalanceSummaryDto getTemperature(@Parameter @PathVariable("balanceId") Long balanceId) {
-        WeightBalance balance = WeightBalanceCommandService.handle(new GetWeightBalanceByIdQuery(balanceId));
+        WeightBalance balance = weightBalanceCommandService.handle(new GetWeightBalanceByIdQuery(balanceId));
         return iotMapper.balanceToSummaryDto(balance);
     }
 
