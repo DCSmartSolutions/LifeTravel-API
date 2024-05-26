@@ -1,5 +1,5 @@
 -- ACTIVITIES INFO
-INSERT INTO activities (title, img_url, created_date, _deleted)
+INSERT INTO activities (title, img_url, created_date, deleted)
 VALUES
     ('Camping', 'https://iot20232.blob.core.windows.net/imgs/activities/camping.png', '2023-10-25', 0),
     ('Hiking', 'https://iot20232.blob.core.windows.net/imgs/activities/hiking.png', '2023-10-25', 0),
@@ -16,7 +16,7 @@ select * from activities;
 
 
 -- REGIONS INFO
-INSERT INTO regions (title, img_url, description, created_date, _deleted)
+INSERT INTO regions (title, img_url, description, created_date, deleted)
 VALUES
     ('Coast', 'https://iot2023.blob.core.windows.net/imgs/regions/costa.jpg', 'The coast is where land and sea converge, shaping diverse ecosystems and breathtaking vistas.', '2023-10-25', 0),
     ('Mountain Range', 'https://iot20231.blob.core.windows.net/imgs/regions/sierra.jpg', 'Mountain ranges are majestic geological formations, with towering peaks and unique ecosystems.', '2023-10-25', 0),
@@ -26,7 +26,7 @@ select * from regions;
 
 
 -- DEPARTMENTS INFO
-INSERT INTO departments (name, region_id, created_date, _deleted)
+INSERT INTO departments (name, region_id, created_date, deleted)
 VALUES
     ('Lima', 1, '2023-10-25', 0),
     ('Tumbes', 1, '2023-10-25', 0),
@@ -59,7 +59,7 @@ select * from departments;
 
 
 -- AGENCY_USERS INFO
-INSERT INTO users (id, email, google_name, google_photo_url, created_date, _deleted, role_id)
+INSERT INTO users (id, email, google_name, google_photo_url, created_date, deleted, role_id)
 VALUES
     ('BNqsE6gkjlZoEVIxf9qt92lXyJB3', 'agency1@gmail.com', 'Agencia_1', '', '2023-10-25', 0,2),
     ('RKOQXaT4hHhU7sCMOnXgnwKm1Cf2', 'agency2@gmail.com', 'Agencia 2', '', '2023-10-25', 0,2),
@@ -72,7 +72,7 @@ select * from users;
 
 
 -- AGENCY INFO
-INSERT INTO agencies (user_id, ruc, address, agency_photo_url, description, legal_name, phone_number, web_page_url ,_deleted)
+INSERT INTO agencies (user_id, ruc, address, agency_photo_url, description, legal_name, phone_number, web_page_url ,deleted)
 VALUES
     ('BNqsE6gkjlZoEVIxf9qt92lXyJB3', 20602698603, 'Av Alcanflores 1190, Miraflores', 'https://iot20232.blob.core.windows.net/imgs/agencies/agencia1.jpg',
      'Agencia de viajes con gran experiencia en tours locales de la ciudad', 'FerturPeru Travel S.A.C.', '992817047', 'www.ferturtravel.pe',0),

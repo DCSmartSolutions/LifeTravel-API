@@ -1,4 +1,4 @@
-INSERT INTO tour_packages (agency_id, region_id, department_id, title, description, img_url, price, rating, latitude, longitude, visible, created_date, _deleted)
+INSERT INTO tour_packages (agency_id, region_id, department_id, title, description, img_url, price, rating, latitude, longitude, visible, created_date, deleted)
 VALUES
     (1, 1, 1, 'Trekking in Machu Picchu',
      'Machu Picchu, located in the Cusco region of Peru, is one of the most iconic archaeological sites in the world. This ancient Inca citadel, nestled high in the Andes, offers breathtaking views and a deep sense of history. Explore its mysterious ruins, terraced fields, and the famous Intihuatana stone. A trek to Machu Picchu is a journey through time and culture.',

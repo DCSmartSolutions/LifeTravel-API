@@ -1,4 +1,4 @@
-package com.nexusnova.lifetravelapi.app.core.tours.api.REST;
+package com.nexusnova.lifetravelapi.app.core.tours.api.rest;
 
 import com.nexusnova.lifetravelapi.app.core.tours.api.transformation.RegisterTourPackageCommandFromRequestDtoAssembler;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.commands.ModifyImgPackageCommand;
@@ -89,7 +89,6 @@ public class TourPackageController {
     @Operation(summary = "Create a Package", description = "Create a package associated to an agency.")
     public TourPackageDetailDto save(@RequestBody @Valid TourPackageRequestDto tourPackageRequestDto,
                                HttpServletResponse response) {
-        System.out.println(tourPackageRequestDto);
         TourPackage tourPackage = tourPackageCommandService.handle(RegisterTourPackageCommandFromRequestDtoAssembler.toCommandFromDto(tourPackageRequestDto));
         response.setHeader(HeaderConstants.MESSAGES, TOUR_PACKAGE_CREATED);
         return toursMapper.tourPackageToDetailDto(tourPackage);

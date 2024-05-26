@@ -1,4 +1,4 @@
-package com.nexusnova.lifetravelapi.app.core.transportation.api.REST;
+package com.nexusnova.lifetravelapi.app.core.transportation.api.rest;
 
 import com.nexusnova.lifetravelapi.app.core.transportation.domain.commands.*;
 import com.nexusnova.lifetravelapi.app.core.transportation.domain.enums.VehicleStatus;

@@ -1,4 +1,4 @@
-package com.nexusnova.lifetravelapi.app.assets.api.REST;
+package com.nexusnova.lifetravelapi.app.assets.api.rest;
 
 import com.nexusnova.lifetravelapi.app.assets.api.transformation.UpdateWeatherCommandFromRequestDtoAssembler;
 import com.nexusnova.lifetravelapi.app.assets.domain.queries.GetWeaterByTouristQuery;

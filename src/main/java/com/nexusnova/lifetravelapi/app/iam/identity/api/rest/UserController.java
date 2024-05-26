@@ -1,4 +1,4 @@
-package com.nexusnova.lifetravelapi.app.iam.identity.api.REST;
+package com.nexusnova.lifetravelapi.app.iam.identity.api.rest;
 
 import com.nexusnova.lifetravelapi.app.iam.identity.api.transformation.RegisterUserAgencyCommandFromRequestDtoAssembler;
 import com.nexusnova.lifetravelapi.app.iam.identity.api.transformation.RegisterUserTouristCommandFromRequestDtoAssembler;
@@ -41,7 +41,7 @@ public class UserController {
 
     @GetMapping("/login/{id}")
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Obtener usuario", description = "Permite obtener un usuario.")
+    @Operation(summary = "Get user", description = "Allows to retrieve a user.")
     public UserSummaryDto getUser(@Parameter @PathVariable("id") String id) {
         User user = userQueryService.handle(new GetUserByIdQuery(id));
         return identityMapper.userToSummaryDto(user);
@@ -49,9 +49,9 @@ public class UserController {
 
     @PostMapping("/register/tourist")
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "Registrar usuario", description = "Permite registrar un usuario.")
+    @Operation(summary = "Register user", description = "Allows to register a user.")
     public UserSummaryDto registerTourist(@RequestBody @Valid UserRequestDto userRequestDto,
-                               HttpServletResponse response) {
+                                          HttpServletResponse response) {
         User user = userCommandService.handle(RegisterUserTouristCommandFromRequestDtoAssembler.toCommandFromDto(userRequestDto));
         response.setHeader(HeaderConstants.MESSAGES, USER_CREATED);
         return identityMapper.userToSummaryDto(user);
@@ -59,12 +59,11 @@ public class UserController {
 
     @PostMapping("/register/agency")
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "Registrar usuario", description = "Permite registrar un usuario.")
+    @Operation(summary = "Register user", description = "Allows to register a user.")
     public UserSummaryDto registerAgency(@RequestBody @Valid UserRequestDto userRequestDto,
-                               HttpServletResponse response) {
+                                         HttpServletResponse response) {
         User user = userCommandService.handle(RegisterUserAgencyCommandFromRequestDtoAssembler.toCommandFromDto(userRequestDto));
         response.setHeader(HeaderConstants.MESSAGES, USER_CREATED);
         return identityMapper.userToSummaryDto(user);
     }
-
 }

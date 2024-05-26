@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface TourPackageRepository extends JpaRepository<TourPackage, Long> {
 
-    @Query("select tp from TourPackage tp where tp._deleted=false and tp.region.id =:regionId AND tp.visible=true")
+    @Query("select tp from TourPackage tp where tp.deleted=false and tp.region.id =:regionId AND tp.visible=true")
     List<TourPackage> findByRegionId(@Param("regionId") Long regionId);
     List<TourPackage> findAllByVisibleIsTrue();
     List<TourPackage> findByAgencyId(Long agencyId);

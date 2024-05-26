@@ -1,11 +1,9 @@
-package com.nexusnova.lifetravelapi.app.core.tours.api.REST;
+package com.nexusnova.lifetravelapi.app.core.tours.api.rest;
 
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.Activity;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.services.ActivityQueryService;
 import com.nexusnova.lifetravelapi.app.core.tours.mapper.ToursMapper;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.summaries.ActivitySummaryDto;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;

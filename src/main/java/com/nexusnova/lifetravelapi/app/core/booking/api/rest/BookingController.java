@@ -1,4 +1,4 @@
-package com.nexusnova.lifetravelapi.app.core.booking.api.REST;
+package com.nexusnova.lifetravelapi.app.core.booking.api.rest;
 
 import com.nexusnova.lifetravelapi.app.iam.profile.domain.model.Tourist;
 import com.nexusnova.lifetravelapi.app.iam.profile.mapper.ProfileMapper;

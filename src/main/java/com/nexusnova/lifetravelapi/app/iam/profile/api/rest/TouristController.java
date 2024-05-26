@@ -1,4 +1,4 @@
-package com.nexusnova.lifetravelapi.app.iam.profile.api.REST;
+package com.nexusnova.lifetravelapi.app.iam.profile.api.rest;
 
 import com.nexusnova.lifetravelapi.app.iam.profile.api.transformation.RegisterTouristCommandFromDtoAssembler;
 import com.nexusnova.lifetravelapi.app.iam.profile.domain.model.Tourist;

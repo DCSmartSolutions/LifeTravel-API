@@ -1,4 +1,4 @@
-package com.nexusnova.lifetravelapi.app.core.tours.api.REST;
+package com.nexusnova.lifetravelapi.app.core.tours.api.rest;
 
 import com.nexusnova.lifetravelapi.app.core.tours.api.transformation.ScheduleRangeAssembler;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.commands.CreateScheduleCommand;

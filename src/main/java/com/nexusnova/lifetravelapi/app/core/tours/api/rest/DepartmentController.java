@@ -1,10 +1,9 @@
-package com.nexusnova.lifetravelapi.app.core.tours.api.REST;
+package com.nexusnova.lifetravelapi.app.core.tours.api.rest;
 
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.Department;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.services.RegionQueryService;
 import com.nexusnova.lifetravelapi.app.core.tours.mapper.DepartmentMapper;
 import com.nexusnova.lifetravelapi.app.core.tours.resources.details.DepartmentDetail;
-import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.CrossOrigin;
