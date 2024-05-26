@@ -11,7 +11,7 @@
 ### Command to create a docker container with these characteristics
 
 ```sh
-docker run -d --name sqlserver-container -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=YourPassword123!' -p 1433:1433 mcr.microsoft.com/mssql/server:latest
+docker run -d --name sqlserver-container -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=YourPassword123!' -p 1433:1433 mcr.microsoft.com/mssql/server:2019-latest
 ```
 ### 
 ```sh

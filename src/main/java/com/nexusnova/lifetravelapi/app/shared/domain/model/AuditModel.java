@@ -28,6 +28,7 @@ public abstract class AuditModel {
     private Long id;
 
     @Column(name = "created_date", nullable = false, updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date createdDate;
 
