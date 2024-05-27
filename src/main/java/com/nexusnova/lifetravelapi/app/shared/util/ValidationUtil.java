@@ -52,7 +52,7 @@ public class ValidationUtil {
         this.roleRepository = roleRepository;
     }
 
-    public User findUserById(String id) {
+    public User findUserById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
     }

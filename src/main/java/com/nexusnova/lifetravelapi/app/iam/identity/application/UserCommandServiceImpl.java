@@ -40,10 +40,11 @@ public class UserCommandServiceImpl implements UserCommandService {
     }
 
     private User getUser(User user, Role role, UserRequestDto userRequestDto) {
-        user.setId(userRequestDto.getId());
         user.setEmail(userRequestDto.getEmail());
         user.setGoogleName(userRequestDto.getName());
-        user.setGooglePhotoUrl(userRequestDto.getPhotoUrl());
+        if (userRequestDto.getPhotoUrl() != null)  {
+            user.setGooglePhotoUrl(userRequestDto.getPhotoUrl());
+        }
         user.setRole(role);
 
         userRepository.save(user);
