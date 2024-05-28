@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/chat-completions")
+@RequestMapping("/api/v1/chat-completions")
 @Tag(name = "AI completitions")
 @CrossOrigin
 public class ChatCompletionController {
@@ -18,7 +18,7 @@ public class ChatCompletionController {
     }
 
     @PostMapping
-    public ResponseEntity<String> getChatResponse(@RequestParam String message) {
+    public ResponseEntity<String> getChatResponse(@RequestBody String message) {
         String result = openAIClientService.getSimpleChatResponse(message);
         return ResponseEntity.ok(result);
     }
