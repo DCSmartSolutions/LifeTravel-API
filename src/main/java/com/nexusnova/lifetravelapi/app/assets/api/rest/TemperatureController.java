@@ -29,4 +29,15 @@ public class TemperatureController {
         return temperatureQueryService.getTemperatures();
     }
 
+    @GetMapping("/{id}")
+    @Operation(summary = "Get Temperature", description = "Get the temperature of a location by id")
+    public Temperature getTemperatureById(@PathVariable Long id) {
+        return temperatureQueryService.getTemperatureById(id);
+    }
+
+    @PostMapping("/")
+    @Operation(summary = "Add Temperature", description = "Add a new temperature")
+    public Temperature addTemperature(@RequestBody Temperature temperature) {
+        return temperatureCommandService.addTemperature(temperature);
+    }
 }
