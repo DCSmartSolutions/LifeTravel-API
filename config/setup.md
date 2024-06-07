@@ -42,6 +42,34 @@ docker exec -it mosquitto-container bash -c 'echo -e "allow_anonymous true\nlist
 docker restart mosquitto-container
 ```
 
+## Additional Tools and Configuration
+
+### Monitoring MQTT Messages
+
+For debugging or monitoring the MQTT messages in a console, install Mosquitto client tools and subscribe to the topic using:
+
+```sh
+mosquitto_sub -h localhost -t temperatures/#
+```
+
+Alternatively, you can adjust the logging in `MqttConfig.java` by modifying the conditional logging statement:
+
+```java
+void handleMessage(Message<?> message) {
+    if (true) { // Change this from false to true to enable logging
+        logger.info("Received temperature: " + payload + " for department: " + departmentId);
+    }
+}
+```
+
+### Python Test Code
+
+There is Python code available for testing purposes located at `src/test/python/main.py`. Make sure to install the required Python dependencies from `requirements.txt`.
+
+```python
+pip install -r requirements.txt
+```
+
 ## Visit
 ```
 http://localhost:8080/swagger-ui.html

@@ -1,5 +1,6 @@
 package com.nexusnova.lifetravelapi.app.assets.application;
 
+import com.nexusnova.lifetravelapi.app.assets.domain.commands.RegisterMultipleTemperatureCommand;
 import com.nexusnova.lifetravelapi.app.assets.domain.commands.RegisterTemperatureCommand;
 import com.nexusnova.lifetravelapi.app.assets.domain.model.Temperature;
 import com.nexusnova.lifetravelapi.app.assets.domain.repositories.TemperatureRepository;
@@ -38,6 +39,17 @@ public class TemperatureCommandServiceImpl implements TemperatureCommandService 
     @Override
     public Temperature updateTemperature(Temperature temperature) {
         return temperatureRepository.save(temperature);
+    }
+
+    @Override
+    public List<Temperature> handle(RegisterMultipleTemperatureCommand command) {
+        return temperatureRepository.saveAll(command.temperatureRequestDtos().stream().map(dto -> {
+            Temperature temperature = new Temperature();
+            temperature.setValue(dto.getValue());
+            temperature.setDepartment(departmentRepository.findById(dto.getDepartmentId()).orElse(null));
+            temperature.setMeasuredAt(new Date());
+            return temperature;
+        }).toList());
     }
 
     public List<Temperature> addTemperatures(List<Temperature> temperatures) {
