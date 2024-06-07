@@ -19,15 +19,14 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Data
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "users")
 @Where(clause = "deleted = false")
 @SQLDelete(sql = "UPDATE users SET deleted = true WHERE id = ?")
 public class User implements Serializable {
-
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotNull
     @Size(max = 100)
