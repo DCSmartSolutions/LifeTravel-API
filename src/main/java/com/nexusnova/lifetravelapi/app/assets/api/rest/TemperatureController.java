@@ -33,26 +33,28 @@ public class TemperatureController {
         this.iotMapper = iotMapper;
     }
 
-
     @GetMapping("/")
+    @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Get Temperatures", description = "Get the temperature of all locations")
-    public List<Temperature> getTemperature() {
-        return temperatureQueryService.getTemperatures();
+    public List<TemperatureSummaryDto> getTemperatures() {
+        return iotMapper.temperatureToSummaryDtos(temperatureQueryService.getTemperatures());
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Get Temperature", description = "Get the temperature of a location by id")
-    public Temperature getTemperatureById(@PathVariable Long id) {
-        return temperatureQueryService.getTemperatureById(id);
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Get Temperature", description = "Get the temperature by id")
+    public TemperatureSummaryDto getTemperatureById(@PathVariable Long id) {
+        return iotMapper.temperatureToSummaryDto(temperatureQueryService.getTemperatureById(id));
+    }
+
+    @GetMapping("/department/{departmentId}")
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Get Temperatures by Department", description = "Get the temperature of all locations by department")
+    public List<TemperatureSummaryDto> getTemperatureByDepartmentId(@PathVariable Long departmentId) {
+        return iotMapper.temperatureToSummaryDtos(temperatureQueryService.getTemperaturesByDepartmentId(departmentId));
     }
 
     @PostMapping("/")
-    @Operation(summary = "Add Temperature", description = "Add a new temperature")
-    public Temperature addTemperature(@RequestBody Temperature temperature) {
-        return temperatureCommandService.addTemperature(temperature);
-    }
-
-    @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Register Temperature", description = "Register a new temperature")
     public TemperatureSummaryDto registerTemperature(@RequestBody @Valid TemperatureRequestDto temperatureRequestDto, HttpServletResponse response) {
