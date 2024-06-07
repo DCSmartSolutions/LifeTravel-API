@@ -22,6 +22,11 @@ public class TemperatureQueryServiceImpl implements TemperatureQueryService {
     }
 
     @Override
+    public List<Temperature> getTemperaturesByDepartmentId(Long departmentId) {
+        return temperatureRepository.findByDepartmentId(departmentId);
+    }
+
+    @Override
     public Temperature getTemperatureById(Long id) {
         return temperatureRepository.findById(id).orElse(null);
     }

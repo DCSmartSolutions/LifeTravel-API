@@ -54,7 +54,6 @@ public class MqttConfig {
                     Temperature temperature = new Temperature();
                     temperature.setValue(Double.parseDouble(payload));
                     temperature.setMeasuredAt(new Date());
-                    temperature.setDeleted(false);
                     return temperature;
                 })
                 .collect(Collectors.toList());

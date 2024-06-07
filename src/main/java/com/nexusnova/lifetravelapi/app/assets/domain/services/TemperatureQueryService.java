@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface TemperatureQueryService {
     List<Temperature> getTemperatures();
+    List<Temperature> getTemperaturesByDepartmentId(Long departmentId);
     Temperature getTemperatureById(Long id);
 }
