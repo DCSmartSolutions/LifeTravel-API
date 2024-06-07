@@ -19,7 +19,16 @@ public class ChatCompletionController {
 
     @PostMapping
     public ResponseEntity<String> getChatResponse(@RequestBody String message) {
-        String result = openAIClientService.getSimpleChatResponse(message);
+        String basePrompt = """
+            Teniendo en cuenta las siguientes regiones: costa(1), sierra(2) y selva(3), selecciona la mejor región según el mensaje del usuario: '%s'
+            Por favor, proporciona una respuesta concisa con el formato:
+            {
+                "message": "response",
+                "region": "0"
+            }
+            """;
+        String formattedPrompt = String.format(basePrompt, message);
+        String result = openAIClientService.getSimpleChatResponse(formattedPrompt);
         return ResponseEntity.ok(result);
     }
 }
