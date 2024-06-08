@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nexusnova.lifetravelapi.app.iam.identity.domain.model.User;
 import com.nexusnova.lifetravelapi.app.iam.profile.domain.model.Tourist;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.model.TourPackage;
+import com.nexusnova.lifetravelapi.app.reporting.domain.model.Review;
 import com.nexusnova.lifetravelapi.app.shared.domain.model.AuditModel;
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,6 +12,7 @@ import org.hibernate.annotations.Formula;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -45,6 +47,9 @@ public class Booking extends AuditModel {
     @JoinColumn(name = "tour_package_id", nullable = false)
     @JsonIgnore
     private TourPackage tourPackage;
+
+    @OneToMany(mappedBy = "booking", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Review> reviews;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "agency_user_id", nullable = false)
