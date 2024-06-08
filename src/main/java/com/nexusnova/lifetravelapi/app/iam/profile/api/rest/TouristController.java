@@ -47,7 +47,7 @@ public class TouristController {
     @PostMapping("/register/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Registrar Turista", description = "Permite registrat el perfil de un turista.")
-    public TouristSummaryDto registerAgency(@Parameter @PathVariable("id") Long id,
+    public TouristSummaryDto registerAgency(@Parameter @PathVariable("id") String id,
                                            @RequestBody @Valid TouristRequestDto requestDto,
                                            HttpServletResponse response) {
         Tourist tourist = touristCommandService.handle(RegisterTouristCommandFromDtoAssembler.toCommandFromDto(id, requestDto));

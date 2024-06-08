@@ -1,3 +1,25 @@
+CREATE TABLE departments
+(
+    id           bigint IDENTITY (1, 1) NOT NULL,
+    created_date datetime               NOT NULL,
+    updated_date datetime,
+    deleted      bit                    NOT NULL,
+    name         varchar(255),
+    region_id    bigint                 NOT NULL,
+    CONSTRAINT pk_departments PRIMARY KEY (id)
+)
+GO
+
+CREATE TABLE temperatures
+(
+    id            bigint IDENTITY (1, 1) NOT NULL,
+    department_id bigint                 NOT NULL,
+    value         float(53)              NOT NULL,
+    measured_at   datetime               NOT NULL,
+    CONSTRAINT pk_temperatures PRIMARY KEY (id)
+)
+GO
+
 CREATE TABLE activities
 (
     id           bigint IDENTITY (1, 1) NOT NULL,
@@ -16,7 +38,7 @@ CREATE TABLE agencies
     created_date     datetime               NOT NULL,
     updated_date     datetime,
     deleted          bit                    NOT NULL,
-    user_id          bigint                 NOT NULL,
+    user_id          varchar(255)           NOT NULL,
     legal_name       varchar(100),
     ruc              bigint,
     address          varchar(240),
@@ -45,9 +67,9 @@ CREATE TABLE bookings
     serie           varchar(255),
     number          varchar(255),
     tourist_id      bigint                 NOT NULL,
-    tourist_user_id bigint                 NOT NULL,
+    tourist_user_id varchar(255)           NOT NULL,
     tour_package_id bigint                 NOT NULL,
-    agency_user_id  bigint                 NOT NULL,
+    agency_user_id  varchar(255)           NOT NULL,
     selected_date   datetime,
     start_datetime  datetime,
     end_datetime    datetime,
@@ -66,18 +88,6 @@ CREATE TABLE correlative
     digits       int,
     type         varchar(255),
     CONSTRAINT pk_correlative PRIMARY KEY (id)
-)
-GO
-
-CREATE TABLE departments
-(
-    id           bigint IDENTITY (1, 1) NOT NULL,
-    created_date datetime               NOT NULL,
-    updated_date datetime,
-    deleted      bit                    NOT NULL,
-    name         varchar(255),
-    region_id    bigint                 NOT NULL,
-    CONSTRAINT pk_departments PRIMARY KEY (id)
 )
 GO
 
@@ -168,7 +178,7 @@ CREATE TABLE tourists
     created_date           datetime               NOT NULL,
     updated_date           datetime,
     deleted                bit                    NOT NULL,
-    user_id                bigint                 NOT NULL,
+    user_id                varchar(255)           NOT NULL,
     name                   varchar(255),
     birth_date             datetime,
     phone_number           varchar(255),
@@ -185,7 +195,7 @@ CREATE TABLE tracking_wereables
     updated_date    datetime,
     deleted         bit                    NOT NULL,
     tourist_id      bigint                 NOT NULL,
-    tourist_user_id bigint                 NOT NULL,
+    tourist_user_id varchar(255)           NOT NULL,
     latitude        decimal(13, 10),
     longitude       decimal(13, 10),
     serie_number    varchar(255),
@@ -197,13 +207,13 @@ GO
 
 CREATE TABLE users
 (
-    id               bigint IDENTITY (1, 1) NOT NULL,
-    email            varchar(100)           NOT NULL,
-    google_name      varchar(100)           NOT NULL,
+    id               varchar(255) NOT NULL,
+    email            varchar(100) NOT NULL,
+    google_name      varchar(100) NOT NULL,
     google_photo_url varchar(255),
-    role_id          bigint                 NOT NULL,
-    created_date     datetime               NOT NULL,
-    deleted          bit                    NOT NULL,
+    role_id          bigint       NOT NULL,
+    created_date     datetime     NOT NULL,
+    deleted          bit          NOT NULL,
     CONSTRAINT pk_users PRIMARY KEY (id)
 )
 GO
@@ -235,7 +245,7 @@ CREATE TABLE weather_sensors
     deleted        bit                    NOT NULL,
     destination_id bigint                 NOT NULL,
     agency_id      bigint                 NOT NULL,
-    agency_user_id bigint                 NOT NULL,
+    agency_user_id varchar(255)           NOT NULL,
     temperature    float(53),
     humidity       float(53),
     serie_number   varchar(255),
@@ -370,4 +380,8 @@ GO
 
 ALTER TABLE tour_package_activities
     ADD CONSTRAINT fk_toupacact_on_tour_package FOREIGN KEY (tour_package_id) REFERENCES tour_packages (id)
+GO
+
+ALTER TABLE temperatures
+    ADD CONSTRAINT FK_TEMPERATURES_ON_DEPARTMENT FOREIGN KEY (department_id) REFERENCES departments (id)
 GO

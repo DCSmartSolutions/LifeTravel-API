@@ -9,6 +9,8 @@ import lombok.Setter;
 @Setter
 @Schema(description="User (Request)")
 public class UserRequestDto {
+    @Schema(description="User Id from Firebase")
+    private String id;
     @Schema(description="User Name")
     private String name;
     @Schema(description="User Email")

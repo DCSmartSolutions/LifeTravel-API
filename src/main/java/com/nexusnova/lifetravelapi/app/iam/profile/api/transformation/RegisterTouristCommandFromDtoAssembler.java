@@ -6,7 +6,7 @@ import com.nexusnova.lifetravelapi.app.iam.profile.resources.requests.TouristReq
 public class RegisterTouristCommandFromDtoAssembler {
     private RegisterTouristCommandFromDtoAssembler() {
     }
-    public static CreateTouristCommand toCommandFromDto(Long id, TouristRequestDto requestDto){
+    public static CreateTouristCommand toCommandFromDto(String id, TouristRequestDto requestDto){
         return new CreateTouristCommand(id, requestDto);
     }
 }

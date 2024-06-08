@@ -25,8 +25,7 @@ import java.util.Date;
 @SQLDelete(sql = "UPDATE users SET deleted = true WHERE id = ?")
 public class User implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @NotNull
     @Size(max = 100)

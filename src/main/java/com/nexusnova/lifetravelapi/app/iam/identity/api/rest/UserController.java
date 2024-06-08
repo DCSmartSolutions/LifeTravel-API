@@ -42,7 +42,7 @@ public class UserController {
     @GetMapping("/login/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Get user", description = "Allows to retrieve a user.")
-    public UserSummaryDto getUser(@Parameter @PathVariable("id") Long id) {
+    public UserSummaryDto getUser(@Parameter @PathVariable("id") String id) {
         User user = userQueryService.handle(new GetUserByIdQuery(id));
         return identityMapper.userToSummaryDto(user);
     }

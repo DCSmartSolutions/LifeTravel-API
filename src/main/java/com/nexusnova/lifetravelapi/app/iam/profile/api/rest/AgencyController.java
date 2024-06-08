@@ -47,7 +47,7 @@ public class AgencyController {
     @PostMapping("/register/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Registrar Agencia", description = "Permite registrat el perfil de una agencia.")
-    public AgencySummaryDto registerAgency(@Parameter @PathVariable("id") Long id,
+    public AgencySummaryDto registerAgency(@Parameter @PathVariable("id") String id,
                                            @RequestBody @Valid AgencyRequestDto requestDto,
                                            HttpServletResponse response) {
         Agency agency = agencyCommandService.handle(RegisterAgencyCommandFromDtoAssembler.toCommandFromDto(id, requestDto));
