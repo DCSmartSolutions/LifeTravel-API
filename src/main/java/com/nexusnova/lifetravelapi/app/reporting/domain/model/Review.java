@@ -1,12 +1,12 @@
 package com.nexusnova.lifetravelapi.app.reporting.domain.model;
 
-import com.nexusnova.lifetravelapi.app.core.booking.domain.model.Booking;
+import com.nexusnova.lifetravelapi.app.core.tours.domain.model.TourPackage;
+import com.nexusnova.lifetravelapi.app.iam.profile.domain.model.Tourist;
 import com.nexusnova.lifetravelapi.app.shared.domain.model.AuditModel;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.util.Set;
 
 @Getter
 @Setter
@@ -18,16 +18,19 @@ import java.util.Set;
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "reviews")
 public class Review extends AuditModel {
-    @Column(name = "rating")
-    private String rating;
-
-    @Column(name = "information")
-    private String information;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tourist_id")
+    @NotNull
+    private Tourist tourist;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "booking_id", nullable = false)
-    private Booking booking;
+    @JoinColumn(name = "tour_package_id", nullable = false)
+    @NotNull
+    private TourPackage tourPackage;
 
-    @ManyToMany(mappedBy = "reviews")
-    private Set<Report> reports;
+    @Column(name = "rating")
+    private int rating;
+
+    @Column(name = "review_text")
+    private String reviewText;
 }
