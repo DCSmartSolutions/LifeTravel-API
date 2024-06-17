@@ -13,7 +13,8 @@ CREATE TABLE reports
     updated_date datetime,
     deleted      bit                    NOT NULL,
     agency_id    bigint                 NOT NULL,
-    content      varchar(255),
+    content           nvarchar(MAX),
+    ai_recommendation nvarchar(MAX),
     CONSTRAINT pk_reports PRIMARY KEY (id)
 )
 GO

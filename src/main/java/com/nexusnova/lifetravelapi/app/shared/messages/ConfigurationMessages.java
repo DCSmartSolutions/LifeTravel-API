@@ -9,4 +9,5 @@ public class ConfigurationMessages {
     public static final String WEATHER_SENSOR_UPDATED = "Clima de Sensor actualizado correctamente";
     public static final String WEIGHT_BALANCE_UPDATED = "Peso de Balanza actualizado correctamente";
     public static final String TEMPERATURE_REGISTERED = "Temperature registered correctly";
+    public static final String REPORT_GENERATED = "Report generated correctly";
 }

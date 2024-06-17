@@ -34,4 +34,7 @@ public class Report extends AuditModel {
 
     @Column(name = "content")
     private String content;
+
+    @Column(name = "ai_recommendation")
+    private String aiRecommendation;
 }
