@@ -1,6 +1,6 @@
 package com.nexusnova.lifetravelapi.app.reporting.application;
 
-import com.nexusnova.lifetravelapi.app.reporting.domain.model.GetReportByAgencyQuery;
+import com.nexusnova.lifetravelapi.app.reporting.domain.queries.GetReportByAgencyQuery;
 import com.nexusnova.lifetravelapi.app.reporting.domain.model.Report;
 import com.nexusnova.lifetravelapi.app.reporting.domain.repositories.ReportRepository;
 import com.nexusnova.lifetravelapi.app.reporting.domain.services.ReportQueryService;

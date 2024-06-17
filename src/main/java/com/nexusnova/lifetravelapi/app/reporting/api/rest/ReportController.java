@@ -2,8 +2,7 @@ package com.nexusnova.lifetravelapi.app.reporting.api.rest;
 
 import com.nexusnova.lifetravelapi.app.reporting.api.transformation.GenerateReportCommandFromRequestDtoAssembler;
 import com.nexusnova.lifetravelapi.app.reporting.api.transformation.ReportSummaryAssembler;
-import com.nexusnova.lifetravelapi.app.reporting.domain.commands.GenerateReportCommand;
-import com.nexusnova.lifetravelapi.app.reporting.domain.model.GetReportByAgencyQuery;
+import com.nexusnova.lifetravelapi.app.reporting.domain.queries.GetReportByAgencyQuery;
 import com.nexusnova.lifetravelapi.app.reporting.domain.model.Report;
 import com.nexusnova.lifetravelapi.app.reporting.domain.services.ReportCommandService;
 import com.nexusnova.lifetravelapi.app.reporting.domain.services.ReportQueryService;

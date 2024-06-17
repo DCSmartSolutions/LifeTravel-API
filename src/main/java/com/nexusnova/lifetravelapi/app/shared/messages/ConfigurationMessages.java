@@ -10,4 +10,5 @@ public class ConfigurationMessages {
     public static final String WEIGHT_BALANCE_UPDATED = "Peso de Balanza actualizado correctamente";
     public static final String TEMPERATURE_REGISTERED = "Temperature registered correctly";
     public static final String REPORT_GENERATED = "Report generated correctly";
+    public static final String REVIEW_CREATED = "Review created correctly";
 }
