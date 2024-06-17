@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ReportQueryService {
     List<Report> handle(GetReportByAgencyQuery query);
+    List<Report> handle();
 }

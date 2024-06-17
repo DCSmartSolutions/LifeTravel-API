@@ -2,6 +2,7 @@ package com.nexusnova.lifetravelapi.app.reporting.api.rest;
 
 import com.nexusnova.lifetravelapi.app.reporting.api.transformation.GenerateReportCommandFromRequestDtoAssembler;
 import com.nexusnova.lifetravelapi.app.reporting.api.transformation.ReportSummaryAssembler;
+import com.nexusnova.lifetravelapi.app.reporting.domain.commands.RemoveReportCommand;
 import com.nexusnova.lifetravelapi.app.reporting.domain.queries.GetReportByAgencyQuery;
 import com.nexusnova.lifetravelapi.app.reporting.domain.model.Report;
 import com.nexusnova.lifetravelapi.app.reporting.domain.services.ReportCommandService;
@@ -38,6 +39,14 @@ public class ReportController {
         this.reportSummaryAssembler = reportSummaryAssembler;
     }
 
+    @GetMapping("/")
+    @Operation(summary = "Get all reports", description = "Get all reports")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ReportSummaryDto> getReports() {
+        List<Report> reports = reportQueryService.handle();
+        return reportSummaryAssembler.toSummaryFromData(reports);
+    }
+
     @GetMapping("agency/{agencyId}")
     @Operation(summary = "Get report by agency id", description = "Get report by agency id")
     @ResponseStatus(HttpStatus.OK)
@@ -52,6 +61,14 @@ public class ReportController {
     public ReportSummaryDto createReport(@RequestBody @Valid ReportRequestDto reportRequestDto, HttpServletResponse response) {
         Report report = reportCommandService.handle(GenerateReportCommandFromRequestDtoAssembler.toCommandFromDto(reportRequestDto));
         response.setHeader(HeaderConstants.MESSAGES, REPORT_GENERATED);
+        return reportSummaryAssembler.toSummaryFromData(report);
+    }
+
+    @DeleteMapping("/{reportId}")
+    @Operation(summary = "Delete report", description = "Delete a report")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public ReportSummaryDto deleteReport(@Parameter @PathVariable("reportId") Long reportId) {
+        Report report = reportCommandService.handle(new RemoveReportCommand(reportId));
         return reportSummaryAssembler.toSummaryFromData(report);
     }
 

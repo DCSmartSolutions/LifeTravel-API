@@ -27,7 +27,7 @@ public class ReviewCommandServiceImpl implements ReviewCommandService {
         review.setRating(command.requestDto().getRating());
         review.setReviewText(command.requestDto().getReviewText());
         review.setDeleted(false);
-        return review;
+        return reviewRepository.save(review);
     }
 
     @Override

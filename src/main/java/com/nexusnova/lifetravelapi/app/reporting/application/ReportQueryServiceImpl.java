@@ -18,6 +18,11 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 
     @Override
     public List<Report> handle(GetReportByAgencyQuery query) {
-        return reportRepository.findByAgencyId(query.agencyId());
+        return reportRepository.findByAgencyIdAndDeletedIsFalse(query.agencyId());
+    }
+
+    @Override
+    public List<Report> handle() {
+        return reportRepository.findByDeletedIsFalse();
     }
 }

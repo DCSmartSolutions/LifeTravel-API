@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface ReportRepository extends JpaRepository<Report, Long> {
-    List<Report> findByAgencyId(Long agencyId);
+    List<Report> findByAgencyIdAndDeletedIsFalse(Long agencyId);
+    List<Report> findByDeletedIsFalse();
 }

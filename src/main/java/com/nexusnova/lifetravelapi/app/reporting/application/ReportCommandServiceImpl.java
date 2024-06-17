@@ -4,10 +4,12 @@ import com.nexusnova.lifetravelapi.app.core.tours.domain.model.TourPackage;
 import com.nexusnova.lifetravelapi.app.core.tours.domain.services.OpenAIClientService;
 import com.nexusnova.lifetravelapi.app.iam.profile.domain.model.Agency;
 import com.nexusnova.lifetravelapi.app.reporting.domain.commands.GenerateReportCommand;
+import com.nexusnova.lifetravelapi.app.reporting.domain.commands.RemoveReportCommand;
 import com.nexusnova.lifetravelapi.app.reporting.domain.model.Report;
 import com.nexusnova.lifetravelapi.app.reporting.domain.model.Review;
 import com.nexusnova.lifetravelapi.app.reporting.domain.repositories.ReportRepository;
 import com.nexusnova.lifetravelapi.app.reporting.domain.services.ReportCommandService;
+import com.nexusnova.lifetravelapi.app.shared.exceptions.ResourceNotFoundException;
 import com.nexusnova.lifetravelapi.app.shared.util.ValidationUtil;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +43,13 @@ public class ReportCommandServiceImpl implements ReportCommandService {
         report.setContent(generateReportSummary(tourPackages));
         report.setAiRecommendation(getChatResponse(report.getContent()));
         report.setDeleted(false);
+        return reportRepository.save(report);
+    }
+
+    @Override
+    public Report handle(RemoveReportCommand command) {
+        Report report = reportRepository.findById(command.id()).orElseThrow(() -> new ResourceNotFoundException("Report not found with id: " + command.id()));
+        report.setDeleted(true);
         return reportRepository.save(report);
     }
 
