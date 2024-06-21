@@ -3,6 +3,7 @@ package com.nexusnova.lifetravelapi.app.core.tours.domain.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nexusnova.lifetravelapi.app.iam.profile.domain.model.Agency;
 import com.nexusnova.lifetravelapi.app.core.transportation.domain.model.Vehicle;
+import com.nexusnova.lifetravelapi.app.reporting.domain.model.Review;
 import com.nexusnova.lifetravelapi.app.shared.domain.model.AuditModel;
 import jakarta.persistence.*;
 import lombok.*;
@@ -77,4 +78,7 @@ public class TourPackage extends AuditModel {
             joinColumns = @JoinColumn(name = "tour_package_id"),
             inverseJoinColumns = @JoinColumn(name = "vehicle_id"))
     private List<Vehicle> vehicles;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tourPackage", cascade = CascadeType.ALL)
+    private List<Review> reviews;
 }

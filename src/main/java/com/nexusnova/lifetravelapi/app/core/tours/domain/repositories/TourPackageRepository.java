@@ -16,4 +16,5 @@ public interface TourPackageRepository extends JpaRepository<TourPackage, Long> 
     List<TourPackage> findAllByVisibleIsTrue();
     List<TourPackage> findByAgencyId(Long agencyId);
     List<TourPackage> findByAgencyIdAndVisible(Long agencyId, boolean visible);
+    List<TourPackage> findByIdIn(List<Long> ids);
 }
