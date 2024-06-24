@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Setter
 @Getter
@@ -15,6 +16,12 @@ public class ReportSummaryDto {
 
         @Schema(description = "Agency business name")
         private String agencyBusinessName;
+
+        @Schema(description = "Agency ID")
+        private Long agencyId;
+
+        @Schema(description = "TourPackage IDs")
+        private List<Long> tourPackageIds;
 
         @Schema(description = "Number of Reviews")
         private Integer numberOfReviews;

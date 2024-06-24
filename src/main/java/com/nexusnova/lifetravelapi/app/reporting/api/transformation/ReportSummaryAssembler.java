@@ -31,11 +31,17 @@ public class ReportSummaryAssembler {
 
         summary.setReportId(report.getId());
         summary.setAgencyBusinessName(report.getAgency().getLegalName());
+        summary.setAgencyId(report.getAgency().getId());
         summary.setNumberOfReviews(report.getReviews().size());
         float averageRating = 0.0f;
         for (Review review : report.getReviews()) {
             averageRating += review.getRating();
         }
+        List<Long> tourPackageIds = new ArrayList<>();
+        for (Review review : report.getReviews()) {
+            tourPackageIds.add(review.getTourPackage().getId());
+        }
+        summary.setTourPackageIds(tourPackageIds);
 
         if (!report.getReviews().isEmpty()) {
             averageRating = averageRating / report.getReviews().size();
