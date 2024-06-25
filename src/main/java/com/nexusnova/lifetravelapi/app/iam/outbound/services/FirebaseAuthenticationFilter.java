@@ -42,7 +42,7 @@ public class FirebaseAuthenticationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         // Check if the active profile is "local"
-        if (Arrays.asList(environment.getActiveProfiles()).contains("local")) {
+        if (Arrays.asList(environment.getActiveProfiles()).contains("dev")) {
             // If the profile is "local", skip the filter
             chain.doFilter(request, response);
             return;
