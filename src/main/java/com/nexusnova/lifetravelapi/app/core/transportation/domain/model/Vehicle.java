@@ -34,6 +34,7 @@ public class Vehicle extends AuditModel {
     private BigDecimal weight;
     @Column(name="img_url")
     private String img;
+    @Enumerated(EnumType.ORDINAL)
     @Column(name="status")
     private VehicleStatus status;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
