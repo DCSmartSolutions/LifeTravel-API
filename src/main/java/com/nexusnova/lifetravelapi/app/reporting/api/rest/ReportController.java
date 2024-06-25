@@ -39,7 +39,7 @@ public class ReportController {
         this.reportSummaryAssembler = reportSummaryAssembler;
     }
 
-    @GetMapping("/")
+    @GetMapping
     @Operation(summary = "Get all reports", description = "Get all reports")
     @ResponseStatus(HttpStatus.OK)
     public List<ReportSummaryDto> getReports() {
@@ -55,7 +55,7 @@ public class ReportController {
         return reportSummaryAssembler.toSummaryFromData(reports);
     }
 
-    @PostMapping("/")
+    @PostMapping
     @Operation(summary = "Create report", description = "Create a new report")
     @ResponseStatus(HttpStatus.CREATED)
     public ReportSummaryDto createReport(@RequestBody @Valid ReportRequestDto reportRequestDto, HttpServletResponse response) {
