@@ -3,7 +3,7 @@ import time
 import random
 
 # MQTT broker configuration
-MQTT_HOST = 'localhost'
+MQTT_HOST = '20.84.92.29'
 MQTT_PORT = 1883
 MQTT_TOPIC = 'temperatures/department{}'  # {} will be replaced by the department ID
 

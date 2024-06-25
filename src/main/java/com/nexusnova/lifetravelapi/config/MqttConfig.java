@@ -23,9 +23,9 @@ import java.util.logging.Logger;
 @Configuration
 public class MqttConfig {
 
-    private static final String MQTT_URL = "tcp://localhost:1883";
+    private static final String MQTT_URL = "tcp://20.84.92.29:1883";
     private static final String CLIENT_ID = "spring-boot-mqtt";
-    private static final int BATCH_SIZE = 10;
+    private static final int BATCH_SIZE = 15;
     private static final Logger logger = Logger.getLogger(MqttConfig.class.getName());
 
     private final TemperatureCommandService temperatureCommandService;
