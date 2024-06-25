@@ -9,7 +9,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.validation.constraints.Max;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -22,28 +21,28 @@ import java.util.List;
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "tour_packages")
 public class TourPackage extends AuditModel {
-    @Column(name = "title")
+    @Column(name = "title", length = 255)
     private String title;
-    @Column(name = "description", columnDefinition = "nvarchar(max)")
+
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
-    @Column(name = "img_url")
+    @Column(name = "img_url", length = 255)
     private String imgUrl;
 
-    @Column(name = "price")
+    @Column(name = "price", precision = 10, scale = 2)
     private BigDecimal price;
 
     @Column(name = "visible", nullable = false)
     private Boolean visible = false;
 
     @Column(name = "rating")
-    @Max(5)
     private Float rating;
 
-    @Column(name = "latitude", columnDefinition = "decimal(13,10)")
+    @Column(name = "latitude", precision = 13, scale = 10)
     private BigDecimal latitude;
 
-    @Column(name = "longitude", columnDefinition = "decimal(13,10)")
+    @Column(name = "longitude", precision = 13, scale = 10)
     private BigDecimal longitude;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

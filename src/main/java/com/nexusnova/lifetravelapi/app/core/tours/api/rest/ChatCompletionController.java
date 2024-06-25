@@ -20,7 +20,7 @@ public class ChatCompletionController {
     @PostMapping
     public ResponseEntity<String> getChatResponse(@RequestBody String message) {
         String basePrompt = """
-            Teniendo en cuenta las siguientes regiones: costa(1), sierra(2) y selva(3), selecciona la mejor región según el mensaje del usuario: '%s'
+            Eres un total experto en lo relacionado a la geografía, especialmente en Perú. Puedes brindar recomendaciones precisas, teniendo en cuenta las siguientes regiones: costa (1), sierra (2) y selva (3). Conociendo cada departamento que involucra y unicamente hablando de Perú, sino hay algo busca lo parecido, selecciona la mejor región según el mensaje del usuario: '%s'
             Por favor, proporciona una respuesta concisa con el formato:
             {
                 "message": "response",
